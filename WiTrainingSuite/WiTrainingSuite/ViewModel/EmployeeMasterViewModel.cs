@@ -45,6 +45,14 @@ namespace WiTrainingSuite.ViewModel
                     EmployeeList = new ReactiveList<FnTEMPLOYEE_LISTResult>(EmployeeList.OrderBy(f, this).AsEnumerable());
             });
 
+            EditEmployeeCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new EmployeeDetailViewModel(HostScreen, SelectedEmployee));
+            },
+            this.WhenAnyValue(
+                x => x.SelectedEmployee,
+                (e) => e.EMP_ID > 0));
+
             // Key = SQL Column Header; Value = Friendly Name
             ColumnHeaders.Add("EMP_FNAME", "First Name");
             ColumnHeaders.Add("EMP_LNAME", "Last Name");
@@ -54,6 +62,8 @@ namespace WiTrainingSuite.ViewModel
             ColumnHeaders.Add("SHIFT_NAME", "Shift");
         }
 
+        public ReactiveCommand EditEmployeeCommand { get; set; }
+
         private ReactiveList<FnTEMPLOYEE_LISTResult> _employeeList;
         public ReactiveList<FnTEMPLOYEE_LISTResult> EmployeeList
         {
@@ -61,7 +71,7 @@ namespace WiTrainingSuite.ViewModel
             set { this.RaiseAndSetIfChanged(ref _employeeList, value); }
         }
 
-        private FnTEMPLOYEE_LISTResult _selectedEmployee;
+        private FnTEMPLOYEE_LISTResult _selectedEmployee = new FnTEMPLOYEE_LISTResult();
         public FnTEMPLOYEE_LISTResult SelectedEmployee
         {
             get { return _selectedEmployee; }

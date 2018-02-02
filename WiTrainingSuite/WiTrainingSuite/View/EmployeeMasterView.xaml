@@ -74,7 +74,7 @@ xmlns:rx="http://reactiveui.net"
                         <UniformGrid Columns="5" Grid.Row="1">
                             <Button Margin="4 4 2 4" Command="{x:Static md:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Bottom}">Sort</Button>
                             <Button Margin="2 4 2 4">Add New</Button>
-                            <Button Margin="2 4 2 4">Edit Selected</Button>
+                            <Button Margin="2 4 2 4" Command="{Binding EditEmployeeCommand}">Edit Selected</Button>
                             <Button Margin="2 4 2 4">View Training</Button>
                             <Button Margin="2 4 4 4">Input Training</Button>
                         </UniformGrid>
