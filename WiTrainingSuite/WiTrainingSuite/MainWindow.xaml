@@ -1,12 +1,47 @@
-﻿<Window x:Class="WiTrainingSuite.MainWindow"
+﻿<m:MetroWindow x:Class="WiTrainingSuite.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WiTrainingSuite"
         mc:Ignorable="d"
+        xmlns:m="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:rx="http://reactiveui.net"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        GlowBrush="{DynamicResource AccentColorBrush}"
         Title="MainWindow" Height="350" Width="525">
+    <m:MetroWindow.RightWindowCommands>
+        <m:WindowCommands>
+            <Button Command="{Binding LoadStandardWorkList}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20"
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{StaticResource appbar_paper}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                               VerticalAlignment="Center"
+                               Text="Standard Work"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding LoadEmployeeList}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20"
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{StaticResource appbar_people_profile}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                               VerticalAlignment="Center"
+                               Text="Employee"/>
+                </StackPanel>
+            </Button>
+        </m:WindowCommands>
+    </m:MetroWindow.RightWindowCommands>
     <Grid>
-        
+        <rx:RoutedViewHost Router="{Binding Router}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <md:Snackbar Height="50" MessageQueue="{Binding SnackBarQueue}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
     </Grid>
-</Window>
+</m:MetroWindow>
