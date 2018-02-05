@@ -45,6 +45,19 @@ namespace WiTrainingSuite.ViewModel
                     StandardWorkList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(StandardWorkList.OrderBy(f, this).AsEnumerable());
             });
 
+            NewStandardWorkCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new StandardWorkDetailNewViewModel(HostScreen));
+            });
+
+            EditStandardWorkCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new StandardWorkDetailEditViewModel(HostScreen, SelectedStandardWork));
+            },
+            this.WhenAnyValue(
+                x => x.SelectedStandardWork,
+                (s) => s.SW_ID > 0));
+
             // Key = SQL Column Header; Value = Friendly Name
             ColumnHeaders.Add("SW_CODE", "Code");
             ColumnHeaders.Add("SW_DESCRIPTION", "Description");
@@ -53,6 +66,9 @@ namespace WiTrainingSuite.ViewModel
             ColumnHeaders.Add("SW_RA", "Risk Assessment #");
         }
 
+        public ReactiveCommand NewStandardWorkCommand { get; set; }
+        public ReactiveCommand EditStandardWorkCommand { get; set; }
+
         private ReactiveList<FnTSTANDARDWORK_LISTResult> _StandardWorkList;
         public ReactiveList<FnTSTANDARDWORK_LISTResult> StandardWorkList
         {
@@ -60,7 +76,7 @@ namespace WiTrainingSuite.ViewModel
             set { this.RaiseAndSetIfChanged(ref _StandardWorkList, value); }
         }
 
-        private FnTSTANDARDWORK_LISTResult _SelectedStandardWork;
+        private FnTSTANDARDWORK_LISTResult _SelectedStandardWork = new FnTSTANDARDWORK_LISTResult();
         public FnTSTANDARDWORK_LISTResult SelectedStandardWork
         {
             get { return _SelectedStandardWork; }

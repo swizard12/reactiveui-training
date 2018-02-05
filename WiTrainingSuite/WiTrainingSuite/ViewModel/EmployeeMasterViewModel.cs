@@ -45,9 +45,14 @@ namespace WiTrainingSuite.ViewModel
                     EmployeeList = new ReactiveList<FnTEMPLOYEE_LISTResult>(EmployeeList.OrderBy(f, this).AsEnumerable());
             });
 
+            NewEmployeeCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new EmployeeDetailNewViewModel(HostScreen));
+            });
+
             EditEmployeeCommand = ReactiveCommand.Create(() =>
             {
-                HostScreen.Router.Navigate.Execute(new EmployeeDetailViewModel(HostScreen, SelectedEmployee));
+                HostScreen.Router.Navigate.Execute(new EmployeeDetailEditViewModel(HostScreen, SelectedEmployee));
             },
             this.WhenAnyValue(
                 x => x.SelectedEmployee,
@@ -62,6 +67,7 @@ namespace WiTrainingSuite.ViewModel
             ColumnHeaders.Add("SHIFT_NAME", "Shift");
         }
 
+        public ReactiveCommand NewEmployeeCommand { get; set; }
         public ReactiveCommand EditEmployeeCommand { get; set; }
 
         private ReactiveList<FnTEMPLOYEE_LISTResult> _employeeList;

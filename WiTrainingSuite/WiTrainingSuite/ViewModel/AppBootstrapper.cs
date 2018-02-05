@@ -37,10 +37,12 @@ namespace WiTrainingSuite.ViewModel
             dependencyResolver.RegisterConstant(this, typeof(IScreen));
 
             dependencyResolver.Register(() => new EmployeeMasterView(), typeof(IViewFor<EmployeeMasterViewModel>));
-            dependencyResolver.Register(() => new EmployeeDetailView(), typeof(IViewFor<EmployeeDetailViewModel>));
+            dependencyResolver.Register(() => new EmployeeDetailNewView(), typeof(IViewFor<EmployeeDetailNewViewModel>));
+            dependencyResolver.Register(() => new EmployeeDetailEditView(), typeof(IViewFor<EmployeeDetailEditViewModel>));
 
             dependencyResolver.Register(() => new StandardWorkMasterView(), typeof(IViewFor<StandardWorkMasterViewModel>));
-            // dependencyResolver.Register(() => new StandardWorkDetailView(), typeof(IViewFor<StandardWorkDetailViewModel>));
+            dependencyResolver.Register(() => new StandardWorkDetailNewView(), typeof(IViewFor<StandardWorkDetailNewViewModel>));
+            dependencyResolver.Register(() => new StandardWorkDetailEditView(), typeof(IViewFor<StandardWorkDetailEditViewModel>));
 
             LoadEmployeeList = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(new EmployeeMasterViewModel(this)));
             LoadStandardWorkList = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(new StandardWorkMasterViewModel(this)));

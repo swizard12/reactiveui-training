@@ -120,15 +120,27 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\AppBootstrapper.cs" />
-    <Compile Include="ViewModel\EmployeeDetailViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeDetailEditViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeDetailNewViewModel.cs" />
     <Compile Include="ViewModel\EmployeeMasterViewModel.cs" />
     <Compile Include="ViewModel\ExtendedViewModelBase.cs" />
+    <Compile Include="ViewModel\StandardWorkDetailEditViewModel.cs" />
+    <Compile Include="ViewModel\StandardWorkDetailNewViewModel.cs" />
     <Compile Include="ViewModel\StandardWorkMasterViewModel.cs" />
-    <Compile Include="View\EmployeeDetailView.xaml.cs">
-      <DependentUpon>EmployeeDetailView.xaml</DependentUpon>
+    <Compile Include="View\EmployeeDetailEditView.xaml.cs">
+      <DependentUpon>EmployeeDetailEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeDetailNewView.xaml.cs">
+      <DependentUpon>EmployeeDetailNewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeMasterView.xaml.cs">
       <DependentUpon>EmployeeMasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StandardWorkDetailEditView.xaml.cs">
+      <DependentUpon>StandardWorkDetailEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StandardWorkDetailNewView.xaml.cs">
+      <DependentUpon>StandardWorkDetailNewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StandardWorkMasterView.xaml.cs">
       <DependentUpon>StandardWorkMasterView.xaml</DependentUpon>
@@ -154,11 +166,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\EmployeeDetailView.xaml">
+    <Page Include="View\EmployeeDetailEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeDetailNewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EmployeeMasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StandardWorkDetailEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StandardWorkDetailNewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
