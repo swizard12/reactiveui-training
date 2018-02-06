@@ -8,7 +8,7 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:m="http://metro.mahapps.com/winfx/xaml/controls">
     <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <md:Card.Content>
-            <Grid>
+            <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition />
@@ -26,10 +26,10 @@
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_FNAME}"/>
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_LNAME}"/>
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_INITIAL}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.DEPT_NAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.ROLE_NAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.VAR_NAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.SHIFT_NAME}"/>
+                    <ComboBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding DeptList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="DEPT_ID" SelectedValue="{Binding Path=Employee.DEPT_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="DEPT_NAME"/>
+                    <ComboBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding RoleList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="ROLE_ID" SelectedValue="{Binding Path=Employee.ROLE_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="ROLE_NAME" SelectedItem="{Binding SelectedRole, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding VarList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="VAR_ID" SelectedValue="{Binding Path=Employee.VAR_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="VAR_NAME"/>
+                    <ComboBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding ShiftList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="SHIFT_ID" SelectedValue="{Binding Path=Employee.SHIFT_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="SHIFT_NAME"/>
                 </StackPanel>
             </Grid>
         </md:Card.Content>

@@ -3093,8 +3093,20 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TROLE")]
-    public partial class TROLE
+    public partial class TROLE : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         private int _ROLE_ID;
 
@@ -3118,6 +3130,7 @@ namespace WiTrainingSuite
                 if ((this._ROLE_ID != value))
                 {
                     this._ROLE_ID = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -3134,6 +3147,7 @@ namespace WiTrainingSuite
                 if ((this._ROLE_NAME != value))
                 {
                     this._ROLE_NAME = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -3150,6 +3164,7 @@ namespace WiTrainingSuite
                 if ((this._ROLE_EMAIL != value))
                 {
                     this._ROLE_EMAIL = value;
+                    NotifyPropertyChanged();
                 }
             }
         }

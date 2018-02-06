@@ -57,5 +57,7 @@ namespace WiTrainingSuite.ViewModel
             get { return _Employee; }
             set { this.RaiseAndSetIfChanged(ref _Employee, value); }
         }
+
+
     }
 }
