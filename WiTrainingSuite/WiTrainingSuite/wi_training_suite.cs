@@ -13,15 +13,19 @@ using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Reflection;
+using System.ComponentModel;
+using ReactiveUI;
+using System.Runtime.CompilerServices;
+using System;
 
 namespace WiTrainingSuite
 {
 
-    [Database(Name = "wi_training_suite")]
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "wi_training_suite")]
     public partial class Wi_training_suite : System.Data.Linq.DataContext
     {
 
-        private static MappingSource mappingSource = new AttributeMappingSource();
+        private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 
         #region Extensibility Method Definitions
         partial void OnCreated();
@@ -251,22 +255,6 @@ namespace WiTrainingSuite
             }
         }
 
-        public System.Data.Linq.Table<TROLESKILL> TROLESKILL
-        {
-            get
-            {
-                return this.GetTable<TROLESKILL>();
-            }
-        }
-
-        public System.Data.Linq.Table<TROLESKILL_AUDIT> TROLESKILL_AUDIT
-        {
-            get
-            {
-                return this.GetTable<TROLESKILL_AUDIT>();
-            }
-        }
-
         public System.Data.Linq.Table<TROLEVAR> TROLEVAR
         {
             get
@@ -371,6 +359,14 @@ namespace WiTrainingSuite
             }
         }
 
+        public System.Data.Linq.Table<VTRAINING> VTRAINING
+        {
+            get
+            {
+                return this.GetTable<VTRAINING>();
+            }
+        }
+
         [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fn_diagramobjects", IsComposable = true)]
         [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
         public System.Nullable<int> Fn_diagramobjects()
@@ -424,9 +420,9 @@ namespace WiTrainingSuite
 
         [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPLOYEE_UPDATE")]
         [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
-        public int FnTEMPLOYEE_UPDATE([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_FNAME", DbType = "VarChar(MAX)")] string eMP_FNAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_LNAME", DbType = "VarChar(MAX)")] string eMP_LNAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_INITIAL", DbType = "VarChar(MAX)")] string eMP_INITIAL, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "DEPT_ID", DbType = "Int")] System.Nullable<int> dEPT_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "ROLE_ID", DbType = "Int")] System.Nullable<int> rOLE_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "VAR_ID", DbType = "Int")] System.Nullable<int> vAR_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SHIFT_ID", DbType = "Int")] System.Nullable<int> sHIFT_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_NOTE", DbType = "VarChar(MAX)")] string eMP_NOTE)
+        public int FnTEMPLOYEE_UPDATE([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_FNAME", DbType = "VarChar(MAX)")] string eMP_FNAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_LNAME", DbType = "VarChar(MAX)")] string eMP_LNAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_INITIAL", DbType = "VarChar(MAX)")] string eMP_INITIAL, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "DEPT_ID", DbType = "Int")] System.Nullable<int> dEPT_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "VAR_ID", DbType = "Int")] System.Nullable<int> vAR_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SHIFT_ID", DbType = "Int")] System.Nullable<int> sHIFT_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_NOTE", DbType = "VarChar(MAX)")] string eMP_NOTE)
         {
-            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMP_ID, eMP_FNAME, eMP_LNAME, eMP_INITIAL, dEPT_ID, rOLE_ID, vAR_ID, sHIFT_ID, eMP_NOTE);
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMP_ID, eMP_FNAME, eMP_LNAME, eMP_INITIAL, dEPT_ID, vAR_ID, sHIFT_ID, eMP_NOTE);
             return ((int)(result.ReturnValue));
         }
 
@@ -633,7 +629,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -649,7 +645,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_USERNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_USERNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string USERNAME
         {
             get
@@ -678,7 +674,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_DEPT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int DEPT_ID
         {
             get
@@ -694,7 +690,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_DEPT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string DEPT_NAME
         {
             get
@@ -733,7 +729,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -749,7 +745,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_DEPT_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", DbType = "Int NOT NULL")]
         public int DEPT_ID
         {
             get
@@ -765,7 +761,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_DEPT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string DEPT_NAME
         {
             get
@@ -781,7 +777,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -797,7 +793,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -813,7 +809,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -829,7 +825,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -860,7 +856,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -876,7 +872,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -892,7 +888,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_DEPT_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", DbType = "Int NOT NULL")]
         public int DEPT_ID
         {
             get
@@ -933,7 +929,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -949,7 +945,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -965,7 +961,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -981,7 +977,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_DEPT_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", DbType = "Int NOT NULL")]
         public int DEPT_ID
         {
             get
@@ -997,7 +993,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -1013,7 +1009,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -1029,7 +1025,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -1045,7 +1041,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -1076,7 +1072,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1092,7 +1088,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1108,7 +1104,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMAIL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMAIL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMAIL
         {
             get
@@ -1147,7 +1143,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1163,7 +1159,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1179,7 +1175,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMAIL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMAIL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMAIL
         {
             get
@@ -1195,7 +1191,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -1211,7 +1207,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -1227,7 +1223,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -1243,7 +1239,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -1276,7 +1272,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_EMP_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int EMP_ID
         {
             get
@@ -1292,7 +1288,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_FNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_FNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMP_FNAME
         {
             get
@@ -1308,7 +1304,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_LNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_LNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMP_LNAME
         {
             get
@@ -1324,7 +1320,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMP_INITIAL
         {
             get
@@ -1367,7 +1363,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -1383,7 +1379,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1399,7 +1395,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_FNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_FNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMP_FNAME
         {
             get
@@ -1415,7 +1411,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_LNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_LNAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMP_LNAME
         {
             get
@@ -1431,7 +1427,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string EMP_INITIAL
         {
             get
@@ -1447,7 +1443,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -1463,7 +1459,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -1479,7 +1475,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -1495,7 +1491,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -1526,7 +1522,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1542,7 +1538,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1558,7 +1554,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
         public string EMP_NOTE
         {
             get
@@ -1599,7 +1595,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -1615,7 +1611,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -1631,7 +1627,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1647,7 +1643,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
         public string EMP_NOTE
         {
             get
@@ -1663,7 +1659,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -1679,7 +1675,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -1695,7 +1691,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -1711,7 +1707,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -1742,7 +1738,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1758,7 +1754,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1774,7 +1770,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
         public int ROLE_ID
         {
             get
@@ -1815,7 +1811,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -1831,7 +1827,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -1847,7 +1843,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1863,7 +1859,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
         public int ROLE_ID
         {
             get
@@ -1879,7 +1875,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -1895,7 +1891,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -1911,7 +1907,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -1927,7 +1923,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -1958,7 +1954,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1974,7 +1970,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -1990,7 +1986,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SHIFT_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", DbType = "Int NOT NULL")]
         public int SHIFT_ID
         {
             get
@@ -2031,7 +2027,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -2047,7 +2043,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -2063,7 +2059,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2079,7 +2075,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SHIFT_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", DbType = "Int NOT NULL")]
         public int SHIFT_ID
         {
             get
@@ -2095,7 +2091,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -2111,7 +2107,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -2127,7 +2123,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -2143,7 +2139,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -2174,7 +2170,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2190,7 +2186,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2206,7 +2202,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -2247,7 +2243,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -2263,7 +2259,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -2279,7 +2275,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2295,7 +2291,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -2311,7 +2307,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -2327,7 +2323,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -2343,7 +2339,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -2359,7 +2355,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -2390,7 +2386,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2406,7 +2402,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2422,7 +2418,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -2459,7 +2455,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2475,7 +2471,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2491,7 +2487,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
         public int SW_ID
         {
             get
@@ -2507,7 +2503,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_LEVEL", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_LEVEL", DbType = "Int NOT NULL")]
         public int SW_LEVEL
         {
             get
@@ -2523,7 +2519,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime VALIDDATE
         {
             get
@@ -2539,7 +2535,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDNOTE", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDNOTE", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string VALIDNOTE
         {
             get
@@ -2586,7 +2582,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDIT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDIT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int AUDIT_ID
         {
             get
@@ -2602,7 +2598,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -2618,7 +2614,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2634,7 +2630,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
         public int SW_ID
         {
             get
@@ -2650,7 +2646,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_LEVEL", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_LEVEL", DbType = "Int NOT NULL")]
         public int SW_LEVEL
         {
             get
@@ -2666,7 +2662,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime VALIDDATE
         {
             get
@@ -2682,7 +2678,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDNOTE", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDNOTE", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string VALIDNOTE
         {
             get
@@ -2698,7 +2694,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -2714,7 +2710,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -2730,7 +2726,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -2746,7 +2742,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -2783,7 +2779,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2799,7 +2795,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2815,7 +2811,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
         public int SW_ID
         {
             get
@@ -2831,7 +2827,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_LEVEL", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_LEVEL", DbType = "Int NOT NULL")]
         public int SW_LEVEL
         {
             get
@@ -2847,7 +2843,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime VALIDDATE
         {
             get
@@ -2863,7 +2859,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDNOTE", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDNOTE", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string VALIDNOTE
         {
             get
@@ -2894,7 +2890,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2910,7 +2906,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -2926,7 +2922,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
         public int VAR_ID
         {
             get
@@ -2967,7 +2963,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -2983,7 +2979,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -2999,7 +2995,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
         public int EMP_ID
         {
             get
@@ -3015,7 +3011,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
         public int VAR_ID
         {
             get
@@ -3031,7 +3027,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -3047,7 +3043,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -3063,7 +3059,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -3079,7 +3075,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -3110,7 +3106,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ROLE_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ROLE_ID
         {
             get
@@ -3126,7 +3122,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string ROLE_NAME
         {
             get
@@ -3142,7 +3138,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_EMAIL", DbType = "Bit NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_EMAIL", DbType = "Bit NOT NULL")]
         public bool ROLE_EMAIL
         {
             get
@@ -3183,7 +3179,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -3199,7 +3195,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
         public int ROLE_ID
         {
             get
@@ -3215,7 +3211,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string ROLE_NAME
         {
             get
@@ -3231,7 +3227,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_EMAIL", DbType = "Bit NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_EMAIL", DbType = "Bit NOT NULL")]
         public bool ROLE_EMAIL
         {
             get
@@ -3247,7 +3243,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -3263,7 +3259,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -3279,7 +3275,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -3295,223 +3291,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
-        public string AUDITAPP
-        {
-            get
-            {
-                return this._AUDITAPP;
-            }
-            set
-            {
-                if ((this._AUDITAPP != value))
-                {
-                    this._AUDITAPP = value;
-                }
-            }
-        }
-    }
-
-    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TROLESKILL")]
-    public partial class TROLESKILL
-    {
-
-        private int _ID;
-
-        private int _ROLE_ID;
-
-        private int _SKILL_ID;
-
-        public TROLESKILL()
-        {
-        }
-
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
-        public int ID
-        {
-            get
-            {
-                return this._ID;
-            }
-            set
-            {
-                if ((this._ID != value))
-                {
-                    this._ID = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
-        public int ROLE_ID
-        {
-            get
-            {
-                return this._ROLE_ID;
-            }
-            set
-            {
-                if ((this._ROLE_ID != value))
-                {
-                    this._ROLE_ID = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
-        public int SKILL_ID
-        {
-            get
-            {
-                return this._SKILL_ID;
-            }
-            set
-            {
-                if ((this._SKILL_ID != value))
-                {
-                    this._SKILL_ID = value;
-                }
-            }
-        }
-    }
-
-    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TROLESKILL_AUDIT")]
-    public partial class TROLESKILL_AUDIT
-    {
-
-        private long _AUDITID;
-
-        private int _ID;
-
-        private int _ROLE_ID;
-
-        private int _SKILL_ID;
-
-        private string _AUDITACTION;
-
-        private System.DateTime _AUDITDATE;
-
-        private string _AUDITUSER;
-
-        private string _AUDITAPP;
-
-        public TROLESKILL_AUDIT()
-        {
-        }
-
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
-        public long AUDITID
-        {
-            get
-            {
-                return this._AUDITID;
-            }
-            set
-            {
-                if ((this._AUDITID != value))
-                {
-                    this._AUDITID = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
-        public int ID
-        {
-            get
-            {
-                return this._ID;
-            }
-            set
-            {
-                if ((this._ID != value))
-                {
-                    this._ID = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
-        public int ROLE_ID
-        {
-            get
-            {
-                return this._ROLE_ID;
-            }
-            set
-            {
-                if ((this._ROLE_ID != value))
-                {
-                    this._ROLE_ID = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
-        public int SKILL_ID
-        {
-            get
-            {
-                return this._SKILL_ID;
-            }
-            set
-            {
-                if ((this._SKILL_ID != value))
-                {
-                    this._SKILL_ID = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
-        public string AUDITACTION
-        {
-            get
-            {
-                return this._AUDITACTION;
-            }
-            set
-            {
-                if ((this._AUDITACTION != value))
-                {
-                    this._AUDITACTION = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
-        public System.DateTime AUDITDATE
-        {
-            get
-            {
-                return this._AUDITDATE;
-            }
-            set
-            {
-                if ((this._AUDITDATE != value))
-                {
-                    this._AUDITDATE = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
-        public string AUDITUSER
-        {
-            get
-            {
-                return this._AUDITUSER;
-            }
-            set
-            {
-                if ((this._AUDITUSER != value))
-                {
-                    this._AUDITUSER = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -3542,7 +3322,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_VAR_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int VAR_ID
         {
             get
@@ -3558,7 +3338,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
         public int ROLE_ID
         {
             get
@@ -3574,7 +3354,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string VAR_NAME
         {
             get
@@ -3615,7 +3395,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int AUDITID
         {
             get
@@ -3631,7 +3411,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
         public int VAR_ID
         {
             get
@@ -3647,7 +3427,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
         public int ROLE_ID
         {
             get
@@ -3663,7 +3443,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string VAR_NAME
         {
             get
@@ -3679,7 +3459,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -3695,7 +3475,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -3711,7 +3491,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -3727,7 +3507,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -3756,7 +3536,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SHIFT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int SHIFT_ID
         {
             get
@@ -3772,7 +3552,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string SHIFT_NAME
         {
             get
@@ -3811,7 +3591,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -3827,7 +3607,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SHIFT_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", DbType = "Int NOT NULL")]
         public int SHIFT_ID
         {
             get
@@ -3843,7 +3623,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string SHIFT_NAME
         {
             get
@@ -3859,7 +3639,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -3875,7 +3655,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -3891,7 +3671,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -3907,7 +3687,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -3936,7 +3716,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SKILL_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int SKILL_ID
         {
             get
@@ -3952,7 +3732,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string SKILL_NAME
         {
             get
@@ -3991,7 +3771,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -4007,7 +3787,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -4023,7 +3803,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_NAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string SKILL_NAME
         {
             get
@@ -4039,7 +3819,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -4055,7 +3835,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -4071,7 +3851,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -4087,7 +3867,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -4118,7 +3898,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -4134,7 +3914,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -4150,7 +3930,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
         public int SW_ID
         {
             get
@@ -4191,7 +3971,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -4207,7 +3987,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -4223,7 +4003,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -4239,7 +4019,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
         public int SW_ID
         {
             get
@@ -4255,7 +4035,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -4271,7 +4051,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -4287,7 +4067,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -4303,7 +4083,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -4336,7 +4116,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -4352,7 +4132,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_TABLENAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_TABLENAME", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string TABLENAME
         {
             get
@@ -4368,7 +4148,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID_COLUMN", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID_COLUMN", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string ID_COLUMN
         {
             get
@@ -4384,7 +4164,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SORT_ORDER", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SORT_ORDER", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string SORT_ORDER
         {
             get
@@ -4421,7 +4201,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SW_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int SW_ID
         {
             get
@@ -4437,7 +4217,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_CODE", DbType = "VarChar(15) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CODE", DbType = "VarChar(15) NOT NULL", CanBeNull = false)]
         public string SW_CODE
         {
             get
@@ -4453,7 +4233,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string SW_DESCRIPTION
         {
             get
@@ -4469,7 +4249,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ISSUE", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUE", DbType = "Int NOT NULL")]
         public int SW_ISSUE
         {
             get
@@ -4485,7 +4265,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ISSUEDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUEDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime SW_ISSUEDATE
         {
             get
@@ -4501,7 +4281,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_RA", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_RA", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
         public string SW_RA
         {
             get
@@ -4548,7 +4328,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -4564,7 +4344,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
         public int SW_ID
         {
             get
@@ -4580,7 +4360,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_CODE", DbType = "VarChar(15) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CODE", DbType = "VarChar(15) NOT NULL", CanBeNull = false)]
         public string SW_CODE
         {
             get
@@ -4596,7 +4376,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX) NOT NULL", CanBeNull = false, UpdateCheck = UpdateCheck.Never)]
         public string SW_DESCRIPTION
         {
             get
@@ -4612,7 +4392,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ISSUE", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUE", DbType = "Int NOT NULL")]
         public int SW_ISSUE
         {
             get
@@ -4628,7 +4408,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ISSUEDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUEDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime SW_ISSUEDATE
         {
             get
@@ -4644,7 +4424,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_RA", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_RA", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
         public string SW_RA
         {
             get
@@ -4660,7 +4440,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -4676,7 +4456,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -4692,7 +4472,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -4708,7 +4488,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -4739,7 +4519,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
         public int ID
         {
             get
@@ -4755,7 +4535,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
         public int VAR_ID
         {
             get
@@ -4771,7 +4551,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -4812,7 +4592,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
         public long AUDITID
         {
             get
@@ -4828,7 +4608,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
         public int ID
         {
             get
@@ -4844,7 +4624,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int NOT NULL")]
         public int VAR_ID
         {
             get
@@ -4860,7 +4640,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
         public int SKILL_ID
         {
             get
@@ -4876,7 +4656,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
         public string AUDITACTION
         {
             get
@@ -4892,7 +4672,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
         public System.DateTime AUDITDATE
         {
             get
@@ -4908,7 +4688,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
         public string AUDITUSER
         {
             get
@@ -4924,7 +4704,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
         public string AUDITAPP
         {
             get
@@ -4941,9 +4721,179 @@ namespace WiTrainingSuite
         }
     }
 
-    public partial class FnTEMPLOYEE_LISTResult
+    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.VTRAINING")]
+    public partial class VTRAINING
     {
 
+        private string _Name;
+
+        private string _SHIFT_NAME;
+
+        private string _SW_CODE;
+
+        private string _SW_DESCRIPTION;
+
+        private int _SW_LEVEL;
+
+        private System.DateTime _VALIDDATE;
+
+        private int _EMP_ID;
+
+        private int _SW_ID;
+
+        private System.Nullable<int> _SHIFT_ID;
+
+        public VTRAINING()
+        {
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Name", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                if ((this._Name != value))
+                {
+                    this._Name = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        public string SHIFT_NAME
+        {
+            get
+            {
+                return this._SHIFT_NAME;
+            }
+            set
+            {
+                if ((this._SHIFT_NAME != value))
+                {
+                    this._SHIFT_NAME = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CODE", DbType = "VarChar(15)")]
+        public string SW_CODE
+        {
+            get
+            {
+                return this._SW_CODE;
+            }
+            set
+            {
+                if ((this._SW_CODE != value))
+                {
+                    this._SW_CODE = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        public string SW_DESCRIPTION
+        {
+            get
+            {
+                return this._SW_DESCRIPTION;
+            }
+            set
+            {
+                if ((this._SW_DESCRIPTION != value))
+                {
+                    this._SW_DESCRIPTION = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_LEVEL", DbType = "Int NOT NULL")]
+        public int SW_LEVEL
+        {
+            get
+            {
+                return this._SW_LEVEL;
+            }
+            set
+            {
+                if ((this._SW_LEVEL != value))
+                {
+                    this._SW_LEVEL = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDDATE", DbType = "DateTime NOT NULL")]
+        public System.DateTime VALIDDATE
+        {
+            get
+            {
+                return this._VALIDDATE;
+            }
+            set
+            {
+                if ((this._VALIDDATE != value))
+                {
+                    this._VALIDDATE = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
+        public int EMP_ID
+        {
+            get
+            {
+                return this._EMP_ID;
+            }
+            set
+            {
+                if ((this._EMP_ID != value))
+                {
+                    this._EMP_ID = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        public int SW_ID
+        {
+            get
+            {
+                return this._SW_ID;
+            }
+            set
+            {
+                if ((this._SW_ID != value))
+                {
+                    this._SW_ID = value;
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", DbType = "Int")]
+        public System.Nullable<int> SHIFT_ID
+        {
+            get
+            {
+                return this._SHIFT_ID;
+            }
+            set
+            {
+                if ((this._SHIFT_ID != value))
+                {
+                    this._SHIFT_ID = value;
+                }
+            }
+        }
+    }
+
+    public partial class FnTEMPLOYEE_LISTResult : INotifyPropertyChanged
+    {
         private System.Nullable<int> _EMP_ID;
 
         private string _EMP_FNAME;
@@ -4976,7 +4926,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int")]
         public System.Nullable<int> EMP_ID
         {
             get
@@ -4988,11 +4938,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_ID != value))
                 {
                     this._EMP_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_FNAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_FNAME", DbType = "VarChar(MAX)")]
         public string EMP_FNAME
         {
             get
@@ -5004,11 +4955,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_FNAME != value))
                 {
                     this._EMP_FNAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_FNAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_LNAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_LNAME", DbType = "VarChar(MAX)")]
         public string EMP_LNAME
         {
             get
@@ -5020,11 +4972,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_LNAME != value))
                 {
                     this._EMP_LNAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref this._EMP_LNAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX)")]
         public string EMP_INITIAL
         {
             get
@@ -5036,11 +4989,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_INITIAL != value))
                 {
                     this._EMP_INITIAL = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_INITIAL, value);
                 }
             }
         }
 
-        [Column(Storage = "_DEPT_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", DbType = "Int")]
         public System.Nullable<int> DEPT_ID
         {
             get
@@ -5052,11 +5006,12 @@ namespace WiTrainingSuite
                 if ((this._DEPT_ID != value))
                 {
                     this._DEPT_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_ROLE_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int")]
         public System.Nullable<int> ROLE_ID
         {
             get
@@ -5068,11 +5023,12 @@ namespace WiTrainingSuite
                 if ((this._ROLE_ID != value))
                 {
                     this._ROLE_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_VAR_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int")]
         public System.Nullable<int> VAR_ID
         {
             get
@@ -5084,11 +5040,12 @@ namespace WiTrainingSuite
                 if ((this._VAR_ID != value))
                 {
                     this._VAR_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_SHIFT_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", DbType = "Int")]
         public System.Nullable<int> SHIFT_ID
         {
             get
@@ -5100,11 +5057,12 @@ namespace WiTrainingSuite
                 if ((this._SHIFT_ID != value))
                 {
                     this._SHIFT_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMAIL", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMAIL", DbType = "VarChar(MAX)")]
         public string EMAIL
         {
             get
@@ -5116,11 +5074,12 @@ namespace WiTrainingSuite
                 if ((this._EMAIL != value))
                 {
                     this._EMAIL = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMAIL, value);
                 }
             }
         }
 
-        [Column(Storage = "_DEPT_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_NAME", DbType = "VarChar(MAX)")]
         public string DEPT_NAME
         {
             get
@@ -5132,11 +5091,12 @@ namespace WiTrainingSuite
                 if ((this._DEPT_NAME != value))
                 {
                     this._DEPT_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_ROLE_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_NAME", DbType = "VarChar(MAX)")]
         public string ROLE_NAME
         {
             get
@@ -5148,11 +5108,12 @@ namespace WiTrainingSuite
                 if ((this._ROLE_NAME != value))
                 {
                     this._ROLE_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX)")]
         public string SHIFT_NAME
         {
             get
@@ -5164,11 +5125,12 @@ namespace WiTrainingSuite
                 if ((this._SHIFT_NAME != value))
                 {
                     this._SHIFT_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_VAR_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_NAME", DbType = "VarChar(MAX)")]
         public string VAR_NAME
         {
             get
@@ -5180,11 +5142,12 @@ namespace WiTrainingSuite
                 if ((this._VAR_NAME != value))
                 {
                     this._VAR_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)")]
         public string EMP_NOTE
         {
             get
@@ -5196,7 +5159,42 @@ namespace WiTrainingSuite
                 if ((this._EMP_NOTE != value))
                 {
                     this._EMP_NOTE = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_NOTE, value);
                 }
+            }
+        }
+
+        public static implicit operator FnTEMPLOYEE_SELECTResult(FnTEMPLOYEE_LISTResult x)
+        {
+            return new FnTEMPLOYEE_SELECTResult()
+            {
+                EMP_ID = x.EMP_ID,
+                EMP_FNAME = x.EMP_FNAME,
+                EMP_LNAME = x.EMP_LNAME,
+                EMP_INITIAL = x.EMP_INITIAL,
+                DEPT_ID = x.DEPT_ID,
+                ROLE_ID = x.ROLE_ID,
+                VAR_ID = x.VAR_ID,
+                SHIFT_ID = x.SHIFT_ID,
+                EMAIL = x.EMAIL,
+                DEPT_NAME = x.DEPT_NAME,
+                ROLE_NAME = x.ROLE_NAME,
+                SHIFT_NAME = x.SHIFT_NAME,
+                VAR_NAME = x.VAR_NAME,
+                EMP_NOTE = x.EMP_NOTE
+            };
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -5216,7 +5214,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_Table", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Table", DbType = "VarChar(MAX)")]
         public string Table
         {
             get
@@ -5232,7 +5230,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_Action", DbType = "VarChar(1)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Action", DbType = "VarChar(1)")]
         public string Action
         {
             get
@@ -5248,7 +5246,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_Detail", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Detail", DbType = "VarChar(MAX)")]
         public string Detail
         {
             get
@@ -5264,7 +5262,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_TimeStamp", DbType = "DateTime")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_TimeStamp", DbType = "DateTime")]
         public System.Nullable<System.DateTime> TimeStamp
         {
             get
@@ -5281,7 +5279,7 @@ namespace WiTrainingSuite
         }
     }
 
-    public partial class FnTEMPLOYEE_SELECTResult
+    public partial class FnTEMPLOYEE_SELECTResult : INotifyPropertyChanged
     {
 
         private System.Nullable<int> _EMP_ID;
@@ -5316,7 +5314,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int")]
         public System.Nullable<int> EMP_ID
         {
             get
@@ -5328,11 +5326,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_ID != value))
                 {
                     this._EMP_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_FNAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_FNAME", DbType = "VarChar(MAX)")]
         public string EMP_FNAME
         {
             get
@@ -5344,11 +5343,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_FNAME != value))
                 {
                     this._EMP_FNAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_FNAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_LNAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_LNAME", DbType = "VarChar(MAX)")]
         public string EMP_LNAME
         {
             get
@@ -5360,11 +5360,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_LNAME != value))
                 {
                     this._EMP_LNAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref this._EMP_LNAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX)")]
         public string EMP_INITIAL
         {
             get
@@ -5376,11 +5377,12 @@ namespace WiTrainingSuite
                 if ((this._EMP_INITIAL != value))
                 {
                     this._EMP_INITIAL = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_INITIAL, value);
                 }
             }
         }
 
-        [Column(Storage = "_DEPT_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", DbType = "Int")]
         public System.Nullable<int> DEPT_ID
         {
             get
@@ -5392,11 +5394,12 @@ namespace WiTrainingSuite
                 if ((this._DEPT_ID != value))
                 {
                     this._DEPT_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_ROLE_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int")]
         public System.Nullable<int> ROLE_ID
         {
             get
@@ -5408,27 +5411,12 @@ namespace WiTrainingSuite
                 if ((this._ROLE_ID != value))
                 {
                     this._ROLE_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_SHIFT_ID", DbType = "Int")]
-        public System.Nullable<int> SHIFT_ID
-        {
-            get
-            {
-                return this._SHIFT_ID;
-            }
-            set
-            {
-                if ((this._SHIFT_ID != value))
-                {
-                    this._SHIFT_ID = value;
-                }
-            }
-        }
-
-        [Column(Storage = "_VAR_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int")]
         public System.Nullable<int> VAR_ID
         {
             get
@@ -5440,11 +5428,29 @@ namespace WiTrainingSuite
                 if ((this._VAR_ID != value))
                 {
                     this._VAR_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_ID, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMAIL", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", DbType = "Int")]
+        public System.Nullable<int> SHIFT_ID
+        {
+            get
+            {
+                return this._SHIFT_ID;
+            }
+            set
+            {
+                if ((this._SHIFT_ID != value))
+                {
+                    this._SHIFT_ID = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_ID, value);
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMAIL", DbType = "VarChar(MAX)")]
         public string EMAIL
         {
             get
@@ -5456,11 +5462,12 @@ namespace WiTrainingSuite
                 if ((this._EMAIL != value))
                 {
                     this._EMAIL = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMAIL, value);
                 }
             }
         }
 
-        [Column(Storage = "_DEPT_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_NAME", DbType = "VarChar(MAX)")]
         public string DEPT_NAME
         {
             get
@@ -5472,11 +5479,12 @@ namespace WiTrainingSuite
                 if ((this._DEPT_NAME != value))
                 {
                     this._DEPT_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_ROLE_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_NAME", DbType = "VarChar(MAX)")]
         public string ROLE_NAME
         {
             get
@@ -5488,11 +5496,12 @@ namespace WiTrainingSuite
                 if ((this._ROLE_NAME != value))
                 {
                     this._ROLE_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX)")]
         public string SHIFT_NAME
         {
             get
@@ -5504,11 +5513,12 @@ namespace WiTrainingSuite
                 if ((this._SHIFT_NAME != value))
                 {
                     this._SHIFT_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_VAR_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_NAME", DbType = "VarChar(MAX)")]
         public string VAR_NAME
         {
             get
@@ -5520,11 +5530,12 @@ namespace WiTrainingSuite
                 if ((this._VAR_NAME != value))
                 {
                     this._VAR_NAME = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_NAME, value);
                 }
             }
         }
 
-        [Column(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_NOTE", DbType = "VarChar(MAX)")]
         public string EMP_NOTE
         {
             get
@@ -5536,7 +5547,42 @@ namespace WiTrainingSuite
                 if ((this._EMP_NOTE != value))
                 {
                     this._EMP_NOTE = value;
+                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_NOTE, value);
                 }
+            }
+        }
+
+        public static implicit operator FnTEMPLOYEE_LISTResult(FnTEMPLOYEE_SELECTResult x)
+        {
+            return new FnTEMPLOYEE_LISTResult()
+            {
+                EMP_ID = x.EMP_ID,
+                EMP_FNAME = x.EMP_FNAME,
+                EMP_LNAME = x.EMP_LNAME,
+                EMP_INITIAL = x.EMP_INITIAL,
+                DEPT_ID = x.DEPT_ID,
+                ROLE_ID = x.ROLE_ID,
+                VAR_ID = x.VAR_ID,
+                SHIFT_ID = x.SHIFT_ID,
+                EMAIL = x.EMAIL,
+                DEPT_NAME = x.DEPT_NAME,
+                ROLE_NAME = x.ROLE_NAME,
+                SHIFT_NAME = x.SHIFT_NAME,
+                VAR_NAME = x.VAR_NAME,
+                EMP_NOTE = x.EMP_NOTE
+            };
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -5558,7 +5604,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SKILL_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int")]
         public System.Nullable<int> SKILL_ID
         {
             get
@@ -5574,7 +5620,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SKILL_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_NAME", DbType = "VarChar(MAX)")]
         public string SKILL_NAME
         {
             get
@@ -5590,7 +5636,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ON_TRAINING", DbType = "Bit")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ON_TRAINING", DbType = "Bit")]
         public System.Nullable<bool> ON_TRAINING
         {
             get
@@ -5606,7 +5652,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int")]
         public System.Nullable<int> ID
         {
             get
@@ -5622,7 +5668,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int")]
         public System.Nullable<int> EMP_ID
         {
             get
@@ -5678,7 +5724,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int")]
         public System.Nullable<int> ID
         {
             get
@@ -5694,7 +5740,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int")]
         public System.Nullable<int> EMP_ID
         {
             get
@@ -5710,7 +5756,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int")]
         public System.Nullable<int> SW_ID
         {
             get
@@ -5726,7 +5772,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_LEVEL", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_LEVEL", DbType = "Int")]
         public System.Nullable<int> SW_LEVEL
         {
             get
@@ -5742,7 +5788,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDDATE", DbType = "DateTime")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDDATE", DbType = "DateTime")]
         public System.Nullable<System.DateTime> VALIDDATE
         {
             get
@@ -5758,7 +5804,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VALIDNOTE", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDNOTE", DbType = "VarChar(MAX)")]
         public string VALIDNOTE
         {
             get
@@ -5774,7 +5820,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_FNAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_FNAME", DbType = "VarChar(MAX)")]
         public string EMP_FNAME
         {
             get
@@ -5790,7 +5836,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_LNAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_LNAME", DbType = "VarChar(MAX)")]
         public string EMP_LNAME
         {
             get
@@ -5806,7 +5852,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_EMP_INITIAL", DbType = "Char(1)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "Char(1)")]
         public string EMP_INITIAL
         {
             get
@@ -5822,7 +5868,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_CODE", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CODE", DbType = "VarChar(MAX)")]
         public string SW_CODE
         {
             get
@@ -5838,7 +5884,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)")]
         public string SW_DESCRIPTION
         {
             get
@@ -5854,7 +5900,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ISSUE", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUE", DbType = "Int")]
         public System.Nullable<int> SW_ISSUE
         {
             get
@@ -5870,7 +5916,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_ISSUEDATE", DbType = "DateTime")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUEDATE", DbType = "DateTime")]
         public System.Nullable<System.DateTime> SW_ISSUEDATE
         {
             get
@@ -5886,7 +5932,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_RA", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_RA", DbType = "VarChar(MAX)")]
         public string SW_RA
         {
             get
@@ -5902,7 +5948,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_VAR_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_NAME", DbType = "VarChar(MAX)")]
         public string VAR_NAME
         {
             get
@@ -5918,7 +5964,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_SW_CRITERIA", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CRITERIA", DbType = "Int")]
         public System.Nullable<int> SW_CRITERIA
         {
             get
@@ -5944,7 +5990,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int")]
         public System.Nullable<int> SW_ID
         {
             get
@@ -5970,7 +6016,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int")]
         public System.Nullable<int> SW_ID
         {
             get
@@ -6000,7 +6046,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_ITEM_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ITEM_ID", DbType = "Int")]
         public System.Nullable<int> ITEM_ID
         {
             get
@@ -6016,7 +6062,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ITEM_NAME", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ITEM_NAME", DbType = "VarChar(MAX)")]
         public string ITEM_NAME
         {
             get
@@ -6032,7 +6078,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ITEM_SORT", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ITEM_SORT", DbType = "Int")]
         public System.Nullable<int> ITEM_SORT
         {
             get
@@ -6049,8 +6095,20 @@ namespace WiTrainingSuite
         }
     }
 
-    public partial class FnTSTANDARDWORK_LISTResult
+    public partial class FnTSTANDARDWORK_LISTResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         private System.Nullable<int> _SW_ID;
 
@@ -6068,7 +6126,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int")]
         public System.Nullable<int> SW_ID
         {
             get
@@ -6080,11 +6138,12 @@ namespace WiTrainingSuite
                 if ((this._SW_ID != value))
                 {
                     this._SW_ID = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_CODE", DbType = "VarChar(15)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CODE", DbType = "VarChar(15)")]
         public string SW_CODE
         {
             get
@@ -6096,11 +6155,12 @@ namespace WiTrainingSuite
                 if ((this._SW_CODE != value))
                 {
                     this._SW_CODE = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)")]
         public string SW_DESCRIPTION
         {
             get
@@ -6112,11 +6172,12 @@ namespace WiTrainingSuite
                 if ((this._SW_DESCRIPTION != value))
                 {
                     this._SW_DESCRIPTION = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_ISSUE", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUE", DbType = "Int")]
         public System.Nullable<int> SW_ISSUE
         {
             get
@@ -6128,11 +6189,12 @@ namespace WiTrainingSuite
                 if ((this._SW_ISSUE != value))
                 {
                     this._SW_ISSUE = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_ISSUEDATE", DbType = "DateTime")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUEDATE", DbType = "DateTime")]
         public System.Nullable<System.DateTime> SW_ISSUEDATE
         {
             get
@@ -6144,11 +6206,12 @@ namespace WiTrainingSuite
                 if ((this._SW_ISSUEDATE != value))
                 {
                     this._SW_ISSUEDATE = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_RA", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_RA", DbType = "VarChar(MAX)")]
         public string SW_RA
         {
             get
@@ -6160,8 +6223,22 @@ namespace WiTrainingSuite
                 if ((this._SW_RA != value))
                 {
                     this._SW_RA = value;
+                    NotifyPropertyChanged();
                 }
             }
+        }
+
+        public static implicit operator FnTSTANDARDWORK_SELECTResult(FnTSTANDARDWORK_LISTResult x)
+        {
+            return new FnTSTANDARDWORK_SELECTResult()
+            {
+                SW_ID = x.SW_ID,
+                SW_CODE = x.SW_CODE,
+                SW_DESCRIPTION = x.SW_DESCRIPTION,
+                SW_ISSUE = x.SW_ISSUE,
+                SW_ISSUEDATE = x.SW_ISSUEDATE,
+                SW_RA = x.SW_RA
+            };
         }
     }
 
@@ -6180,7 +6257,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_Table", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Table", DbType = "VarChar(MAX)")]
         public string Table
         {
             get
@@ -6196,7 +6273,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_Action", DbType = "VarChar(1)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Action", DbType = "VarChar(1)")]
         public string Action
         {
             get
@@ -6212,7 +6289,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_Detail", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Detail", DbType = "VarChar(MAX)")]
         public string Detail
         {
             get
@@ -6228,7 +6305,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_TimeStamp", DbType = "DateTime")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_TimeStamp", DbType = "DateTime")]
         public System.Nullable<System.DateTime> TimeStamp
         {
             get
@@ -6245,8 +6322,20 @@ namespace WiTrainingSuite
         }
     }
 
-    public partial class FnTSTANDARDWORK_SELECTResult
+    public partial class FnTSTANDARDWORK_SELECTResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         private System.Nullable<int> _SW_ID;
 
@@ -6264,7 +6353,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_SW_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int")]
         public System.Nullable<int> SW_ID
         {
             get
@@ -6276,11 +6365,12 @@ namespace WiTrainingSuite
                 if ((this._SW_ID != value))
                 {
                     this._SW_ID = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_CODE", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CODE", DbType = "VarChar(MAX)")]
         public string SW_CODE
         {
             get
@@ -6292,11 +6382,12 @@ namespace WiTrainingSuite
                 if ((this._SW_CODE != value))
                 {
                     this._SW_CODE = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)")]
         public string SW_DESCRIPTION
         {
             get
@@ -6308,11 +6399,12 @@ namespace WiTrainingSuite
                 if ((this._SW_DESCRIPTION != value))
                 {
                     this._SW_DESCRIPTION = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_ISSUE", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUE", DbType = "Int")]
         public System.Nullable<int> SW_ISSUE
         {
             get
@@ -6324,11 +6416,12 @@ namespace WiTrainingSuite
                 if ((this._SW_ISSUE != value))
                 {
                     this._SW_ISSUE = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_ISSUEDATE", DbType = "DateTime")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUEDATE", DbType = "DateTime")]
         public System.Nullable<System.DateTime> SW_ISSUEDATE
         {
             get
@@ -6340,11 +6433,12 @@ namespace WiTrainingSuite
                 if ((this._SW_ISSUEDATE != value))
                 {
                     this._SW_ISSUEDATE = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
 
-        [Column(Storage = "_SW_RA", DbType = "VarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_RA", DbType = "VarChar(MAX)")]
         public string SW_RA
         {
             get
@@ -6356,8 +6450,22 @@ namespace WiTrainingSuite
                 if ((this._SW_RA != value))
                 {
                     this._SW_RA = value;
+                    NotifyPropertyChanged();
                 }
             }
+        }
+
+        public static implicit operator FnTSTANDARDWORK_LISTResult(FnTSTANDARDWORK_SELECTResult x)
+        {
+            return new FnTSTANDARDWORK_LISTResult()
+            {
+                SW_ID = x.SW_ID,
+                SW_CODE = x.SW_CODE,
+                SW_DESCRIPTION = x.SW_DESCRIPTION,
+                SW_ISSUE = x.SW_ISSUE,
+                SW_ISSUEDATE = x.SW_ISSUEDATE,
+                SW_RA = x.SW_RA
+            };
         }
     }
 
@@ -6372,7 +6480,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Name = "version", Storage = "_Version", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Name = "version", Storage = "_Version", DbType = "Int")]
         public System.Nullable<int> Version
         {
             get
@@ -6388,7 +6496,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Name = "definition", Storage = "_Definition", DbType = "VarBinary(MAX)", CanBeNull = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Name = "definition", Storage = "_Definition", DbType = "VarBinary(MAX)", CanBeNull = true)]
         public System.Data.Linq.Binary Definition
         {
             get
@@ -6422,7 +6530,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_Database", DbType = "NVarChar(128)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Database", DbType = "NVarChar(128)")]
         public string Database
         {
             get
@@ -6438,7 +6546,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_Name", DbType = "NVarChar(128)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Name", DbType = "NVarChar(128)")]
         public string Name
         {
             get
@@ -6454,7 +6562,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_ID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int")]
         public System.Nullable<int> ID
         {
             get
@@ -6470,7 +6578,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_Owner", DbType = "NVarChar(128)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Owner", DbType = "NVarChar(128)")]
         public string Owner
         {
             get
@@ -6486,7 +6594,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_OwnerID", DbType = "Int")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_OwnerID", DbType = "Int")]
         public System.Nullable<int> OwnerID
         {
             get
@@ -6514,7 +6622,7 @@ namespace WiTrainingSuite
         {
         }
 
-        [Column(Storage = "_Number", DbType = "BigInt")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Number", DbType = "BigInt")]
         public System.Nullable<long> Number
         {
             get
@@ -6530,7 +6638,7 @@ namespace WiTrainingSuite
             }
         }
 
-        [Column(Storage = "_Item", DbType = "NVarChar(MAX)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Item", DbType = "NVarChar(MAX)")]
         public string Item
         {
             get

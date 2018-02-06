@@ -9,28 +9,33 @@
     <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <md:Card.Content>
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">First Name</Label>
-                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Last Name</Label>
-                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Initial</Label>
-                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Department</Label>
-                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Role</Label>
-                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Variant</Label>
-                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Shift</Label>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_FNAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_LNAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_INITIAL}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.DEPT_NAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.ROLE_NAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.VAR_NAME}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.SHIFT_NAME}"/>
-                </StackPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">First Name</Label>
+                        <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Last Name</Label>
+                        <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Initial</Label>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_FNAME, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_LNAME, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=Employee.EMP_INITIAL, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </Grid>
+                <UniformGrid Columns="5" Grid.Row="1">
+                    <Label></Label>
+                    <Button Command="{Binding BackCommand}">Back</Button>
+                    <Label></Label>
+                    <Button Command="{Binding SaveCommand}">Save</Button>
+                    <Label></Label>
+                </UniformGrid>
             </Grid>
         </md:Card.Content>
     </md:Card>

@@ -19,8 +19,6 @@ namespace WiTrainingSuite.ViewModel
         public IScreen HostScreen { get; protected set; }
         #endregion
 
-        #region WelcomeViewModel
-
         public SnackbarMessageQueue SnackBarQueue { get; set; }
 
         public EmployeeMasterViewModel(IScreen screen)
@@ -83,7 +81,5 @@ namespace WiTrainingSuite.ViewModel
             get { return _selectedEmployee; }
             set { this.RaiseAndSetIfChanged(ref _selectedEmployee, value); }
         }
-
-        #endregion
     }
 }

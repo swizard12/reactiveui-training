@@ -9,6 +9,11 @@
     <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <md:Card.Content>
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition />
@@ -21,12 +26,20 @@
                     <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Risk Assessment Number</Label>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_CODE}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_DESCRIPTION}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_ISSUE}"/>
-                    <DatePicker Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedDate="{Binding Path=StandardWork.SW_ISSUEDATE}"/>
-                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_RA}"/>
+                    <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_CODE, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_DESCRIPTION, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_ISSUE, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DatePicker Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedDate="{Binding Path=StandardWork.SW_ISSUEDATE, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_RA, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
+                </Grid>
+                <UniformGrid Columns="5" Grid.Row="1">
+                    <Label></Label>
+                    <Button Command="{Binding BackCommand}">Back</Button>
+                    <Label></Label>
+                    <Button Command="{Binding SaveCommand}">Save</Button>
+                    <Label></Label>
+                </UniformGrid>
             </Grid>
         </md:Card.Content>
     </md:Card>
