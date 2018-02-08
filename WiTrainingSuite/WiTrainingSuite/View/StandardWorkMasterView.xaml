@@ -61,7 +61,8 @@
                         </Grid.RowDefinitions>
                         <DataGrid Grid.Row="0" AutoGenerateColumns="False" 
                                   IsReadOnly="True" SelectionMode="Single" 
-                                  SelectedItem="{Binding SelectedStandardWork}" ItemsSource="{Binding StandardWorkList}">
+                                  SelectedItem="{Binding SelectedStandardWork, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding StandardWorkList, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedIndex="{Binding StandardWorkIndex, UpdateSourceTrigger=PropertyChanged}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Code" Binding="{Binding SW_CODE}"/>
                                 <DataGridTextColumn Header="Description" Binding="{Binding SW_DESCRIPTION}"/>

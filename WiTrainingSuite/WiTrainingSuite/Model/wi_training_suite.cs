@@ -9,17 +9,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
-using System.Linq;
-using System.Reflection;
-using System.ComponentModel;
-using ReactiveUI;
-using System.Runtime.CompilerServices;
-using System;
-
-namespace WiTrainingSuite
+namespace WiTrainingSuite.Model
 {
+    using System.Data.Linq;
+    using System.Data.Linq.Mapping;
+    using System.Data;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.ComponentModel;
+    using System;
+    using System.Runtime.CompilerServices;
+
 
     [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "wi_training_suite")]
     public partial class Wi_training_suite : System.Data.Linq.DataContext
@@ -29,6 +31,69 @@ namespace WiTrainingSuite
 
         #region Extensibility Method Definitions
         partial void OnCreated();
+        partial void InsertTADMIN(TADMIN instance);
+        partial void UpdateTADMIN(TADMIN instance);
+        partial void DeleteTADMIN(TADMIN instance);
+        partial void InsertTDEPARTMENT(TDEPARTMENT instance);
+        partial void UpdateTDEPARTMENT(TDEPARTMENT instance);
+        partial void DeleteTDEPARTMENT(TDEPARTMENT instance);
+        partial void InsertTEMPDEPT(TEMPDEPT instance);
+        partial void UpdateTEMPDEPT(TEMPDEPT instance);
+        partial void DeleteTEMPDEPT(TEMPDEPT instance);
+        partial void InsertTEMPEMAIL(TEMPEMAIL instance);
+        partial void UpdateTEMPEMAIL(TEMPEMAIL instance);
+        partial void DeleteTEMPEMAIL(TEMPEMAIL instance);
+        partial void InsertTEMPLOYEE(TEMPLOYEE instance);
+        partial void UpdateTEMPLOYEE(TEMPLOYEE instance);
+        partial void DeleteTEMPLOYEE(TEMPLOYEE instance);
+        partial void InsertTEMPNOTE(TEMPNOTE instance);
+        partial void UpdateTEMPNOTE(TEMPNOTE instance);
+        partial void DeleteTEMPNOTE(TEMPNOTE instance);
+        partial void InsertTEMPROLE(TEMPROLE instance);
+        partial void UpdateTEMPROLE(TEMPROLE instance);
+        partial void DeleteTEMPROLE(TEMPROLE instance);
+        partial void InsertTEMPSHIFT(TEMPSHIFT instance);
+        partial void UpdateTEMPSHIFT(TEMPSHIFT instance);
+        partial void DeleteTEMPSHIFT(TEMPSHIFT instance);
+        partial void InsertTEMPSKILL(TEMPSKILL instance);
+        partial void UpdateTEMPSKILL(TEMPSKILL instance);
+        partial void DeleteTEMPSKILL(TEMPSKILL instance);
+        partial void InsertTEMPSKILL_WIP(TEMPSKILL_WIP instance);
+        partial void UpdateTEMPSKILL_WIP(TEMPSKILL_WIP instance);
+        partial void DeleteTEMPSKILL_WIP(TEMPSKILL_WIP instance);
+        partial void InsertTEMPTRAINING(TEMPTRAINING instance);
+        partial void UpdateTEMPTRAINING(TEMPTRAINING instance);
+        partial void DeleteTEMPTRAINING(TEMPTRAINING instance);
+        partial void InsertTEMPTRAINING_WIP(TEMPTRAINING_WIP instance);
+        partial void UpdateTEMPTRAINING_WIP(TEMPTRAINING_WIP instance);
+        partial void DeleteTEMPTRAINING_WIP(TEMPTRAINING_WIP instance);
+        partial void InsertTEMPVAR(TEMPVAR instance);
+        partial void UpdateTEMPVAR(TEMPVAR instance);
+        partial void DeleteTEMPVAR(TEMPVAR instance);
+        partial void InsertTROLE(TROLE instance);
+        partial void UpdateTROLE(TROLE instance);
+        partial void DeleteTROLE(TROLE instance);
+        partial void InsertTROLEVAR(TROLEVAR instance);
+        partial void UpdateTROLEVAR(TROLEVAR instance);
+        partial void DeleteTROLEVAR(TROLEVAR instance);
+        partial void InsertTSHIFT(TSHIFT instance);
+        partial void UpdateTSHIFT(TSHIFT instance);
+        partial void DeleteTSHIFT(TSHIFT instance);
+        partial void InsertTSKILL(TSKILL instance);
+        partial void UpdateTSKILL(TSKILL instance);
+        partial void DeleteTSKILL(TSKILL instance);
+        partial void InsertTSKILLSW(TSKILLSW instance);
+        partial void UpdateTSKILLSW(TSKILLSW instance);
+        partial void DeleteTSKILLSW(TSKILLSW instance);
+        partial void InsertTSORT(TSORT instance);
+        partial void UpdateTSORT(TSORT instance);
+        partial void DeleteTSORT(TSORT instance);
+        partial void InsertTSTANDARDWORK(TSTANDARDWORK instance);
+        partial void UpdateTSTANDARDWORK(TSTANDARDWORK instance);
+        partial void DeleteTSTANDARDWORK(TSTANDARDWORK instance);
+        partial void InsertTVARSKILL(TVARSKILL instance);
+        partial void UpdateTVARSKILL(TVARSKILL instance);
+        partial void DeleteTVARSKILL(TVARSKILL instance);
         #endregion
 
         public Wi_training_suite(string connection) :
@@ -472,19 +537,19 @@ namespace WiTrainingSuite
             return ((int)(result.ReturnValue));
         }
 
-        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAINING_QUEUECLEAR")]
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAINING_QUEUECOMMITE")]
         [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
-        public int FnTEMPTRAINING_QUEUECLEAR([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID)
+        public int FnTEMPTRAINING_QUEUECOMMITE([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID)
         {
             IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMP_ID);
             return ((int)(result.ReturnValue));
         }
 
-        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAINING_QUEUECOMMIT")]
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAINING_QUEUECOMMITS")]
         [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
-        public int FnTEMPTRAINING_QUEUECOMMIT([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID)
+        public int FnTEMPTRAINING_QUEUECOMMITS([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SW_ID", DbType = "Int")] System.Nullable<int> sW_ID)
         {
-            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMP_ID);
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sW_ID);
             return ((int)(result.ReturnValue));
         }
 
@@ -496,10 +561,16 @@ namespace WiTrainingSuite
             return ((int)(result.ReturnValue));
         }
 
-        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAINING_SELECT", IsComposable = true)]
-        public IQueryable<FnTEMPTRAINING_SELECTResult> FnTEMPTRAINING_SELECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID)
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAINING_SELECTE", IsComposable = true)]
+        public IQueryable<FnTEMPTRAINING_SELECTEResult> FnTEMPTRAINING_SELECTE([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID)
         {
-            return this.CreateMethodCallQuery<FnTEMPTRAINING_SELECTResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMP_ID);
+            return this.CreateMethodCallQuery<FnTEMPTRAINING_SELECTEResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMP_ID);
+        }
+
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAINING_SELECTS", IsComposable = true)]
+        public IQueryable<FnTEMPTRAINING_SELECTSResult> FnTEMPTRAINING_SELECTS([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SW_ID", DbType = "Int")] System.Nullable<int> sW_ID)
+        {
+            return this.CreateMethodCallQuery<FnTEMPTRAINING_SELECTSResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sW_ID);
         }
 
         [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTEMPTRAININGROLEFILTER", IsComposable = true)]
@@ -618,18 +689,31 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TADMIN")]
-    public partial class TADMIN
+    public partial class TADMIN : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
         private string _USERNAME;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnUSERNAMEChanging(string value);
+        partial void OnUSERNAMEChanged();
+        #endregion
+
         public TADMIN()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -640,7 +724,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -656,25 +744,62 @@ namespace WiTrainingSuite
             {
                 if ((this._USERNAME != value))
                 {
+                    this.OnUSERNAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._USERNAME = value;
+                    this.SendPropertyChanged("USERNAME");
+                    this.OnUSERNAMEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TDEPARTMENT")]
-    public partial class TDEPARTMENT
+    public partial class TDEPARTMENT : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _DEPT_ID;
 
         private string _DEPT_NAME;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnDEPT_IDChanging(int value);
+        partial void OnDEPT_IDChanged();
+        partial void OnDEPT_NAMEChanging(string value);
+        partial void OnDEPT_NAMEChanged();
+        #endregion
+
         public TDEPARTMENT()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DEPT_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int DEPT_ID
         {
             get
@@ -685,7 +810,11 @@ namespace WiTrainingSuite
             {
                 if ((this._DEPT_ID != value))
                 {
+                    this.OnDEPT_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._DEPT_ID = value;
+                    this.SendPropertyChanged("DEPT_ID");
+                    this.OnDEPT_IDChanged();
                 }
             }
         }
@@ -701,8 +830,32 @@ namespace WiTrainingSuite
             {
                 if ((this._DEPT_NAME != value))
                 {
+                    this.OnDEPT_NAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._DEPT_NAME = value;
+                    this.SendPropertyChanged("DEPT_NAME");
+                    this.OnDEPT_NAMEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -843,8 +996,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPDEPT")]
-    public partial class TEMPDEPT
+    public partial class TEMPDEPT : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -852,11 +1007,24 @@ namespace WiTrainingSuite
 
         private int _DEPT_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnDEPT_IDChanging(int value);
+        partial void OnDEPT_IDChanged();
+        #endregion
+
         public TEMPDEPT()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -867,7 +1035,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -883,7 +1055,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -899,8 +1075,32 @@ namespace WiTrainingSuite
             {
                 if ((this._DEPT_ID != value))
                 {
+                    this.OnDEPT_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._DEPT_ID = value;
+                    this.SendPropertyChanged("DEPT_ID");
+                    this.OnDEPT_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -1059,8 +1259,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPEMAIL")]
-    public partial class TEMPEMAIL
+    public partial class TEMPEMAIL : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -1068,11 +1270,24 @@ namespace WiTrainingSuite
 
         private string _EMAIL;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnEMAILChanging(string value);
+        partial void OnEMAILChanged();
+        #endregion
+
         public TEMPEMAIL()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1083,7 +1298,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -1099,7 +1318,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -1115,8 +1338,32 @@ namespace WiTrainingSuite
             {
                 if ((this._EMAIL != value))
                 {
+                    this.OnEMAILChanging(value);
+                    this.SendPropertyChanging();
                     this._EMAIL = value;
+                    this.SendPropertyChanged("EMAIL");
+                    this.OnEMAILChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -1257,8 +1504,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPLOYEE")]
-    public partial class TEMPLOYEE
+    public partial class TEMPLOYEE : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _EMP_ID;
 
@@ -1268,11 +1517,26 @@ namespace WiTrainingSuite
 
         private string _EMP_INITIAL;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnEMP_FNAMEChanging(string value);
+        partial void OnEMP_FNAMEChanged();
+        partial void OnEMP_LNAMEChanging(string value);
+        partial void OnEMP_LNAMEChanged();
+        partial void OnEMP_INITIALChanging(string value);
+        partial void OnEMP_INITIALChanged();
+        #endregion
+
         public TEMPLOYEE()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int EMP_ID
         {
             get
@@ -1283,7 +1547,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -1299,7 +1567,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_FNAME != value))
                 {
+                    this.OnEMP_FNAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_FNAME = value;
+                    this.SendPropertyChanged("EMP_FNAME");
+                    this.OnEMP_FNAMEChanged();
                 }
             }
         }
@@ -1315,7 +1587,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_LNAME != value))
                 {
+                    this.OnEMP_LNAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_LNAME = value;
+                    this.SendPropertyChanged("EMP_LNAME");
+                    this.OnEMP_LNAMEChanged();
                 }
             }
         }
@@ -1331,8 +1607,32 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_INITIAL != value))
                 {
+                    this.OnEMP_INITIALChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_INITIAL = value;
+                    this.SendPropertyChanged("EMP_INITIAL");
+                    this.OnEMP_INITIALChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -1509,8 +1809,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPNOTE")]
-    public partial class TEMPNOTE
+    public partial class TEMPNOTE : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -1518,11 +1820,24 @@ namespace WiTrainingSuite
 
         private string _EMP_NOTE;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnEMP_NOTEChanging(string value);
+        partial void OnEMP_NOTEChanged();
+        #endregion
+
         public TEMPNOTE()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1533,7 +1848,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -1549,7 +1868,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -1565,8 +1888,32 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_NOTE != value))
                 {
+                    this.OnEMP_NOTEChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_NOTE = value;
+                    this.SendPropertyChanged("EMP_NOTE");
+                    this.OnEMP_NOTEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -1725,8 +2072,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPROLE")]
-    public partial class TEMPROLE
+    public partial class TEMPROLE : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -1734,11 +2083,24 @@ namespace WiTrainingSuite
 
         private int _ROLE_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnROLE_IDChanging(int value);
+        partial void OnROLE_IDChanged();
+        #endregion
+
         public TEMPROLE()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1749,7 +2111,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -1765,7 +2131,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -1781,8 +2151,32 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_ID != value))
                 {
+                    this.OnROLE_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._ROLE_ID = value;
+                    this.SendPropertyChanged("ROLE_ID");
+                    this.OnROLE_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -1941,8 +2335,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPSHIFT")]
-    public partial class TEMPSHIFT
+    public partial class TEMPSHIFT : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -1950,11 +2346,24 @@ namespace WiTrainingSuite
 
         private int _SHIFT_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnSHIFT_IDChanging(int value);
+        partial void OnSHIFT_IDChanged();
+        #endregion
+
         public TEMPSHIFT()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -1965,7 +2374,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -1981,7 +2394,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -1997,8 +2414,32 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_ID != value))
                 {
+                    this.OnSHIFT_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SHIFT_ID = value;
+                    this.SendPropertyChanged("SHIFT_ID");
+                    this.OnSHIFT_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -2157,8 +2598,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPSKILL")]
-    public partial class TEMPSKILL
+    public partial class TEMPSKILL : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -2166,11 +2609,24 @@ namespace WiTrainingSuite
 
         private int _SKILL_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnSKILL_IDChanging(int value);
+        partial void OnSKILL_IDChanged();
+        #endregion
+
         public TEMPSKILL()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2181,7 +2637,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -2197,7 +2657,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -2213,8 +2677,32 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_ID != value))
                 {
+                    this.OnSKILL_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SKILL_ID = value;
+                    this.SendPropertyChanged("SKILL_ID");
+                    this.OnSKILL_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -2373,8 +2861,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPSKILL_WIP")]
-    public partial class TEMPSKILL_WIP
+    public partial class TEMPSKILL_WIP : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -2382,11 +2872,24 @@ namespace WiTrainingSuite
 
         private int _SKILL_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnSKILL_IDChanging(int value);
+        partial void OnSKILL_IDChanged();
+        #endregion
+
         public TEMPSKILL_WIP()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2397,7 +2900,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -2413,7 +2920,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -2429,15 +2940,41 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_ID != value))
                 {
+                    this.OnSKILL_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SKILL_ID = value;
+                    this.SendPropertyChanged("SKILL_ID");
+                    this.OnSKILL_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPTRAINING")]
-    public partial class TEMPTRAINING
+    public partial class TEMPTRAINING : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -2451,11 +2988,30 @@ namespace WiTrainingSuite
 
         private string _VALIDNOTE;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnSW_IDChanging(int value);
+        partial void OnSW_IDChanged();
+        partial void OnSW_LEVELChanging(int value);
+        partial void OnSW_LEVELChanged();
+        partial void OnVALIDDATEChanging(System.DateTime value);
+        partial void OnVALIDDATEChanged();
+        partial void OnVALIDNOTEChanging(string value);
+        partial void OnVALIDNOTEChanged();
+        #endregion
+
         public TEMPTRAINING()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2466,7 +3022,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -2482,7 +3042,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -2498,7 +3062,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
+                    this.OnSW_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_ID = value;
+                    this.SendPropertyChanged("SW_ID");
+                    this.OnSW_IDChanged();
                 }
             }
         }
@@ -2514,7 +3082,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_LEVEL != value))
                 {
+                    this.OnSW_LEVELChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_LEVEL = value;
+                    this.SendPropertyChanged("SW_LEVEL");
+                    this.OnSW_LEVELChanged();
                 }
             }
         }
@@ -2530,7 +3102,11 @@ namespace WiTrainingSuite
             {
                 if ((this._VALIDDATE != value))
                 {
+                    this.OnVALIDDATEChanging(value);
+                    this.SendPropertyChanging();
                     this._VALIDDATE = value;
+                    this.SendPropertyChanged("VALIDDATE");
+                    this.OnVALIDDATEChanged();
                 }
             }
         }
@@ -2546,8 +3122,32 @@ namespace WiTrainingSuite
             {
                 if ((this._VALIDNOTE != value))
                 {
+                    this.OnVALIDNOTEChanging(value);
+                    this.SendPropertyChanging();
                     this._VALIDNOTE = value;
+                    this.SendPropertyChanged("VALIDNOTE");
+                    this.OnVALIDNOTEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -2760,8 +3360,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPTRAINING_WIP")]
-    public partial class TEMPTRAINING_WIP
+    public partial class TEMPTRAINING_WIP : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -2775,11 +3377,30 @@ namespace WiTrainingSuite
 
         private string _VALIDNOTE;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnSW_IDChanging(int value);
+        partial void OnSW_IDChanged();
+        partial void OnSW_LEVELChanging(int value);
+        partial void OnSW_LEVELChanged();
+        partial void OnVALIDDATEChanging(System.DateTime value);
+        partial void OnVALIDDATEChanged();
+        partial void OnVALIDNOTEChanging(string value);
+        partial void OnVALIDNOTEChanged();
+        #endregion
+
         public TEMPTRAINING_WIP()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2790,7 +3411,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -2806,7 +3431,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -2822,7 +3451,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
+                    this.OnSW_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_ID = value;
+                    this.SendPropertyChanged("SW_ID");
+                    this.OnSW_IDChanged();
                 }
             }
         }
@@ -2838,7 +3471,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_LEVEL != value))
                 {
+                    this.OnSW_LEVELChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_LEVEL = value;
+                    this.SendPropertyChanged("SW_LEVEL");
+                    this.OnSW_LEVELChanged();
                 }
             }
         }
@@ -2854,7 +3491,11 @@ namespace WiTrainingSuite
             {
                 if ((this._VALIDDATE != value))
                 {
+                    this.OnVALIDDATEChanging(value);
+                    this.SendPropertyChanging();
                     this._VALIDDATE = value;
+                    this.SendPropertyChanged("VALIDDATE");
+                    this.OnVALIDDATEChanged();
                 }
             }
         }
@@ -2870,15 +3511,41 @@ namespace WiTrainingSuite
             {
                 if ((this._VALIDNOTE != value))
                 {
+                    this.OnVALIDNOTEChanging(value);
+                    this.SendPropertyChanging();
                     this._VALIDNOTE = value;
+                    this.SendPropertyChanged("VALIDNOTE");
+                    this.OnVALIDNOTEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPVAR")]
-    public partial class TEMPVAR
+    public partial class TEMPVAR : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -2886,11 +3553,24 @@ namespace WiTrainingSuite
 
         private int _VAR_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnEMP_IDChanging(int value);
+        partial void OnEMP_IDChanged();
+        partial void OnVAR_IDChanging(int value);
+        partial void OnVAR_IDChanged();
+        #endregion
+
         public TEMPVAR()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -2901,7 +3581,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -2917,7 +3601,11 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
+                    this.OnEMP_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._EMP_ID = value;
+                    this.SendPropertyChanged("EMP_ID");
+                    this.OnEMP_IDChanged();
                 }
             }
         }
@@ -2933,8 +3621,32 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_ID != value))
                 {
+                    this.OnVAR_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._VAR_ID = value;
+                    this.SendPropertyChanged("VAR_ID");
+                    this.OnVAR_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -3093,20 +3805,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TROLE")]
-    public partial class TROLE : INotifyPropertyChanged
+    public partial class TROLE : INotifyPropertyChanging, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        // method is called by the Set accessor of each property.
-        // The CallerMemberName attribute that is applied to the optional propertyName
-        // parameter causes the property name of the caller to be substituted as an argument.
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ROLE_ID;
 
@@ -3114,11 +3816,24 @@ namespace WiTrainingSuite
 
         private bool _ROLE_EMAIL;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnROLE_IDChanging(int value);
+        partial void OnROLE_IDChanged();
+        partial void OnROLE_NAMEChanging(string value);
+        partial void OnROLE_NAMEChanged();
+        partial void OnROLE_EMAILChanging(bool value);
+        partial void OnROLE_EMAILChanged();
+        #endregion
+
         public TROLE()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ROLE_ID
         {
             get
@@ -3129,8 +3844,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_ID != value))
                 {
+                    this.OnROLE_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._ROLE_ID = value;
-                    NotifyPropertyChanged();
+                    this.SendPropertyChanged("ROLE_ID");
+                    this.OnROLE_IDChanged();
                 }
             }
         }
@@ -3146,8 +3864,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_NAME != value))
                 {
+                    this.OnROLE_NAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._ROLE_NAME = value;
-                    NotifyPropertyChanged();
+                    this.SendPropertyChanged("ROLE_NAME");
+                    this.OnROLE_NAMEChanged();
                 }
             }
         }
@@ -3163,9 +3884,32 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_EMAIL != value))
                 {
+                    this.OnROLE_EMAILChanging(value);
+                    this.SendPropertyChanging();
                     this._ROLE_EMAIL = value;
-                    NotifyPropertyChanged();
+                    this.SendPropertyChanged("ROLE_EMAIL");
+                    this.OnROLE_EMAILChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -3324,8 +4068,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TROLEVAR")]
-    public partial class TROLEVAR
+    public partial class TROLEVAR : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _VAR_ID;
 
@@ -3333,11 +4079,24 @@ namespace WiTrainingSuite
 
         private string _VAR_NAME;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnVAR_IDChanging(int value);
+        partial void OnVAR_IDChanged();
+        partial void OnROLE_IDChanging(int value);
+        partial void OnROLE_IDChanged();
+        partial void OnVAR_NAMEChanging(string value);
+        partial void OnVAR_NAMEChanged();
+        #endregion
+
         public TROLEVAR()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int VAR_ID
         {
             get
@@ -3348,7 +4107,11 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_ID != value))
                 {
+                    this.OnVAR_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._VAR_ID = value;
+                    this.SendPropertyChanged("VAR_ID");
+                    this.OnVAR_IDChanged();
                 }
             }
         }
@@ -3364,7 +4127,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_ID != value))
                 {
+                    this.OnROLE_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._ROLE_ID = value;
+                    this.SendPropertyChanged("ROLE_ID");
+                    this.OnROLE_IDChanged();
                 }
             }
         }
@@ -3380,8 +4147,32 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_NAME != value))
                 {
+                    this.OnVAR_NAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._VAR_NAME = value;
+                    this.SendPropertyChanged("VAR_NAME");
+                    this.OnVAR_NAMEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -3540,18 +4331,31 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TSHIFT")]
-    public partial class TSHIFT
+    public partial class TSHIFT : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _SHIFT_ID;
 
         private string _SHIFT_NAME;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnSHIFT_IDChanging(int value);
+        partial void OnSHIFT_IDChanged();
+        partial void OnSHIFT_NAMEChanging(string value);
+        partial void OnSHIFT_NAMEChanged();
+        #endregion
+
         public TSHIFT()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int SHIFT_ID
         {
             get
@@ -3562,7 +4366,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_ID != value))
                 {
+                    this.OnSHIFT_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SHIFT_ID = value;
+                    this.SendPropertyChanged("SHIFT_ID");
+                    this.OnSHIFT_IDChanged();
                 }
             }
         }
@@ -3578,8 +4386,32 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_NAME != value))
                 {
+                    this.OnSHIFT_NAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._SHIFT_NAME = value;
+                    this.SendPropertyChanged("SHIFT_NAME");
+                    this.OnSHIFT_NAMEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -3720,18 +4552,31 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TSKILL")]
-    public partial class TSKILL
+    public partial class TSKILL : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _SKILL_ID;
 
         private string _SKILL_NAME;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnSKILL_IDChanging(int value);
+        partial void OnSKILL_IDChanged();
+        partial void OnSKILL_NAMEChanging(string value);
+        partial void OnSKILL_NAMEChanged();
+        #endregion
+
         public TSKILL()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int SKILL_ID
         {
             get
@@ -3742,7 +4587,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_ID != value))
                 {
+                    this.OnSKILL_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SKILL_ID = value;
+                    this.SendPropertyChanged("SKILL_ID");
+                    this.OnSKILL_IDChanged();
                 }
             }
         }
@@ -3758,8 +4607,32 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_NAME != value))
                 {
+                    this.OnSKILL_NAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._SKILL_NAME = value;
+                    this.SendPropertyChanged("SKILL_NAME");
+                    this.OnSKILL_NAMEChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -3900,8 +4773,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TSKILLSW")]
-    public partial class TSKILLSW
+    public partial class TSKILLSW : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -3909,11 +4784,24 @@ namespace WiTrainingSuite
 
         private int _SW_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnSKILL_IDChanging(int value);
+        partial void OnSKILL_IDChanged();
+        partial void OnSW_IDChanging(int value);
+        partial void OnSW_IDChanged();
+        #endregion
+
         public TSKILLSW()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -3924,7 +4812,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -3940,7 +4832,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_ID != value))
                 {
+                    this.OnSKILL_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SKILL_ID = value;
+                    this.SendPropertyChanged("SKILL_ID");
+                    this.OnSKILL_IDChanged();
                 }
             }
         }
@@ -3956,8 +4852,32 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
+                    this.OnSW_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_ID = value;
+                    this.SendPropertyChanged("SW_ID");
+                    this.OnSW_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -4116,8 +5036,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TSORT")]
-    public partial class TSORT
+    public partial class TSORT : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -4127,11 +5049,26 @@ namespace WiTrainingSuite
 
         private string _SORT_ORDER;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnTABLENAMEChanging(string value);
+        partial void OnTABLENAMEChanged();
+        partial void OnID_COLUMNChanging(string value);
+        partial void OnID_COLUMNChanged();
+        partial void OnSORT_ORDERChanging(string value);
+        partial void OnSORT_ORDERChanged();
+        #endregion
+
         public TSORT()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -4142,7 +5079,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -4158,7 +5099,11 @@ namespace WiTrainingSuite
             {
                 if ((this._TABLENAME != value))
                 {
+                    this.OnTABLENAMEChanging(value);
+                    this.SendPropertyChanging();
                     this._TABLENAME = value;
+                    this.SendPropertyChanged("TABLENAME");
+                    this.OnTABLENAMEChanged();
                 }
             }
         }
@@ -4174,7 +5119,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID_COLUMN != value))
                 {
+                    this.OnID_COLUMNChanging(value);
+                    this.SendPropertyChanging();
                     this._ID_COLUMN = value;
+                    this.SendPropertyChanged("ID_COLUMN");
+                    this.OnID_COLUMNChanged();
                 }
             }
         }
@@ -4190,15 +5139,41 @@ namespace WiTrainingSuite
             {
                 if ((this._SORT_ORDER != value))
                 {
+                    this.OnSORT_ORDERChanging(value);
+                    this.SendPropertyChanging();
                     this._SORT_ORDER = value;
+                    this.SendPropertyChanged("SORT_ORDER");
+                    this.OnSORT_ORDERChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TSTANDARDWORK")]
-    public partial class TSTANDARDWORK
+    public partial class TSTANDARDWORK : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _SW_ID;
 
@@ -4212,11 +5187,30 @@ namespace WiTrainingSuite
 
         private string _SW_RA;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnSW_IDChanging(int value);
+        partial void OnSW_IDChanged();
+        partial void OnSW_CODEChanging(string value);
+        partial void OnSW_CODEChanged();
+        partial void OnSW_DESCRIPTIONChanging(string value);
+        partial void OnSW_DESCRIPTIONChanged();
+        partial void OnSW_ISSUEChanging(int value);
+        partial void OnSW_ISSUEChanged();
+        partial void OnSW_ISSUEDATEChanging(System.DateTime value);
+        partial void OnSW_ISSUEDATEChanged();
+        partial void OnSW_RAChanging(string value);
+        partial void OnSW_RAChanged();
+        #endregion
+
         public TSTANDARDWORK()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int SW_ID
         {
             get
@@ -4227,7 +5221,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
+                    this.OnSW_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_ID = value;
+                    this.SendPropertyChanged("SW_ID");
+                    this.OnSW_IDChanged();
                 }
             }
         }
@@ -4243,7 +5241,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_CODE != value))
                 {
+                    this.OnSW_CODEChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_CODE = value;
+                    this.SendPropertyChanged("SW_CODE");
+                    this.OnSW_CODEChanged();
                 }
             }
         }
@@ -4259,7 +5261,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_DESCRIPTION != value))
                 {
+                    this.OnSW_DESCRIPTIONChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_DESCRIPTION = value;
+                    this.SendPropertyChanged("SW_DESCRIPTION");
+                    this.OnSW_DESCRIPTIONChanged();
                 }
             }
         }
@@ -4275,7 +5281,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUE != value))
                 {
+                    this.OnSW_ISSUEChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_ISSUE = value;
+                    this.SendPropertyChanged("SW_ISSUE");
+                    this.OnSW_ISSUEChanged();
                 }
             }
         }
@@ -4291,7 +5301,11 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUEDATE != value))
                 {
+                    this.OnSW_ISSUEDATEChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_ISSUEDATE = value;
+                    this.SendPropertyChanged("SW_ISSUEDATE");
+                    this.OnSW_ISSUEDATEChanged();
                 }
             }
         }
@@ -4307,8 +5321,32 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_RA != value))
                 {
+                    this.OnSW_RAChanging(value);
+                    this.SendPropertyChanging();
                     this._SW_RA = value;
+                    this.SendPropertyChanged("SW_RA");
+                    this.OnSW_RAChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -4521,8 +5559,10 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TVARSKILL")]
-    public partial class TVARSKILL
+    public partial class TVARSKILL : INotifyPropertyChanging, INotifyPropertyChanged
     {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 
         private int _ID;
 
@@ -4530,11 +5570,24 @@ namespace WiTrainingSuite
 
         private int _SKILL_ID;
 
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnVAR_IDChanging(int value);
+        partial void OnVAR_IDChanged();
+        partial void OnSKILL_IDChanging(int value);
+        partial void OnSKILL_IDChanged();
+        #endregion
+
         public TVARSKILL()
         {
+            OnCreated();
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.Always, DbType = "Int NOT NULL IDENTITY", IsDbGenerated = true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
         public int ID
         {
             get
@@ -4545,7 +5598,11 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
                     this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
                 }
             }
         }
@@ -4561,7 +5618,11 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_ID != value))
                 {
+                    this.OnVAR_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._VAR_ID = value;
+                    this.SendPropertyChanged("VAR_ID");
+                    this.OnVAR_IDChanged();
                 }
             }
         }
@@ -4577,8 +5638,32 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_ID != value))
                 {
+                    this.OnSKILL_IDChanging(value);
+                    this.SendPropertyChanging();
                     this._SKILL_ID = value;
+                    this.SendPropertyChanged("SKILL_ID");
+                    this.OnSKILL_IDChanged();
                 }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -4737,9 +5822,20 @@ namespace WiTrainingSuite
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.VTRAINING")]
-    public partial class VTRAINING
+    public partial class VTRAINING : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private string _Name;
 
         private string _SHIFT_NAME;
@@ -4773,7 +5869,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Name != value))
                 {
-                    this._Name = value;
+                    this._Name = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4789,7 +5885,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_NAME != value))
                 {
-                    this._SHIFT_NAME = value;
+                    this._SHIFT_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4805,7 +5901,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_CODE != value))
                 {
-                    this._SW_CODE = value;
+                    this._SW_CODE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4821,7 +5917,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_DESCRIPTION != value))
                 {
-                    this._SW_DESCRIPTION = value;
+                    this._SW_DESCRIPTION = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4837,7 +5933,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_LEVEL != value))
                 {
-                    this._SW_LEVEL = value;
+                    this._SW_LEVEL = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4853,7 +5949,7 @@ namespace WiTrainingSuite
             {
                 if ((this._VALIDDATE != value))
                 {
-                    this._VALIDDATE = value;
+                    this._VALIDDATE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4869,7 +5965,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
-                    this._EMP_ID = value;
+                    this._EMP_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4885,7 +5981,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
-                    this._SW_ID = value;
+                    this._SW_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4901,7 +5997,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_ID != value))
                 {
-                    this._SHIFT_ID = value;
+                    this._SHIFT_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4909,6 +6005,18 @@ namespace WiTrainingSuite
 
     public partial class FnTEMPLOYEE_LISTResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<int> _EMP_ID;
 
         private string _EMP_FNAME;
@@ -4952,8 +6060,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
-                    this._EMP_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_ID, value);
+                    this._EMP_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4969,8 +6076,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_FNAME != value))
                 {
-                    this._EMP_FNAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_FNAME, value);
+                    this._EMP_FNAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -4986,8 +6092,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_LNAME != value))
                 {
-                    this._EMP_LNAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref this._EMP_LNAME, value);
+                    this._EMP_LNAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5003,8 +6108,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_INITIAL != value))
                 {
-                    this._EMP_INITIAL = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_INITIAL, value);
+                    this._EMP_INITIAL = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5020,8 +6124,7 @@ namespace WiTrainingSuite
             {
                 if ((this._DEPT_ID != value))
                 {
-                    this._DEPT_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_ID, value);
+                    this._DEPT_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5037,8 +6140,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_ID != value))
                 {
-                    this._ROLE_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_ID, value);
+                    this._ROLE_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5054,8 +6156,7 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_ID != value))
                 {
-                    this._VAR_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_ID, value);
+                    this._VAR_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5071,8 +6172,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_ID != value))
                 {
-                    this._SHIFT_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_ID, value);
+                    this._SHIFT_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5088,8 +6188,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMAIL != value))
                 {
-                    this._EMAIL = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMAIL, value);
+                    this._EMAIL = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5105,8 +6204,7 @@ namespace WiTrainingSuite
             {
                 if ((this._DEPT_NAME != value))
                 {
-                    this._DEPT_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_NAME, value);
+                    this._DEPT_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5122,8 +6220,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_NAME != value))
                 {
-                    this._ROLE_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_NAME, value);
+                    this._ROLE_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5139,8 +6236,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_NAME != value))
                 {
-                    this._SHIFT_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_NAME, value);
+                    this._SHIFT_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5156,8 +6252,7 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_NAME != value))
                 {
-                    this._VAR_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_NAME, value);
+                    this._VAR_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5173,36 +6268,17 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_NOTE != value))
                 {
-                    this._EMP_NOTE = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_NOTE, value);
+                    this._EMP_NOTE = value; NotifyPropertyChanged();
                 }
             }
         }
+    }
 
-        public static implicit operator FnTEMPLOYEE_SELECTResult(FnTEMPLOYEE_LISTResult x)
-        {
-            return new FnTEMPLOYEE_SELECTResult()
-            {
-                EMP_ID = x.EMP_ID,
-                EMP_FNAME = x.EMP_FNAME,
-                EMP_LNAME = x.EMP_LNAME,
-                EMP_INITIAL = x.EMP_INITIAL,
-                DEPT_ID = x.DEPT_ID,
-                ROLE_ID = x.ROLE_ID,
-                VAR_ID = x.VAR_ID,
-                SHIFT_ID = x.SHIFT_ID,
-                EMAIL = x.EMAIL,
-                DEPT_NAME = x.DEPT_NAME,
-                ROLE_NAME = x.ROLE_NAME,
-                SHIFT_NAME = x.SHIFT_NAME,
-                VAR_NAME = x.VAR_NAME,
-                EMP_NOTE = x.EMP_NOTE
-            };
-        }
-
+    public partial class FnTEMPLOYEE_LOGResult : INotifyPropertyChanged
+    {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // method is called by the Set accessor of each property.
+        // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
         // parameter causes the property name of the caller to be substituted as an argument.
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -5212,11 +6288,6 @@ namespace WiTrainingSuite
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-    }
-
-    public partial class FnTEMPLOYEE_LOGResult
-    {
-
         private string _Table;
 
         private string _Action;
@@ -5240,7 +6311,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Table != value))
                 {
-                    this._Table = value;
+                    this._Table = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5256,7 +6327,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Action != value))
                 {
-                    this._Action = value;
+                    this._Action = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5272,7 +6343,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Detail != value))
                 {
-                    this._Detail = value;
+                    this._Detail = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5288,7 +6359,7 @@ namespace WiTrainingSuite
             {
                 if ((this._TimeStamp != value))
                 {
-                    this._TimeStamp = value;
+                    this._TimeStamp = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5296,7 +6367,18 @@ namespace WiTrainingSuite
 
     public partial class FnTEMPLOYEE_SELECTResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<int> _EMP_ID;
 
         private string _EMP_FNAME;
@@ -5340,8 +6422,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
-                    this._EMP_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_ID, value);
+                    this._EMP_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5357,8 +6438,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_FNAME != value))
                 {
-                    this._EMP_FNAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_FNAME, value);
+                    this._EMP_FNAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5374,8 +6454,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_LNAME != value))
                 {
-                    this._EMP_LNAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref this._EMP_LNAME, value);
+                    this._EMP_LNAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5391,8 +6470,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_INITIAL != value))
                 {
-                    this._EMP_INITIAL = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_INITIAL, value);
+                    this._EMP_INITIAL = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5408,8 +6486,7 @@ namespace WiTrainingSuite
             {
                 if ((this._DEPT_ID != value))
                 {
-                    this._DEPT_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_ID, value);
+                    this._DEPT_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5425,25 +6502,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_ID != value))
                 {
-                    this._ROLE_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_ID, value);
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int")]
-        public System.Nullable<int> VAR_ID
-        {
-            get
-            {
-                return this._VAR_ID;
-            }
-            set
-            {
-                if ((this._VAR_ID != value))
-                {
-                    this._VAR_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_ID, value);
+                    this._ROLE_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5459,8 +6518,23 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_ID != value))
                 {
-                    this._SHIFT_ID = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_ID, value);
+                    this._SHIFT_ID = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_ID", DbType = "Int")]
+        public System.Nullable<int> VAR_ID
+        {
+            get
+            {
+                return this._VAR_ID;
+            }
+            set
+            {
+                if ((this._VAR_ID != value))
+                {
+                    this._VAR_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5476,8 +6550,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMAIL != value))
                 {
-                    this._EMAIL = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMAIL, value);
+                    this._EMAIL = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5493,8 +6566,7 @@ namespace WiTrainingSuite
             {
                 if ((this._DEPT_NAME != value))
                 {
-                    this._DEPT_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _DEPT_NAME, value);
+                    this._DEPT_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5510,8 +6582,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ROLE_NAME != value))
                 {
-                    this._ROLE_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _ROLE_NAME, value);
+                    this._ROLE_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5527,8 +6598,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SHIFT_NAME != value))
                 {
-                    this._SHIFT_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _SHIFT_NAME, value);
+                    this._SHIFT_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5544,8 +6614,7 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_NAME != value))
                 {
-                    this._VAR_NAME = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _VAR_NAME, value);
+                    this._VAR_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5561,36 +6630,17 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_NOTE != value))
                 {
-                    this._EMP_NOTE = value;
-                    NotifyPropertyChanged(); //.RaiseAndSetIfChanged(ref _EMP_NOTE, value);
+                    this._EMP_NOTE = value; NotifyPropertyChanged();
                 }
             }
         }
+    }
 
-        public static implicit operator FnTEMPLOYEE_LISTResult(FnTEMPLOYEE_SELECTResult x)
-        {
-            return new FnTEMPLOYEE_LISTResult()
-            {
-                EMP_ID = x.EMP_ID,
-                EMP_FNAME = x.EMP_FNAME,
-                EMP_LNAME = x.EMP_LNAME,
-                EMP_INITIAL = x.EMP_INITIAL,
-                DEPT_ID = x.DEPT_ID,
-                ROLE_ID = x.ROLE_ID,
-                VAR_ID = x.VAR_ID,
-                SHIFT_ID = x.SHIFT_ID,
-                EMAIL = x.EMAIL,
-                DEPT_NAME = x.DEPT_NAME,
-                ROLE_NAME = x.ROLE_NAME,
-                SHIFT_NAME = x.SHIFT_NAME,
-                VAR_NAME = x.VAR_NAME,
-                EMP_NOTE = x.EMP_NOTE
-            };
-        }
-
+    public partial class FnTEMPSKILL_SELECTResult : INotifyPropertyChanged
+    {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // method is called by the Set accessor of each property.
+        // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
         // parameter causes the property name of the caller to be substituted as an argument.
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -5600,11 +6650,6 @@ namespace WiTrainingSuite
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-    }
-
-    public partial class FnTEMPSKILL_SELECTResult
-    {
-
         private System.Nullable<int> _SKILL_ID;
 
         private string _SKILL_NAME;
@@ -5630,7 +6675,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_ID != value))
                 {
-                    this._SKILL_ID = value;
+                    this._SKILL_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5646,7 +6691,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SKILL_NAME != value))
                 {
-                    this._SKILL_NAME = value;
+                    this._SKILL_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5662,7 +6707,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ON_TRAINING != value))
                 {
-                    this._ON_TRAINING = value;
+                    this._ON_TRAINING = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5678,7 +6723,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
-                    this._ID = value;
+                    this._ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5694,15 +6739,26 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
-                    this._EMP_ID = value;
+                    this._EMP_ID = value; NotifyPropertyChanged();
                 }
             }
         }
     }
 
-    public partial class FnTEMPTRAINING_SELECTResult
+    public partial class FnTEMPTRAINING_SELECTEResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<int> _ID;
 
         private System.Nullable<int> _EMP_ID;
@@ -5721,6 +6777,8 @@ namespace WiTrainingSuite
 
         private string _EMP_INITIAL;
 
+        private string _SHIFT_NAME;
+
         private string _SW_CODE;
 
         private string _SW_DESCRIPTION;
@@ -5735,7 +6793,7 @@ namespace WiTrainingSuite
 
         private System.Nullable<int> _SW_CRITERIA;
 
-        public FnTEMPTRAINING_SELECTResult()
+        public FnTEMPTRAINING_SELECTEResult()
         {
         }
 
@@ -5750,7 +6808,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
-                    this._ID = value;
+                    this._ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5766,7 +6824,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_ID != value))
                 {
-                    this._EMP_ID = value;
+                    this._EMP_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5782,7 +6840,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
-                    this._SW_ID = value;
+                    this._SW_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5798,7 +6856,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_LEVEL != value))
                 {
-                    this._SW_LEVEL = value;
+                    this._SW_LEVEL = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5814,7 +6872,7 @@ namespace WiTrainingSuite
             {
                 if ((this._VALIDDATE != value))
                 {
-                    this._VALIDDATE = value;
+                    this._VALIDDATE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5830,7 +6888,7 @@ namespace WiTrainingSuite
             {
                 if ((this._VALIDNOTE != value))
                 {
-                    this._VALIDNOTE = value;
+                    this._VALIDNOTE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5846,7 +6904,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_FNAME != value))
                 {
-                    this._EMP_FNAME = value;
+                    this._EMP_FNAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5862,7 +6920,7 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_LNAME != value))
                 {
-                    this._EMP_LNAME = value;
+                    this._EMP_LNAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5878,7 +6936,23 @@ namespace WiTrainingSuite
             {
                 if ((this._EMP_INITIAL != value))
                 {
-                    this._EMP_INITIAL = value;
+                    this._EMP_INITIAL = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX)")]
+        public string SHIFT_NAME
+        {
+            get
+            {
+                return this._SHIFT_NAME;
+            }
+            set
+            {
+                if ((this._SHIFT_NAME != value))
+                {
+                    this._SHIFT_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5894,7 +6968,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_CODE != value))
                 {
-                    this._SW_CODE = value;
+                    this._SW_CODE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5910,7 +6984,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_DESCRIPTION != value))
                 {
-                    this._SW_DESCRIPTION = value;
+                    this._SW_DESCRIPTION = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5926,7 +7000,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUE != value))
                 {
-                    this._SW_ISSUE = value;
+                    this._SW_ISSUE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5942,7 +7016,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUEDATE != value))
                 {
-                    this._SW_ISSUEDATE = value;
+                    this._SW_ISSUEDATE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5958,7 +7032,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_RA != value))
                 {
-                    this._SW_RA = value;
+                    this._SW_RA = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5974,7 +7048,7 @@ namespace WiTrainingSuite
             {
                 if ((this._VAR_NAME != value))
                 {
-                    this._VAR_NAME = value;
+                    this._VAR_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -5990,15 +7064,351 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_CRITERIA != value))
                 {
-                    this._SW_CRITERIA = value;
+                    this._SW_CRITERIA = value; NotifyPropertyChanged();
                 }
             }
         }
     }
 
-    public partial class FnTEMPTRAININGROLEFILTERResult
+    public partial class FnTEMPTRAINING_SELECTSResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        private System.Nullable<int> _ID;
+
+        private System.Nullable<int> _EMP_ID;
+
+        private System.Nullable<int> _SW_ID;
+
+        private System.Nullable<int> _SW_LEVEL;
+
+        private System.Nullable<System.DateTime> _VALIDDATE;
+
+        private string _VALIDNOTE;
+
+        private string _EMP_FNAME;
+
+        private string _EMP_LNAME;
+
+        private string _EMP_INITIAL;
+
+        private string _SHIFT_NAME;
+
+        private string _SW_CODE;
+
+        private string _SW_DESCRIPTION;
+
+        private System.Nullable<int> _SW_ISSUE;
+
+        private System.Nullable<System.DateTime> _SW_ISSUEDATE;
+
+        private string _SW_RA;
+
+        private string _VAR_NAME;
+
+        private System.Nullable<int> _SW_CRITERIA;
+
+        public FnTEMPTRAINING_SELECTSResult()
+        {
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int")]
+        public System.Nullable<int> ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                if ((this._ID != value))
+                {
+                    this._ID = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int")]
+        public System.Nullable<int> EMP_ID
+        {
+            get
+            {
+                return this._EMP_ID;
+            }
+            set
+            {
+                if ((this._EMP_ID != value))
+                {
+                    this._EMP_ID = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int")]
+        public System.Nullable<int> SW_ID
+        {
+            get
+            {
+                return this._SW_ID;
+            }
+            set
+            {
+                if ((this._SW_ID != value))
+                {
+                    this._SW_ID = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_LEVEL", DbType = "Int")]
+        public System.Nullable<int> SW_LEVEL
+        {
+            get
+            {
+                return this._SW_LEVEL;
+            }
+            set
+            {
+                if ((this._SW_LEVEL != value))
+                {
+                    this._SW_LEVEL = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDDATE", DbType = "DateTime")]
+        public System.Nullable<System.DateTime> VALIDDATE
+        {
+            get
+            {
+                return this._VALIDDATE;
+            }
+            set
+            {
+                if ((this._VALIDDATE != value))
+                {
+                    this._VALIDDATE = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VALIDNOTE", DbType = "VarChar(MAX)")]
+        public string VALIDNOTE
+        {
+            get
+            {
+                return this._VALIDNOTE;
+            }
+            set
+            {
+                if ((this._VALIDNOTE != value))
+                {
+                    this._VALIDNOTE = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_FNAME", DbType = "VarChar(MAX)")]
+        public string EMP_FNAME
+        {
+            get
+            {
+                return this._EMP_FNAME;
+            }
+            set
+            {
+                if ((this._EMP_FNAME != value))
+                {
+                    this._EMP_FNAME = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_LNAME", DbType = "VarChar(MAX)")]
+        public string EMP_LNAME
+        {
+            get
+            {
+                return this._EMP_LNAME;
+            }
+            set
+            {
+                if ((this._EMP_LNAME != value))
+                {
+                    this._EMP_LNAME = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "Char(1)")]
+        public string EMP_INITIAL
+        {
+            get
+            {
+                return this._EMP_INITIAL;
+            }
+            set
+            {
+                if ((this._EMP_INITIAL != value))
+                {
+                    this._EMP_INITIAL = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SHIFT_NAME", DbType = "VarChar(MAX)")]
+        public string SHIFT_NAME
+        {
+            get
+            {
+                return this._SHIFT_NAME;
+            }
+            set
+            {
+                if ((this._SHIFT_NAME != value))
+                {
+                    this._SHIFT_NAME = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CODE", DbType = "VarChar(MAX)")]
+        public string SW_CODE
+        {
+            get
+            {
+                return this._SW_CODE;
+            }
+            set
+            {
+                if ((this._SW_CODE != value))
+                {
+                    this._SW_CODE = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_DESCRIPTION", DbType = "VarChar(MAX)")]
+        public string SW_DESCRIPTION
+        {
+            get
+            {
+                return this._SW_DESCRIPTION;
+            }
+            set
+            {
+                if ((this._SW_DESCRIPTION != value))
+                {
+                    this._SW_DESCRIPTION = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUE", DbType = "Int")]
+        public System.Nullable<int> SW_ISSUE
+        {
+            get
+            {
+                return this._SW_ISSUE;
+            }
+            set
+            {
+                if ((this._SW_ISSUE != value))
+                {
+                    this._SW_ISSUE = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ISSUEDATE", DbType = "DateTime")]
+        public System.Nullable<System.DateTime> SW_ISSUEDATE
+        {
+            get
+            {
+                return this._SW_ISSUEDATE;
+            }
+            set
+            {
+                if ((this._SW_ISSUEDATE != value))
+                {
+                    this._SW_ISSUEDATE = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_RA", DbType = "VarChar(MAX)")]
+        public string SW_RA
+        {
+            get
+            {
+                return this._SW_RA;
+            }
+            set
+            {
+                if ((this._SW_RA != value))
+                {
+                    this._SW_RA = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_VAR_NAME", DbType = "VarChar(MAX)")]
+        public string VAR_NAME
+        {
+            get
+            {
+                return this._VAR_NAME;
+            }
+            set
+            {
+                if ((this._VAR_NAME != value))
+                {
+                    this._VAR_NAME = value; NotifyPropertyChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_CRITERIA", DbType = "Int")]
+        public System.Nullable<int> SW_CRITERIA
+        {
+            get
+            {
+                return this._SW_CRITERIA;
+            }
+            set
+            {
+                if ((this._SW_CRITERIA != value))
+                {
+                    this._SW_CRITERIA = value; NotifyPropertyChanged();
+                }
+            }
+        }
+    }
+
+    public partial class FnTEMPTRAININGROLEFILTERResult : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<int> _SW_ID;
 
         public FnTEMPTRAININGROLEFILTERResult()
@@ -6016,15 +7426,26 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
-                    this._SW_ID = value;
+                    this._SW_ID = value; NotifyPropertyChanged();
                 }
             }
         }
     }
 
-    public partial class FnTEMPTRAININGSKILLFILTERResult
+    public partial class FnTEMPTRAININGSKILLFILTERResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<int> _SW_ID;
 
         public FnTEMPTRAININGSKILLFILTERResult()
@@ -6042,15 +7463,26 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
-                    this._SW_ID = value;
+                    this._SW_ID = value; NotifyPropertyChanged();
                 }
             }
         }
     }
 
-    public partial class FnTSORTResult
+    public partial class FnTSORTResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<int> _ITEM_ID;
 
         private string _ITEM_NAME;
@@ -6072,7 +7504,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ITEM_ID != value))
                 {
-                    this._ITEM_ID = value;
+                    this._ITEM_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6088,7 +7520,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ITEM_NAME != value))
                 {
-                    this._ITEM_NAME = value;
+                    this._ITEM_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6104,7 +7536,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ITEM_SORT != value))
                 {
-                    this._ITEM_SORT = value;
+                    this._ITEM_SORT = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6114,7 +7546,7 @@ namespace WiTrainingSuite
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // method is called by the Set accessor of each property.
+        // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
         // parameter causes the property name of the caller to be substituted as an argument.
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -6124,7 +7556,6 @@ namespace WiTrainingSuite
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
         private System.Nullable<int> _SW_ID;
 
         private string _SW_CODE;
@@ -6152,8 +7583,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
-                    this._SW_ID = value;
-                    NotifyPropertyChanged();
+                    this._SW_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6169,8 +7599,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_CODE != value))
                 {
-                    this._SW_CODE = value;
-                    NotifyPropertyChanged();
+                    this._SW_CODE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6186,8 +7615,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_DESCRIPTION != value))
                 {
-                    this._SW_DESCRIPTION = value;
-                    NotifyPropertyChanged();
+                    this._SW_DESCRIPTION = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6203,8 +7631,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUE != value))
                 {
-                    this._SW_ISSUE = value;
-                    NotifyPropertyChanged();
+                    this._SW_ISSUE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6220,8 +7647,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUEDATE != value))
                 {
-                    this._SW_ISSUEDATE = value;
-                    NotifyPropertyChanged();
+                    this._SW_ISSUEDATE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6237,29 +7663,26 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_RA != value))
                 {
-                    this._SW_RA = value;
-                    NotifyPropertyChanged();
+                    this._SW_RA = value; NotifyPropertyChanged();
                 }
             }
         }
-
-        public static implicit operator FnTSTANDARDWORK_SELECTResult(FnTSTANDARDWORK_LISTResult x)
-        {
-            return new FnTSTANDARDWORK_SELECTResult()
-            {
-                SW_ID = x.SW_ID,
-                SW_CODE = x.SW_CODE,
-                SW_DESCRIPTION = x.SW_DESCRIPTION,
-                SW_ISSUE = x.SW_ISSUE,
-                SW_ISSUEDATE = x.SW_ISSUEDATE,
-                SW_RA = x.SW_RA
-            };
-        }
     }
 
-    public partial class FnTSTANDARDWORK_LOGResult
+    public partial class FnTSTANDARDWORK_LOGResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private string _Table;
 
         private string _Action;
@@ -6283,7 +7706,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Table != value))
                 {
-                    this._Table = value;
+                    this._Table = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6299,7 +7722,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Action != value))
                 {
-                    this._Action = value;
+                    this._Action = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6315,7 +7738,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Detail != value))
                 {
-                    this._Detail = value;
+                    this._Detail = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6331,7 +7754,7 @@ namespace WiTrainingSuite
             {
                 if ((this._TimeStamp != value))
                 {
-                    this._TimeStamp = value;
+                    this._TimeStamp = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6341,7 +7764,7 @@ namespace WiTrainingSuite
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // method is called by the Set accessor of each property.
+        // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
         // parameter causes the property name of the caller to be substituted as an argument.
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -6351,7 +7774,6 @@ namespace WiTrainingSuite
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
         private System.Nullable<int> _SW_ID;
 
         private string _SW_CODE;
@@ -6379,8 +7801,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ID != value))
                 {
-                    this._SW_ID = value;
-                    NotifyPropertyChanged();
+                    this._SW_ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6396,8 +7817,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_CODE != value))
                 {
-                    this._SW_CODE = value;
-                    NotifyPropertyChanged();
+                    this._SW_CODE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6413,8 +7833,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_DESCRIPTION != value))
                 {
-                    this._SW_DESCRIPTION = value;
-                    NotifyPropertyChanged();
+                    this._SW_DESCRIPTION = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6430,8 +7849,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUE != value))
                 {
-                    this._SW_ISSUE = value;
-                    NotifyPropertyChanged();
+                    this._SW_ISSUE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6447,8 +7865,7 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_ISSUEDATE != value))
                 {
-                    this._SW_ISSUEDATE = value;
-                    NotifyPropertyChanged();
+                    this._SW_ISSUEDATE = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6464,29 +7881,26 @@ namespace WiTrainingSuite
             {
                 if ((this._SW_RA != value))
                 {
-                    this._SW_RA = value;
-                    NotifyPropertyChanged();
+                    this._SW_RA = value; NotifyPropertyChanged();
                 }
             }
         }
-
-        public static implicit operator FnTSTANDARDWORK_LISTResult(FnTSTANDARDWORK_SELECTResult x)
-        {
-            return new FnTSTANDARDWORK_LISTResult()
-            {
-                SW_ID = x.SW_ID,
-                SW_CODE = x.SW_CODE,
-                SW_DESCRIPTION = x.SW_DESCRIPTION,
-                SW_ISSUE = x.SW_ISSUE,
-                SW_ISSUEDATE = x.SW_ISSUEDATE,
-                SW_RA = x.SW_RA
-            };
-        }
     }
 
-    public partial class Sp_helpdiagramdefinitionResult
+    public partial class Sp_helpdiagramdefinitionResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<int> _Version;
 
         private System.Data.Linq.Binary _Definition;
@@ -6506,7 +7920,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Version != value))
                 {
-                    this._Version = value;
+                    this._Version = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6522,15 +7936,26 @@ namespace WiTrainingSuite
             {
                 if ((this._Definition != value))
                 {
-                    this._Definition = value;
+                    this._Definition = value; NotifyPropertyChanged();
                 }
             }
         }
     }
 
-    public partial class Sp_helpdiagramsResult
+    public partial class Sp_helpdiagramsResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private string _Database;
 
         private string _Name;
@@ -6556,7 +7981,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Database != value))
                 {
-                    this._Database = value;
+                    this._Database = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6572,7 +7997,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Name != value))
                 {
-                    this._Name = value;
+                    this._Name = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6588,7 +8013,7 @@ namespace WiTrainingSuite
             {
                 if ((this._ID != value))
                 {
-                    this._ID = value;
+                    this._ID = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6604,7 +8029,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Owner != value))
                 {
-                    this._Owner = value;
+                    this._Owner = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6620,15 +8045,26 @@ namespace WiTrainingSuite
             {
                 if ((this._OwnerID != value))
                 {
-                    this._OwnerID = value;
+                    this._OwnerID = value; NotifyPropertyChanged();
                 }
             }
         }
     }
 
-    public partial class SplitStringsResult
+    public partial class SplitStringsResult : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         private System.Nullable<long> _Number;
 
         private string _Item;
@@ -6648,7 +8084,7 @@ namespace WiTrainingSuite
             {
                 if ((this._Number != value))
                 {
-                    this._Number = value;
+                    this._Number = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6664,10 +8100,10 @@ namespace WiTrainingSuite
             {
                 if ((this._Item != value))
                 {
-                    this._Item = value;
+                    this._Item = value; NotifyPropertyChanged();
                 }
             }
         }
     }
-#pragma warning restore 1591
 }
+#pragma warning restore 1591

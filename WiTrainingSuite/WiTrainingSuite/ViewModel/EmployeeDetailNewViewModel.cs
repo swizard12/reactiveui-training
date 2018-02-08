@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MaterialDesignThemes.Wpf;
+using WiTrainingSuite.Model;
 
 namespace WiTrainingSuite.ViewModel
 {
@@ -37,7 +38,7 @@ namespace WiTrainingSuite.ViewModel
                 {
                     int? emp_id = 0;
                     db.FnTEMPLOYEE_CREATE(Employee.EMP_FNAME, Employee.EMP_LNAME, Employee.EMP_INITIAL, ref emp_id);
-                    HostScreen.Router.NavigateAndReset.Execute(new EmployeeDetailEditViewModel(HostScreen, (FnTEMPLOYEE_LISTResult)db.FnTEMPLOYEE_SELECT(emp_id).First()));
+                    HostScreen.Router.NavigateAndReset.Execute(new EmployeeDetailEditViewModel(HostScreen, db.FnTEMPLOYEE_LIST().First(x => x.EMP_ID == emp_id)));
                 }
             }, this.WhenAnyValue(
                 x => x.Employee.EMP_FNAME, 

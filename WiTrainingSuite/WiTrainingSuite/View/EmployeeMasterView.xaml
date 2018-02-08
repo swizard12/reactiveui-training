@@ -61,7 +61,8 @@ xmlns:rx="http://reactiveui.net"
                         </Grid.RowDefinitions>
                         <DataGrid Grid.Row="0" AutoGenerateColumns="False" 
                                   IsReadOnly="True" SelectionMode="Single" 
-                                  SelectedItem="{Binding SelectedEmployee}" ItemsSource="{Binding EmployeeList}">
+                                  SelectedItem="{Binding SelectedEmployee}" ItemsSource="{Binding EmployeeList}"
+                                  SelectedIndex="{Binding EmployeeIndex, UpdateSourceTrigger=PropertyChanged}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="First Name" Binding="{Binding EMP_FNAME}"/>
                                 <DataGridTextColumn Header="Last Name" Binding="{Binding EMP_LNAME}"/>
@@ -76,7 +77,7 @@ xmlns:rx="http://reactiveui.net"
                             <Button Margin="2 4 2 4" Command="{Binding NewEmployeeCommand}">Add New</Button>
                             <Button Margin="2 4 2 4" Command="{Binding EditEmployeeCommand}">Edit Selected</Button>
                             <Button Margin="2 4 2 4">View Training</Button>
-                            <Button Margin="2 4 4 4">Input Training</Button>
+                            <Button Margin="2 4 4 4" Command="{Binding EditTrainingCommand}">Input Training</Button>
                         </UniformGrid>
                     </Grid>
                 </md:DrawerHost>

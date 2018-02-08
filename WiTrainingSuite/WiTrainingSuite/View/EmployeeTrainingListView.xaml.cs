@@ -1,7 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using ReactiveUI;
-using System;
-using System.Reactive.Linq;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WiTrainingSuite.ViewModel;
 
-namespace WiTrainingSuite
+namespace WiTrainingSuite.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EmployeeTrainingListView.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class EmployeeTrainingListView : UserControl
     {
-        public MainWindow()
+        public EmployeeTrainingListView()
         {
             InitializeComponent();
-            DataContext = new AppBootstrapper();
         }
     }
 }

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="WiTrainingSuite.View.EmployeeTrainingListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WiTrainingSuite.View"
+             xmlns:rx="http://reactiveui.net"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:m="http://metro.mahapps.com/winfx/xaml/controls">
+    <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <md:Card.Content>
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <DataGrid AutoGenerateColumns="False" 
+                                  IsReadOnly="True" SelectionMode="Single" 
+                                  SelectedItem="{Binding SelectedTraining}" ItemsSource="{Binding TrainingList}"
+                                  SelectedIndex="{Binding TrainingIndex, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="SW Code" Binding="{Binding SW_CODE}"/>
+                            <DataGridTextColumn Header="SW Description" Binding="{Binding SW_DESCRIPTION}"/>
+                            <DataGridTextColumn Header="Level" Binding="{Binding SW_LEVEL}"/>
+                            <DataGridTextColumn Header="Valid Date" Binding="{Binding VALIDDATE}"/>
+                            <DataGridTextColumn Header="Note" Binding="{Binding VALIDNOTE}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <UniformGrid Columns="5" Grid.Row="1">
+                    <Label></Label>
+                    <Button Command="{Binding BackCommand}">Back</Button>
+                    <Label></Label>
+                    <Button Command="{Binding SaveCommand}">Save</Button>
+                    <Label></Label>
+                </UniformGrid>
+            </Grid>
+        </md:Card.Content>
+    </md:Card>
+</UserControl>

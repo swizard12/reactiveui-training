@@ -9,7 +9,7 @@
         xmlns:rx="http://reactiveui.net"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
     <m:MetroWindow.RightWindowCommands>
         <m:WindowCommands>
             <Button Command="{Binding LoadStandardWorkList}">
@@ -36,6 +36,19 @@
                     <TextBlock Margin="4 0 0 0"
                                VerticalAlignment="Center"
                                Text="Employee"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding LoadConfigMenu}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20"
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{StaticResource appbar_cog}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                               VerticalAlignment="Center"
+                               Text="Settings"/>
                 </StackPanel>
             </Button>
         </m:WindowCommands>

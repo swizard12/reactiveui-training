@@ -9,6 +9,11 @@
     <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <md:Card.Content>
             <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition />
@@ -27,6 +32,14 @@
                     <DatePicker Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedDate="{Binding Path=StandardWork.SW_ISSUEDATE}"/>
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_RA}"/>
                 </StackPanel>
+                </Grid>
+                <UniformGrid Columns="5" Grid.Row="1">
+                    <Label></Label>
+                    <Button Command="{Binding BackCommand}">Back</Button>
+                    <Label></Label>
+                    <Button Command="{Binding SaveCommand}">Save</Button>
+                    <Label></Label>
+                </UniformGrid>
             </Grid>
         </md:Card.Content>
     </md:Card>

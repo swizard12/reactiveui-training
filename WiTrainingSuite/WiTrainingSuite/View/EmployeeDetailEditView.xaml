@@ -9,6 +9,11 @@
     <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <md:Card.Content>
             <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition />
@@ -31,6 +36,14 @@
                     <ComboBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding VarList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="VAR_ID" SelectedValue="{Binding Path=Employee.VAR_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="VAR_NAME"/>
                     <ComboBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding ShiftList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="SHIFT_ID" SelectedValue="{Binding Path=Employee.SHIFT_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="SHIFT_NAME"/>
                 </StackPanel>
+            </Grid>
+            <UniformGrid Columns="5" Grid.Row="1">
+                <Label></Label>
+                <Button Command="{Binding BackCommand}">Back</Button>
+                <Label></Label>
+                <Button Command="{Binding SaveCommand}">Save</Button>
+                <Label></Label>
+            </UniformGrid>
             </Grid>
         </md:Card.Content>
     </md:Card>

@@ -119,14 +119,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\wi_training_suite.cs" />
     <Compile Include="ViewModel\AppBootstrapper.cs" />
+    <Compile Include="ViewModel\ConfigMenuMasterViewModel.cs" />
     <Compile Include="ViewModel\EmployeeDetailEditViewModel.cs" />
     <Compile Include="ViewModel\EmployeeDetailNewViewModel.cs" />
     <Compile Include="ViewModel\EmployeeMasterViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeTrainingEditViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeTrainingListViewModel.cs" />
     <Compile Include="ViewModel\ExtendedViewModelBase.cs" />
     <Compile Include="ViewModel\StandardWorkDetailEditViewModel.cs" />
     <Compile Include="ViewModel\StandardWorkDetailNewViewModel.cs" />
     <Compile Include="ViewModel\StandardWorkMasterViewModel.cs" />
+    <Compile Include="View\ConfigMenuMasterView.xaml.cs">
+      <DependentUpon>ConfigMenuMasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Converters.cs" />
     <Compile Include="View\EmployeeDetailEditView.xaml.cs">
       <DependentUpon>EmployeeDetailEditView.xaml</DependentUpon>
     </Compile>
@@ -135,6 +143,12 @@
     </Compile>
     <Compile Include="View\EmployeeMasterView.xaml.cs">
       <DependentUpon>EmployeeMasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeTrainingEditView.xaml.cs">
+      <DependentUpon>EmployeeTrainingEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeTrainingListView.xaml.cs">
+      <DependentUpon>EmployeeTrainingListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StandardWorkDetailEditView.xaml.cs">
       <DependentUpon>StandardWorkDetailEditView.xaml</DependentUpon>
@@ -145,7 +159,6 @@
     <Compile Include="View\StandardWorkMasterView.xaml.cs">
       <DependentUpon>StandardWorkMasterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="wi_training_suite.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -166,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ConfigMenuMasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EmployeeDetailEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +192,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EmployeeMasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeTrainingEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeTrainingListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,9 +245,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />
   </ItemGroup>

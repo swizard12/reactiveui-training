@@ -3,8 +3,10 @@ using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
+using WiTrainingSuite.Model;
 
 namespace WiTrainingSuite.ViewModel
 {
@@ -43,7 +45,36 @@ namespace WiTrainingSuite.ViewModel
                 var sq = from s in db.TSHIFT orderby s.SHIFT_NAME select s;
                 foreach (TSHIFT s in sq) { ShiftList.Add(s); }
             }
+
+            BackCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.NavigateBack.Execute();
+            });
+
+            SaveCommand = ReactiveCommand.Create(() =>
+            {
+                using (Wi_training_suite db = new Wi_training_suite(App.ConString))
+                {
+                    db.FnTEMPLOYEE_UPDATE(Employee.EMP_ID, 
+                                          Employee.EMP_FNAME, 
+                                          Employee.EMP_LNAME, 
+                                          Employee.EMP_INITIAL, 
+                                          Employee.DEPT_ID, 
+                                          Employee.VAR_ID, 
+                                          Employee.SHIFT_ID, 
+                                          Employee.EMP_NOTE);
+                    HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>().EmployeeList =
+                        new ReactiveList<FnTEMPLOYEE_LISTResult>(db.FnTEMPLOYEE_LIST().OrderBy("EMP_LNAME", this).AsEnumerable());
+                    HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>().SelectedEmployee =
+                        new FnTEMPLOYEE_LISTResult();
+
+                    HostScreen.Router.NavigateAndReset.Execute(HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>());
+                }
+            });
         }
+
+        public ReactiveCommand BackCommand { get; set; }
+        public ReactiveCommand SaveCommand { get; set; }
 
         private ReactiveList<TROLEVAR> _VarList = new ReactiveList<TROLEVAR>();
         public ReactiveList<TROLEVAR> VarList

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WiTrainingSuite.Model;
 
 namespace WiTrainingSuite.ViewModel
 {
@@ -37,7 +38,7 @@ namespace WiTrainingSuite.ViewModel
                 {
                     int? sw_id = 0;
                     db.FnTSTANDARDWORK_CREATE(StandardWork.SW_CODE, StandardWork.SW_DESCRIPTION, StandardWork.SW_ISSUE, StandardWork.SW_ISSUEDATE, StandardWork.SW_RA, ref sw_id);
-                    HostScreen.Router.NavigateAndReset.Execute(new StandardWorkDetailEditViewModel(HostScreen, (FnTSTANDARDWORK_LISTResult)db.FnTSTANDARDWORK_SELECT(sw_id).First()));
+                    HostScreen.Router.NavigateAndReset.Execute(new StandardWorkDetailEditViewModel(HostScreen, db.FnTSTANDARDWORK_LIST().First(x => x.SW_ID == sw_id)));
                 }
             }, this.WhenAnyValue(
                 x => x.StandardWork.SW_CODE,
