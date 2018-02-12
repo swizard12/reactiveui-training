@@ -56,22 +56,137 @@
                     </md:DrawerHost.BottomDrawerContent>
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="10"/>
                             <RowDefinition />
                             <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
-                        <DataGrid Grid.Row="0" AutoGenerateColumns="False" 
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Row="0" Grid.Column="0" Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Margin="2.5" Text="{Binding fCODE, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="SW Code Filter"/>
+                                <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding ClearCodeFilter}">
+                                    <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="1" Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Margin="2.5" Text="{Binding fDESC, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Description Filter"/>
+                                <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding ClearDescFilter}">
+                                    <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </Button>
+                            </Grid>
+                            <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="3" Margin="2.5" Command="{Binding ClearAll}">Clear All</Button>
+                        </Grid>
+                        <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="{Binding bWorking, Converter={StaticResource BoolVis}, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGrid Grid.Row="2" AutoGenerateColumns="False" 
                                   IsReadOnly="True" SelectionMode="Single" 
                                   SelectedItem="{Binding SelectedStandardWork, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding StandardWorkList, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedIndex="{Binding StandardWorkIndex, UpdateSourceTrigger=PropertyChanged}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Code" Binding="{Binding SW_CODE}"/>
-                                <DataGridTextColumn Header="Description" Binding="{Binding SW_DESCRIPTION}"/>
-                                <DataGridTextColumn Header="Issue #" Binding="{Binding SW_ISSUE}"/>
-                                <DataGridTextColumn Header="Issue Date" Binding="{Binding SW_ISSUEDATE}"/>
-                                <DataGridTextColumn Header="Risk Assessment #" Binding="{Binding SW_RA}"/>
+                                <DataGridTextColumn Header="Code" Binding="{Binding SW_CODE}" Width="1*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" Binding="{Binding SW_DESCRIPTION}" Width="1*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Issue #" Binding="{Binding SW_ISSUE}" Width="1*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Issue Date" Binding="{Binding SW_ISSUEDATE}" Width="1*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Risk Assessment #" Binding="{Binding SW_RA}" Width="1*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <UniformGrid Columns="5" Grid.Row="1">
+                        <UniformGrid Columns="5" Grid.Row="3">
                             <Button Margin="4 4 2 4" Command="{x:Static md:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Bottom}">Sort</Button>
                             <Button Margin="2 4 2 4" Command="{Binding NewStandardWorkCommand}">Add New</Button>
                             <Button Margin="2 4 2 4" Command="{Binding EditStandardWorkCommand}">Edit Selected</Button>
