@@ -76,6 +76,21 @@ namespace WiTrainingSuite.ViewModel
                 x => x.IsAdmin,
                 (i, a) => i.Value > -1 && a.Value == true));
 
+            EditTrainingCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new StandardWorkTrainingEditViewModel(HostScreen, SelectedStandardWork));
+            }, this.WhenAny(
+                x => x.StandardWorkIndex,
+                x => x.IsAdmin,
+                (i, a) => i.Value > -1 && a.Value == true));
+            
+            ListTrainingCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new StandardWorkTrainingListViewModel(HostScreen, SelectedStandardWork));
+            }, this.WhenAny(
+                x => x.StandardWorkIndex,
+                (i) => i.Value != -1));
+
             ClearCodeFilter = ReactiveCommand.Create(() =>
             {
                 fCODE = string.Empty;
@@ -125,6 +140,8 @@ namespace WiTrainingSuite.ViewModel
 
         public ReactiveCommand NewStandardWorkCommand { get; set; }
         public ReactiveCommand EditStandardWorkCommand { get; set; }
+        public ReactiveCommand ListTrainingCommand { get; set; }
+        public ReactiveCommand EditTrainingCommand { get; set; }
         public ReactiveCommand ClearCodeFilter { get; set; }
         public ReactiveCommand ClearDescFilter { get; set; }
         public ReactiveCommand ClearAll { get; set; }

@@ -78,6 +78,14 @@ namespace WiTrainingSuite.ViewModel
                 x => x.IsAdmin,
                 (i, a) => i.Value > -1 && a.Value == true));
 
+            ListTrainingCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new EmployeeTrainingListViewModel(HostScreen, SelectedEmployee));
+            }, this.WhenAny(
+                x => x.EmployeeIndex,
+                (i) => i.Value != -1));
+            
+
             // Key = SQL Column Header; Value = Friendly Name
             ColumnHeaders.Add("EMP_FNAME", "First Name");
             ColumnHeaders.Add("EMP_LNAME", "Last Name");
@@ -139,6 +147,7 @@ namespace WiTrainingSuite.ViewModel
         public ReactiveCommand NewEmployeeCommand { get; set; }
         public ReactiveCommand EditEmployeeCommand { get; set; }
         public ReactiveCommand EditTrainingCommand { get; set; }
+        public ReactiveCommand ListTrainingCommand { get; set; }
 
         public ReactiveCommand ClearNameFilter { get; set; }
         public ReactiveCommand ClearDeptFilter { get; set; }

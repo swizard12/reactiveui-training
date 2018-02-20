@@ -49,9 +49,6 @@ namespace WiTrainingSuite.Model
         partial void InsertTEMPNOTE(TEMPNOTE instance);
         partial void UpdateTEMPNOTE(TEMPNOTE instance);
         partial void DeleteTEMPNOTE(TEMPNOTE instance);
-        partial void InsertTEMPROLE(TEMPROLE instance);
-        partial void UpdateTEMPROLE(TEMPROLE instance);
-        partial void DeleteTEMPROLE(TEMPROLE instance);
         partial void InsertTEMPSHIFT(TEMPSHIFT instance);
         partial void UpdateTEMPSHIFT(TEMPSHIFT instance);
         partial void DeleteTEMPSHIFT(TEMPSHIFT instance);
@@ -205,22 +202,6 @@ namespace WiTrainingSuite.Model
             get
             {
                 return this.GetTable<TEMPNOTE_AUDIT>();
-            }
-        }
-
-        public System.Data.Linq.Table<TEMPROLE> TEMPROLE
-        {
-            get
-            {
-                return this.GetTable<TEMPROLE>();
-            }
-        }
-
-        public System.Data.Linq.Table<TEMPROLE_AUDIT> TEMPROLE_AUDIT
-        {
-            get
-            {
-                return this.GetTable<TEMPROLE_AUDIT>();
             }
         }
 
@@ -2002,269 +1983,6 @@ namespace WiTrainingSuite.Model
                 if ((this._EMP_NOTE != value))
                 {
                     this._EMP_NOTE = value;
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITACTION", DbType = "Char(1) NOT NULL", CanBeNull = false)]
-        public string AUDITACTION
-        {
-            get
-            {
-                return this._AUDITACTION;
-            }
-            set
-            {
-                if ((this._AUDITACTION != value))
-                {
-                    this._AUDITACTION = value;
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITDATE", DbType = "DateTime NOT NULL")]
-        public System.DateTime AUDITDATE
-        {
-            get
-            {
-                return this._AUDITDATE;
-            }
-            set
-            {
-                if ((this._AUDITDATE != value))
-                {
-                    this._AUDITDATE = value;
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITUSER", DbType = "VarChar(50) NOT NULL", CanBeNull = false)]
-        public string AUDITUSER
-        {
-            get
-            {
-                return this._AUDITUSER;
-            }
-            set
-            {
-                if ((this._AUDITUSER != value))
-                {
-                    this._AUDITUSER = value;
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITAPP", DbType = "VarChar(128) NOT NULL", CanBeNull = false)]
-        public string AUDITAPP
-        {
-            get
-            {
-                return this._AUDITAPP;
-            }
-            set
-            {
-                if ((this._AUDITAPP != value))
-                {
-                    this._AUDITAPP = value;
-                }
-            }
-        }
-    }
-
-    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPROLE")]
-    public partial class TEMPROLE : INotifyPropertyChanging, INotifyPropertyChanged
-    {
-
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-
-        private int _ID;
-
-        private int _EMP_ID;
-
-        private int _ROLE_ID;
-
-        #region Extensibility Method Definitions
-        partial void OnLoaded();
-        partial void OnValidate(System.Data.Linq.ChangeAction action);
-        partial void OnCreated();
-        partial void OnIDChanging(int value);
-        partial void OnIDChanged();
-        partial void OnEMP_IDChanging(int value);
-        partial void OnEMP_IDChanged();
-        partial void OnROLE_IDChanging(int value);
-        partial void OnROLE_IDChanged();
-        #endregion
-
-        public TEMPROLE()
-        {
-            OnCreated();
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int ID
-        {
-            get
-            {
-                return this._ID;
-            }
-            set
-            {
-                if ((this._ID != value))
-                {
-                    this.OnIDChanging(value);
-                    this.SendPropertyChanging();
-                    this._ID = value;
-                    this.SendPropertyChanged("ID");
-                    this.OnIDChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
-        public int EMP_ID
-        {
-            get
-            {
-                return this._EMP_ID;
-            }
-            set
-            {
-                if ((this._EMP_ID != value))
-                {
-                    this.OnEMP_IDChanging(value);
-                    this.SendPropertyChanging();
-                    this._EMP_ID = value;
-                    this.SendPropertyChanged("EMP_ID");
-                    this.OnEMP_IDChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
-        public int ROLE_ID
-        {
-            get
-            {
-                return this._ROLE_ID;
-            }
-            set
-            {
-                if ((this._ROLE_ID != value))
-                {
-                    this.OnROLE_IDChanging(value);
-                    this.SendPropertyChanging();
-                    this._ROLE_ID = value;
-                    this.SendPropertyChanged("ROLE_ID");
-                    this.OnROLE_IDChanged();
-                }
-            }
-        }
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void SendPropertyChanging()
-        {
-            if ((this.PropertyChanging != null))
-            {
-                this.PropertyChanging(this, emptyChangingEventArgs);
-            }
-        }
-
-        protected virtual void SendPropertyChanged(String propertyName)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-
-    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TEMPROLE_AUDIT")]
-    public partial class TEMPROLE_AUDIT
-    {
-
-        private long _AUDITID;
-
-        private int _ID;
-
-        private int _EMP_ID;
-
-        private int _ROLE_ID;
-
-        private string _AUDITACTION;
-
-        private System.DateTime _AUDITDATE;
-
-        private string _AUDITUSER;
-
-        private string _AUDITAPP;
-
-        public TEMPROLE_AUDIT()
-        {
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_AUDITID", AutoSync = AutoSync.Always, DbType = "BigInt NOT NULL IDENTITY", IsDbGenerated = true)]
-        public long AUDITID
-        {
-            get
-            {
-                return this._AUDITID;
-            }
-            set
-            {
-                if ((this._AUDITID != value))
-                {
-                    this._AUDITID = value;
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "Int NOT NULL")]
-        public int ID
-        {
-            get
-            {
-                return this._ID;
-            }
-            set
-            {
-                if ((this._ID != value))
-                {
-                    this._ID = value;
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int NOT NULL")]
-        public int EMP_ID
-        {
-            get
-            {
-                return this._EMP_ID;
-            }
-            set
-            {
-                if ((this._EMP_ID != value))
-                {
-                    this._EMP_ID = value;
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ROLE_ID", DbType = "Int NOT NULL")]
-        public int ROLE_ID
-        {
-            get
-            {
-                return this._ROLE_ID;
-            }
-            set
-            {
-                if ((this._ROLE_ID != value))
-                {
-                    this._ROLE_ID = value;
                 }
             }
         }
@@ -5836,7 +5554,7 @@ namespace WiTrainingSuite.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        private string _Name;
+        private string _EMP_NAME;
 
         private string _SHIFT_NAME;
 
@@ -5858,18 +5576,18 @@ namespace WiTrainingSuite.Model
         {
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Name", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
-        public string Name
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_NAME", DbType = "VarChar(MAX)", UpdateCheck = UpdateCheck.Never)]
+        public string EMP_NAME
         {
             get
             {
-                return this._Name;
+                return this._EMP_NAME;
             }
             set
             {
-                if ((this._Name != value))
+                if ((this._EMP_NAME != value))
                 {
-                    this._Name = value; NotifyPropertyChanged();
+                    this._EMP_NAME = value; NotifyPropertyChanged();
                 }
             }
         }
@@ -6047,6 +5765,7 @@ namespace WiTrainingSuite.Model
 
         public FnTEMPLOYEE_LISTResult()
         {
+
         }
 
         [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_ID", DbType = "Int")]
@@ -6076,7 +5795,7 @@ namespace WiTrainingSuite.Model
             {
                 if ((this._EMP_FNAME != value))
                 {
-                    this._EMP_FNAME = value; NotifyPropertyChanged();
+                    this._EMP_FNAME = value; NotifyPropertyChanged(); NotifyPropertyChanged("EMP_FULLNAME");
                 }
             }
         }
@@ -6092,7 +5811,7 @@ namespace WiTrainingSuite.Model
             {
                 if ((this._EMP_LNAME != value))
                 {
-                    this._EMP_LNAME = value; NotifyPropertyChanged();
+                    this._EMP_LNAME = value; NotifyPropertyChanged(); NotifyPropertyChanged("EMP_FULLNAME");
                 }
             }
         }
@@ -6925,7 +6644,7 @@ namespace WiTrainingSuite.Model
             }
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "Char(1)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX)")]
         public string EMP_INITIAL
         {
             get
@@ -7250,7 +6969,7 @@ namespace WiTrainingSuite.Model
             }
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "Char(1)")]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EMP_INITIAL", DbType = "VarChar(MAX)")]
         public string EMP_INITIAL
         {
             get

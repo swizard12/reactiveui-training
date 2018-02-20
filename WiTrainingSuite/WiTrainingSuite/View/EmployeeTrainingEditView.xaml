@@ -5,32 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WiTrainingSuite.View"
              xmlns:rx="http://reactiveui.net"
-             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:m="http://metro.mahapps.com/winfx/xaml/controls">
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:m="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cmd="http://www.galasoft.ch/mvvmlight">
     <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <md:Card.Content>
-            <Grid Margin="5">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition />
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" TextAlignment="Left" VerticalAlignment="Center">
-                        <Run Text="Active Employee: "/>
-                        <Run Text="{Binding Path=Employee.EMP_FNAME}"/>
-                        <Run Text=" "/>
-                        <Run Text="{Binding Path=Employee.EMP_LNAME}"/>
-                    </TextBlock>
-                    <DockPanel Grid.Column="1">
-                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Width="100">Training Date</Label>
-                        <DatePicker SelectedDate="{Binding VALID_DATE, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" VerticalContentAlignment="Center"/>
-                    </DockPanel>
-                </Grid>
-                <Grid Grid.Row="1">
+                <UniformGrid Columns="5" Grid.Row="0">
+                    <Label Margin="4 4 2 4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        <TextBlock TextAlignment="Center" FontWeight="Bold">
+                            <Run Text="{Binding Path=Employee.EMP_FNAME, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Run Text="{Binding Path=Employee.EMP_LNAME, UpdateSourceTrigger=PropertyChanged}"/>
+                        </TextBlock>
+                    </Label>
+                </UniformGrid>
+                <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="{Binding bWorking, Converter={StaticResource BoolVis}, UpdateSourceTrigger=PropertyChanged}"/>
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="60"/>
@@ -41,20 +38,70 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <DockPanel Grid.Row="0">
-                            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="100" HorizontalAlignment="Left">Training Pool</Label>
-                            <TextBox Text="{Binding CodeFilter, UpdateSourceTrigger=PropertyChanged}" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" md:HintAssist.Hint="Filter by SW Code..."/>
-                        </DockPanel>
+                        <Grid Grid.Row="0" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="20"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="0" Margin="2.5" Text="{Binding fSW, UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Standard Work Filter"/>
+                            <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding ClearSWFilter}">
+                                <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                        </Grid>
                         <DataGrid Grid.Row="1" 
                                   ItemsSource="{Binding StandardWorkList}" 
                                   SelectedIndex="{Binding StandardWorkIndex, UpdateSourceTrigger=PropertyChanged}" 
                                   SelectedItem="{Binding SelectedStandardWork, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="SW Code" Binding="{Binding SW_CODE}"/>
-                                <DataGridTextColumn Header="Description" Binding="{Binding SW_DESCRIPTION}"/>
-                                <DataGridTextColumn Header="Level">
+                                <DataGridTextColumn Header="SW Code" Binding="{Binding SW_CODE}" Width="1*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
                                     <DataGridTextColumn.CellStyle>
                                         <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" Binding="{Binding SW_DESCRIPTION}" Width="2*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Level" SortMemberPath="SW_LEVEL">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
                                             <Style.Triggers>
                                                 <MultiDataTrigger>
                                                     <MultiDataTrigger.Conditions>
@@ -129,7 +176,25 @@
                                         </Style>
                                     </DataGridTextColumn.CellStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="Valid Date" Binding="{Binding VALIDDATE}"/>
+                                <DataGridTextColumn Header="Valid Date" Width="1*">
+                                    <DataGridTextColumn.Binding>
+                                        <Binding Path="VALIDDATE" StringFormat="{}{0:dd MMMM yyyy}"/>
+                                    </DataGridTextColumn.Binding>
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                            <Setter Property="HorizontalAlignment"
+                                                    Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment"
+                                                    Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -142,7 +207,30 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="100" HorizontalAlignment="Left">Training Queue</Label>
+                        <Border Grid.Row="0" BorderBrush="Red">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DateSet}" Value="False">
+                                            <Setter Property="BorderThickness" Value="2"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding DateSet}" Value="True">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <DockPanel>
+                                <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Width="100">Training Date</Label>
+                                <DatePicker SelectedDate="{Binding VALID_DATE, UpdateSourceTrigger=LostFocus}" Grid.Column="1" VerticalContentAlignment="Center" SelectedDateFormat="Long" TextBlock.TextAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger>
+                                            <cmd:EventToCommand></cmd:EventToCommand>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DatePicker>
+                            </DockPanel>
+                        </Border>
                         <DataGrid Grid.Row="1" 
                                   ItemsSource="{Binding QueueList}" 
                                   SelectedIndex="{Binding QueueIndex, UpdateSourceTrigger=PropertyChanged}" 
@@ -155,13 +243,14 @@
                         </DataGrid>
                     </Grid>
                 </Grid>
-                <UniformGrid Columns="5" Grid.Row="2">
-                    <Label></Label>
-                    <Button Command="{Binding BackCommand}">Back</Button>
-                    <Label></Label>
-                    <Button Command="{Binding SaveCommand}">Save Queue to DB</Button>
-                    <Label></Label>
+                <UniformGrid Columns="5" Grid.Row="3">
+                    <Button Margin="4 4 2 4"  Command="{Binding BackCommand}">Back</Button>
+                    <Label Margin="2 4 2 4"></Label>
+                    <Label Margin="2 4 2 4"></Label>
+                    <Label Margin="2 4 2 4"></Label>
+                    <Button Margin="2 4 4 4" Command="{Binding SaveCommand}">Save Queue to DB</Button>
                 </UniformGrid>
+                <md:Snackbar MessageQueue="{Binding SnackBarQueue}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.RowSpan="2"/>
             </Grid>
         </md:Card.Content>
     </md:Card>

@@ -18,28 +18,28 @@ using WiTrainingSuite.ViewModel;
 namespace WiTrainingSuite.View
 {
     /// <summary>
-    /// Interaction logic for EmployeeTrainingListView.xaml
+    /// Interaction logic for StandardWorkTrainingEditView.xaml
     /// </summary>
-    public partial class EmployeeTrainingListView : UserControl, IViewFor<EmployeeTrainingListViewModel>
+    public partial class StandardWorkTrainingEditView : UserControl, IViewFor<StandardWorkTrainingEditViewModel>
     {
-        public EmployeeTrainingListView()
+        public StandardWorkTrainingEditView()
         {
             InitializeComponent();
             this.WhenAnyValue(x => x.ViewModel).BindTo(this, x => x.DataContext);
         }
 
-        public EmployeeTrainingListViewModel ViewModel
+        public StandardWorkTrainingEditViewModel ViewModel
         {
-            get { return (EmployeeTrainingListViewModel)GetValue(ViewModelProperty); }
+            get { return (StandardWorkTrainingEditViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(EmployeeTrainingListViewModel), typeof(EmployeeTrainingListView), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(StandardWorkTrainingEditViewModel), typeof(StandardWorkTrainingEditView), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (EmployeeTrainingListViewModel)value; }
+            set { ViewModel = (StandardWorkTrainingEditViewModel)value; }
         }
     }
 }

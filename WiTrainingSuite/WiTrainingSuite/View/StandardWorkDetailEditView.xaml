@@ -8,12 +8,12 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:m="http://metro.mahapps.com/winfx/xaml/controls">
     <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <md:Card.Content>
-            <Grid Margin="5">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" Margin="5 0 5 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition />
@@ -29,16 +29,16 @@
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_CODE}"/>
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_DESCRIPTION}"/>
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_ISSUE}"/>
-                    <DatePicker Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedDate="{Binding Path=StandardWork.SW_ISSUEDATE}"/>
+                    <DatePicker Height="30" VerticalContentAlignment="Center" TextBlock.TextAlignment="Center" SelectedDate="{Binding Path=StandardWork.SW_ISSUEDATE}"/>
                     <TextBox Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=StandardWork.SW_RA}"/>
                 </StackPanel>
                 </Grid>
                 <UniformGrid Columns="5" Grid.Row="1">
-                    <Label></Label>
-                    <Button Command="{Binding BackCommand}">Back</Button>
-                    <Label></Label>
-                    <Button Command="{Binding SaveCommand}">Save</Button>
-                    <Label></Label>
+                    <Button Margin="4 4 2 4" Command="{Binding BackCommand}">Back</Button>
+                    <Label Margin="2 4 2 4"></Label>
+                    <Label Margin="2 4 2 4"></Label>
+                    <Label Margin="2 4 2 4"></Label>
+                    <Button Margin="2 4 4 4" Command="{Binding SaveCommand}">Save</Button>
                 </UniformGrid>
             </Grid>
         </md:Card.Content>

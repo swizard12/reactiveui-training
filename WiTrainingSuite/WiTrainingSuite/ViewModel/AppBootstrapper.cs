@@ -87,11 +87,14 @@ namespace WiTrainingSuite.ViewModel
             dependencyResolver.Register(() => new EmployeeMasterView(), typeof(IViewFor<EmployeeMasterViewModel>));
             dependencyResolver.Register(() => new EmployeeDetailNewView(), typeof(IViewFor<EmployeeDetailNewViewModel>));
             dependencyResolver.Register(() => new EmployeeDetailEditView(), typeof(IViewFor<EmployeeDetailEditViewModel>));
+            dependencyResolver.Register(() => new EmployeeTrainingListView(), typeof(IViewFor<EmployeeTrainingListViewModel>));
             dependencyResolver.Register(() => new EmployeeTrainingEditView(), typeof(IViewFor<EmployeeTrainingEditViewModel>));
 
             dependencyResolver.Register(() => new StandardWorkMasterView(), typeof(IViewFor<StandardWorkMasterViewModel>));
             dependencyResolver.Register(() => new StandardWorkDetailNewView(), typeof(IViewFor<StandardWorkDetailNewViewModel>));
             dependencyResolver.Register(() => new StandardWorkDetailEditView(), typeof(IViewFor<StandardWorkDetailEditViewModel>));
+            dependencyResolver.Register(() => new StandardWorkTrainingListView(), typeof(IViewFor<StandardWorkTrainingListViewModel>));
+            dependencyResolver.Register(() => new StandardWorkTrainingEditView(), typeof(IViewFor<StandardWorkTrainingEditViewModel>));
 
             dependencyResolver.Register(() => new ConfigMenuMasterView(), typeof(IViewFor<ConfigMenuMasterViewModel>));
         }

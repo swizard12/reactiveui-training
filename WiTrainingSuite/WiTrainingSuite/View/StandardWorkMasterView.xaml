@@ -190,12 +190,12 @@
                             <Button Margin="4 4 2 4" Command="{x:Static md:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Bottom}">Sort</Button>
                             <Button Margin="2 4 2 4" Command="{Binding NewStandardWorkCommand}">Add New</Button>
                             <Button Margin="2 4 2 4" Command="{Binding EditStandardWorkCommand}">Edit Selected</Button>
-                            <Button Margin="2 4 2 4">View Training</Button>
-                            <Button Margin="2 4 4 4">Input Training</Button>
+                            <Button Margin="2 4 2 4" Command="{Binding ListTrainingCommand}">View Training</Button>
+                            <Button Margin="2 4 4 4" Command="{Binding EditTrainingCommand}">Input Training</Button>
                         </UniformGrid>
                     </Grid>
                 </md:DrawerHost>
-                <md:Snackbar Height="50" MessageQueue="{Binding SnackBarQueue}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <md:Snackbar MessageQueue="{Binding SnackBarQueue}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.RowSpan="2"/>
             </Grid>
         </md:Card.Content>
     </md:Card>

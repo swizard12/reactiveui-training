@@ -26,5 +26,10 @@ namespace WiTrainingSuite
             TopWindow = new MainWindow();
             TopWindow.Show();
         }
+
+        public static void OnUI(Action action) // Wrapper for invoking action on the UI Thread, typically passing long running data back to the ViewModel;
+        {
+            Application.Current.Dispatcher.Invoke(() => { action(); });
+        }
     }
 }
