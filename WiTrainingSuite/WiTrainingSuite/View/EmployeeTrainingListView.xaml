@@ -311,14 +311,14 @@
                     </md:DrawerHost>
                 </Grid>
                 <UniformGrid Columns="5" Grid.Row="3">
-                    <Button Margin="4 4 2 4"  Command="{Binding BackCommand}">Back</Button>
+                    <Button Margin="4 4 2 4" Command="{Binding BackCommand}">Back</Button>
                     <Label Margin="2 4 2 4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                         <TextBlock TextAlignment="Center">
                             <Run>Row Count:</Run>
                             <Run Text="{Binding Path=TrainingList.Count, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </TextBlock>
                     </Label>
-                    <Label Margin="2 4 2 4"></Label>
+                    <Button Margin="2 4 2 4" Command="{Binding PrintCommand}">Print</Button>
                     <Label Margin="2 4 2 4"></Label>
                     <Label Margin="2 4 4 4"></Label>
                 </UniformGrid>

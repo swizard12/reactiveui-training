@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WiTrainingSuite.Model;
 using WiTrainingSuite.View;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace WiTrainingSuite.ViewModel
 {

@@ -8,9 +8,17 @@ using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using WiTrainingSuite.Model;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html;
+using System.IO;
+using System.Net;
+
 
 namespace WiTrainingSuite.ViewModel
 {
@@ -163,14 +171,54 @@ namespace WiTrainingSuite.ViewModel
                 ApplyFilters();
             });
 
-            // Navigation Commands
+            // Navigation Bar Commands
 
             BackCommand = ReactiveCommand.Create(() =>
             {
                 HostScreen.Router.NavigateBack.Execute();
             });
 
-            //////
+            PrintCommand = ReactiveCommand.Create(() =>
+            {
+                using (FileStream fs = new FileStream(@"C:\Junk\Test.pdf", FileMode.Create, FileAccess.Write, FileShare.None))
+                using (Document doc = new Document(PageSize.A4, 10, 10, 10, 10))
+                using (PdfWriter wrt = PdfWriter.GetInstance(doc, fs))
+                {
+                    // Heading
+                    Paragraph h = new Paragraph() { Alignment = 1, SpacingAfter = 10 };
+
+                    Phrase pH = new Phrase("Training Report");
+                    h.Add(pH);
+
+                    // Sub Heading
+                    Paragraph sh = new Paragraph() { Alignment = 0, SpacingAfter = 10 };
+
+                    Phrase pSH = new Phrase(String.Format("{0} {1} - {2}", Employee.EMP_FNAME, Employee.EMP_LNAME, Employee.VAR_NAME));
+                    sh.Add(pSH);
+
+                    // Full Training Requirement
+                    Paragraph f = new Paragraph() { Alignment = 0, SpacingAfter = 10, IndentationLeft = 25 };
+                    f.Add(new Phrase("A"));
+                    f.Add(Chunk.NEWLINE);
+                    f.Add(new Phrase("B"));
+                    f.Add(Chunk.NEWLINE);
+                    f.Add(new Phrase("C"));
+                    f.Add(Chunk.NEWLINE);
+                    f.Add(new Phrase("D"));
+                    f.Add(Chunk.NEWLINE);
+                    f.Add(new Phrase("E"));
+                    f.Add(Chunk.NEWLINE);
+
+                    doc.Open();
+
+                    doc.Add(h);
+                    doc.Add(sh);
+                    doc.Add(f);
+
+                    doc.Close();
+                    //////
+                }
+            });
         }
 
         public async void PrepLists()
@@ -342,6 +390,7 @@ namespace WiTrainingSuite.ViewModel
         public ReactiveCommand FVarClearCommand { get; set; }
 
         public ReactiveCommand BackCommand { get; set; }
+        public ReactiveCommand PrintCommand { get; set; }
 
         private ReactiveList<FnTEMPTRAINING_SELECTEResult> _TrainingList;
         public ReactiveList<FnTEMPTRAINING_SELECTEResult> TrainingList
