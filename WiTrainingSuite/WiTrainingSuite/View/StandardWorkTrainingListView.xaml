@@ -331,7 +331,7 @@
                             <Run Text="{Binding Path=TrainingList.Count, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </TextBlock>
                     </Label>
-                    <Label Margin="2 4 2 4"></Label>
+                    <Button Margin="2 4 2 4" Command="{Binding PrintCommand}">Print</Button>
                     <Label Margin="2 4 2 4"></Label>
                     <Label Margin="2 4 4 4"></Label>
                 </UniformGrid>

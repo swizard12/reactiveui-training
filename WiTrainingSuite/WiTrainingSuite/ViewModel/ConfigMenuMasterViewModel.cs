@@ -25,6 +25,37 @@ namespace WiTrainingSuite.ViewModel
             HostScreen = screen;
 
             SnackBarQueue = new SnackbarMessageQueue();
+
+            GeneratePaperworkCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new ConfigMenuTrainingPaperWorkViewModel(HostScreen));
+            });
+
+            RoleMgmtCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new ConfigMenuRoleMgmtViewModel(HostScreen));
+            });
+
+            VarMgmtCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new ConfigMenuVarMgmtViewModel(HostScreen));
+            });
+
+            SkillMgmtCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new ConfigMenuSkillMgmtViewModel(HostScreen));
+            });
+
+            ShiftMgmtCommand = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new ConfigMenuShiftMgmtViewModel(HostScreen));
+            });
         }
+
+        public ReactiveCommand GeneratePaperworkCommand { get; set; }
+        public ReactiveCommand ShiftMgmtCommand { get; set; }
+        public ReactiveCommand SkillMgmtCommand { get; set; }
+        public ReactiveCommand VarMgmtCommand { get; set; }
+        public ReactiveCommand RoleMgmtCommand { get; set; }
     }
 }

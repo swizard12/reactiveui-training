@@ -7,6 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" VerticalContentAlignment="Center" FontWeight="Black">Paperwork Generation</Label>
+        <UniformGrid Grid.Row="1" Columns="3">
+            <Button Command="{Binding GeneratePaperworkCommand}">Generate Paper Work</Button>
+            <Button Command="{Binding RoleMgmtCommand}">Role Management</Button>
+            <Button Command="{Binding VarMgmtCommand}">Variant Management</Button>
+            <Button Command="{Binding SkillMgmtCommand}">Skill Management</Button>
+            <Button Command="{Binding ShiftMgmtCommand}">Shift Management</Button>
+        </UniformGrid>
+        <UniformGrid Columns="5" Grid.Row="3">
+            <Label Margin="4 4 2 4"></Label>
+            <Label Margin="2 4 2 4"></Label>
+            <Label Margin="2 4 2 4"></Label>
+            <Label Margin="2 4 2 4"></Label>
+            <Label Margin="2 4 4 4"></Label>
+        </UniformGrid>
     </Grid>
 </UserControl>

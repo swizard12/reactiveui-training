@@ -14,6 +14,24 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\wi-svr-01\wi\departments\UnsafePlace\swizard\Apps\WiTrainingSuite\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\wi-svr-01\wi\departments\UnsafePlace\swizard\Apps\WiTrainingSuite\</InstallUrl>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +52,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>D83B0D1EF1A4A11A17FE1046880A91883BCB12D0</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WiTrainingSuite_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.1.1.35049, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -45,10 +75,6 @@
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.1.1.35053, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
@@ -73,6 +99,14 @@
     </Reference>
     <Reference Include="ReactiveUI, Version=7.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\reactiveui-core.7.4.0\lib\Net45\ReactiveUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="saxon9he-api, Version=9.8.0.8, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Saxon-HE.9.8.0.8\lib\net40\saxon9he-api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=17.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.17.3.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Splat, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -132,6 +166,11 @@
     <Compile Include="Model\wi_training_suite.cs" />
     <Compile Include="ViewModel\AppBootstrapper.cs" />
     <Compile Include="ViewModel\ConfigMenuMasterViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuRoleMgmtViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuShiftMgmtViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuSkillMgmtViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuTrainingPaperWorkViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuVarMgmtViewModel.cs" />
     <Compile Include="ViewModel\EmployeeDetailEditViewModel.cs" />
     <Compile Include="ViewModel\EmployeeDetailNewViewModel.cs" />
     <Compile Include="ViewModel\EmployeeMasterViewModel.cs" />
@@ -145,6 +184,21 @@
     <Compile Include="ViewModel\StandardWorkTrainingListViewModel.cs" />
     <Compile Include="View\ConfigMenuMasterView.xaml.cs">
       <DependentUpon>ConfigMenuMasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigMenuRoleMgmtView.xaml.cs">
+      <DependentUpon>ConfigMenuRoleMgmtView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigMenuShiftMgmtView.xaml.cs">
+      <DependentUpon>ConfigMenuShiftMgmtView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigMenuSkillMgmtView.xaml.cs">
+      <DependentUpon>ConfigMenuSkillMgmtView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigMenuTrainingPaperWorkView.xaml.cs">
+      <DependentUpon>ConfigMenuTrainingPaperWorkView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigMenuVarMgmtView.xaml.cs">
+      <DependentUpon>ConfigMenuVarMgmtView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Converters.cs" />
     <Compile Include="View\EmployeeDetailEditView.xaml.cs">
@@ -198,6 +252,26 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ConfigMenuMasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigMenuRoleMgmtView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigMenuShiftMgmtView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigMenuSkillMgmtView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigMenuTrainingPaperWorkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigMenuVarMgmtView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -268,6 +342,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="WiTrainingSuite_TemporaryKey.pfx" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +353,26 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\EmployeeVariantTrainingReport.xslt">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\StandardWorkTrainingReport.xslt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

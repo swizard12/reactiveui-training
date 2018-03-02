@@ -24,18 +24,17 @@ namespace WiTrainingSuite.ViewModel
 
         public SnackbarMessageQueue SnackBarQueue { get; set; }
 
-        readonly ObservableAsPropertyHelper<bool> isAdmin;
+
+        private bool _IsAdmin = false;
         public bool IsAdmin
         {
-            get { return isAdmin.Value; }
+            get { return _IsAdmin; }
+            set { this.RaiseAndSetIfChanged(ref _IsAdmin, value); }
         }
 
-        public bool admin;
-
-        public EmployeeMasterViewModel(IScreen screen)
+        public EmployeeMasterViewModel(IScreen screen, bool isAdmin)
         {
-            admin = App._admin;
-            this.WhenAnyValue(x => x.admin).ToProperty(this, x => x.IsAdmin, out isAdmin);
+            IsAdmin = isAdmin;
 
             HostScreen = screen;
 
@@ -60,7 +59,7 @@ namespace WiTrainingSuite.ViewModel
                 HostScreen.Router.Navigate.Execute(new EmployeeDetailNewViewModel(HostScreen));
             }, this.WhenAny(
                 x => x.IsAdmin,
-                (a) => a.Value == true));
+                (a) => a.Value));
 
             EditEmployeeCommand = ReactiveCommand.Create(() =>
             {
@@ -68,7 +67,7 @@ namespace WiTrainingSuite.ViewModel
             }, this.WhenAny(
                 x => x.EmployeeIndex,
                 x => x.IsAdmin,
-                (i, a) => i.Value > -1 && a.Value == true));
+                (i, a) => i.Value > -1 && a.Value));
 
             EditTrainingCommand = ReactiveCommand.Create(() =>
             {
@@ -76,7 +75,7 @@ namespace WiTrainingSuite.ViewModel
             }, this.WhenAny(
                 x => x.EmployeeIndex,
                 x => x.IsAdmin,
-                (i, a) => i.Value > -1 && a.Value == true));
+                (i, a) => i.Value > -1 && a.Value));
 
             ListTrainingCommand = ReactiveCommand.Create(() =>
             {

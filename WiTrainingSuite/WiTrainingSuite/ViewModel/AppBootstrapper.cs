@@ -4,13 +4,13 @@ using ReactiveUI;
 using Splat;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Principal;
 using WiTrainingSuite.Model;
 using WiTrainingSuite.View;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace WiTrainingSuite.ViewModel
 {
@@ -26,7 +26,7 @@ namespace WiTrainingSuite.ViewModel
             get { return isAdmin.Value; }
         }
 
-        public bool admin;
+        public bool admin = false;
 
         public AppBootstrapper(IMutableDependencyResolver dependencyResolver = null, RoutingState testRouter = null)
         {
@@ -57,28 +57,28 @@ namespace WiTrainingSuite.ViewModel
                     if (AdminList.Any(x => x.USERNAME == user))
                     {
                         Console.WriteLine("User Is Admin");
-                        App._admin= true;
+                        admin = true;
                     }
                     else
                     {
                         Console.WriteLine("User Is Not Admin");
-                        App._admin = false;
+                        App.ConString = App.ConStringReadOnly;
+                        admin = false;
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                this.Log().ErrorException("Failed to test username for admin", e);
-                App._admin = false;
+                System.Windows.MessageBox.Show(e.Message);
+                admin = false;
                 App.ConString = App.ConStringReadOnly;
             }
 
-            admin = App._admin;
             this.WhenAnyValue(x => x.admin).ToProperty(this, x => x.IsAdmin, out isAdmin);
 
             // Register Window Button Commands
-            LoadEmployeeList = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(new EmployeeMasterViewModel(this)));
-            LoadStandardWorkList = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(new StandardWorkMasterViewModel(this)));
+            LoadEmployeeList = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(new EmployeeMasterViewModel(this, admin)));
+            LoadStandardWorkList = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(new StandardWorkMasterViewModel(this, admin)));
             LoadConfigMenu = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(new ConfigMenuMasterViewModel(this)), this.WhenAnyValue(x => x.IsAdmin, (a) => a == true));
         }
 
@@ -87,18 +87,29 @@ namespace WiTrainingSuite.ViewModel
             dependencyResolver.RegisterConstant(this, typeof(IScreen));
 
             dependencyResolver.Register(() => new EmployeeMasterView(), typeof(IViewFor<EmployeeMasterViewModel>));
+
             dependencyResolver.Register(() => new EmployeeDetailNewView(), typeof(IViewFor<EmployeeDetailNewViewModel>));
             dependencyResolver.Register(() => new EmployeeDetailEditView(), typeof(IViewFor<EmployeeDetailEditViewModel>));
+
             dependencyResolver.Register(() => new EmployeeTrainingListView(), typeof(IViewFor<EmployeeTrainingListViewModel>));
             dependencyResolver.Register(() => new EmployeeTrainingEditView(), typeof(IViewFor<EmployeeTrainingEditViewModel>));
 
             dependencyResolver.Register(() => new StandardWorkMasterView(), typeof(IViewFor<StandardWorkMasterViewModel>));
+
             dependencyResolver.Register(() => new StandardWorkDetailNewView(), typeof(IViewFor<StandardWorkDetailNewViewModel>));
             dependencyResolver.Register(() => new StandardWorkDetailEditView(), typeof(IViewFor<StandardWorkDetailEditViewModel>));
+
             dependencyResolver.Register(() => new StandardWorkTrainingListView(), typeof(IViewFor<StandardWorkTrainingListViewModel>));
             dependencyResolver.Register(() => new StandardWorkTrainingEditView(), typeof(IViewFor<StandardWorkTrainingEditViewModel>));
 
             dependencyResolver.Register(() => new ConfigMenuMasterView(), typeof(IViewFor<ConfigMenuMasterViewModel>));
+
+            dependencyResolver.Register(() => new ConfigMenuTrainingPaperWorkView(), typeof(IViewFor<ConfigMenuTrainingPaperWorkViewModel>));
+
+            dependencyResolver.Register(() => new ConfigMenuRoleMgmtView(), typeof(IViewFor<ConfigMenuRoleMgmtViewModel>));
+            dependencyResolver.Register(() => new ConfigMenuShiftMgmtView(), typeof(IViewFor<ConfigMenuShiftMgmtViewModel>));
+            dependencyResolver.Register(() => new ConfigMenuSkillMgmtView(), typeof(IViewFor<ConfigMenuSkillMgmtViewModel>));
+            dependencyResolver.Register(() => new ConfigMenuVarMgmtView(), typeof(IViewFor<ConfigMenuVarMgmtViewModel>));
         }
 
         public ReactiveCommand LoadEmployeeList { get; protected set; }

@@ -18,28 +18,28 @@ using WiTrainingSuite.ViewModel;
 namespace WiTrainingSuite.View
 {
     /// <summary>
-    /// Interaction logic for ConfigMenuMasterView.xaml
+    /// Interaction logic for ConfigMenuVarMgmtView.xaml
     /// </summary>
-    public partial class ConfigMenuMasterView : UserControl, IViewFor<ConfigMenuMasterViewModel>
+    public partial class ConfigMenuVarMgmtView : UserControl, IViewFor<ConfigMenuVarMgmtViewModel>
     {
-        public ConfigMenuMasterView()
+        public ConfigMenuVarMgmtView()
         {
             InitializeComponent();
             this.WhenAnyValue(x => x.ViewModel).BindTo(this, x => x.DataContext);
         }
 
-        public ConfigMenuMasterViewModel ViewModel
+        public ConfigMenuVarMgmtViewModel ViewModel
         {
-            get { return (ConfigMenuMasterViewModel)GetValue(ViewModelProperty); }
+            get { return (ConfigMenuVarMgmtViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(ConfigMenuMasterViewModel), typeof(ConfigMenuMasterView), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(ConfigMenuVarMgmtViewModel), typeof(ConfigMenuVarMgmtView), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (ConfigMenuMasterViewModel)value; }
+            set { ViewModel = (ConfigMenuVarMgmtViewModel)value; }
         }
     }
 }

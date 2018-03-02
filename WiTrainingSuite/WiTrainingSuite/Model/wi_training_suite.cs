@@ -82,6 +82,9 @@ namespace WiTrainingSuite.Model
         partial void InsertTSKILLSW(TSKILLSW instance);
         partial void UpdateTSKILLSW(TSKILLSW instance);
         partial void DeleteTSKILLSW(TSKILLSW instance);
+        partial void InsertTSKILLSW_WIP(TSKILLSW_WIP instance);
+        partial void UpdateTSKILLSW_WIP(TSKILLSW_WIP instance);
+        partial void DeleteTSKILLSW_WIP(TSKILLSW_WIP instance);
         partial void InsertTSORT(TSORT instance);
         partial void UpdateTSORT(TSORT instance);
         partial void DeleteTSORT(TSORT instance);
@@ -365,6 +368,14 @@ namespace WiTrainingSuite.Model
             }
         }
 
+        public System.Data.Linq.Table<TSKILLSW_WIP> TSKILLSW_WIP
+        {
+            get
+            {
+                return this.GetTable<TSKILLSW_WIP>();
+            }
+        }
+
         public System.Data.Linq.Table<TSORT> TSORT
         {
             get
@@ -564,6 +575,38 @@ namespace WiTrainingSuite.Model
         public IQueryable<FnTEMPTRAININGSKILLFILTERResult> FnTEMPTRAININGSKILLFILTER([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "EMP_ID", DbType = "Int")] System.Nullable<int> eMP_ID)
         {
             return this.CreateMethodCallQuery<FnTEMPTRAININGSKILLFILTERResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMP_ID);
+        }
+
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTSKILLSW_ADD")]
+        [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
+        public int FnTSKILLSW_ADD([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SW_ID", DbType = "Int")] System.Nullable<int> sW_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SKILL_ID", DbType = "Int")] System.Nullable<int> sKILL_ID)
+        {
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sW_ID, sKILL_ID);
+            return ((int)(result.ReturnValue));
+        }
+
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTSKILLSW_COMMIT")]
+        [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
+        public int FnTSKILLSW_COMMIT([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SW_ID", DbType = "Int")] System.Nullable<int> sW_ID)
+        {
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sW_ID);
+            return ((int)(result.ReturnValue));
+        }
+
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTSKILLSW_DEL")]
+        [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
+        public int FnTSKILLSW_DEL([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SW_ID", DbType = "Int")] System.Nullable<int> sW_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SKILL_ID", DbType = "Int")] System.Nullable<int> sKILL_ID)
+        {
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sW_ID, sKILL_ID);
+            return ((int)(result.ReturnValue));
+        }
+
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTSKILLSW_PREP")]
+        [return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")]
+        public int FnTSKILLSW_PREP([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "SW_ID", DbType = "Int")] System.Nullable<int> sW_ID)
+        {
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sW_ID);
+            return ((int)(result.ReturnValue));
         }
 
         [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.fnTSORT", IsComposable = true)]
@@ -4749,6 +4792,116 @@ namespace WiTrainingSuite.Model
                 {
                     this._AUDITAPP = value;
                 }
+            }
+        }
+    }
+
+    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.TSKILLSW_WIP")]
+    public partial class TSKILLSW_WIP : INotifyPropertyChanging, INotifyPropertyChanged
+    {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+
+        private int _ID;
+
+        private int _SKILL_ID;
+
+        private int _SW_ID;
+
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        partial void OnSKILL_IDChanging(int value);
+        partial void OnSKILL_IDChanged();
+        partial void OnSW_IDChanging(int value);
+        partial void OnSW_IDChanged();
+        #endregion
+
+        public TSKILLSW_WIP()
+        {
+            OnCreated();
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
+        public int ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                if ((this._ID != value))
+                {
+                    this.OnIDChanging(value);
+                    this.SendPropertyChanging();
+                    this._ID = value;
+                    this.SendPropertyChanged("ID");
+                    this.OnIDChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SKILL_ID", DbType = "Int NOT NULL")]
+        public int SKILL_ID
+        {
+            get
+            {
+                return this._SKILL_ID;
+            }
+            set
+            {
+                if ((this._SKILL_ID != value))
+                {
+                    this.OnSKILL_IDChanging(value);
+                    this.SendPropertyChanging();
+                    this._SKILL_ID = value;
+                    this.SendPropertyChanged("SKILL_ID");
+                    this.OnSKILL_IDChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SW_ID", DbType = "Int NOT NULL")]
+        public int SW_ID
+        {
+            get
+            {
+                return this._SW_ID;
+            }
+            set
+            {
+                if ((this._SW_ID != value))
+                {
+                    this.OnSW_IDChanging(value);
+                    this.SendPropertyChanging();
+                    this._SW_ID = value;
+                    this.SendPropertyChanged("SW_ID");
+                    this.OnSW_IDChanged();
+                }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

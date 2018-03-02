@@ -27,18 +27,16 @@ namespace WiTrainingSuite.ViewModel
 
         public SnackbarMessageQueue SnackBarQueue { get; set; }
 
-        readonly ObservableAsPropertyHelper<bool> isAdmin;
+        private bool _IsAdmin = false;
         public bool IsAdmin
         {
-            get { return isAdmin.Value; }
+            get { return _IsAdmin; }
+            set { this.RaiseAndSetIfChanged(ref _IsAdmin, value); }
         }
 
-        public bool admin;
-
-        public StandardWorkMasterViewModel(IScreen screen)
+        public StandardWorkMasterViewModel(IScreen screen, bool isAdmin)
         {
-            admin = App._admin;
-            this.WhenAnyValue(x => x.admin).ToProperty(this, x => x.IsAdmin, out isAdmin);
+            IsAdmin = isAdmin;
 
             HostScreen = screen;
 
@@ -66,7 +64,7 @@ namespace WiTrainingSuite.ViewModel
                 HostScreen.Router.Navigate.Execute(new StandardWorkDetailNewViewModel(HostScreen));
             }, this.WhenAny(
                 x => x.IsAdmin,
-                (a) => a.Value == true));
+                (a) => a.Value));
 
             EditStandardWorkCommand = ReactiveCommand.Create(() =>
             {
@@ -74,7 +72,7 @@ namespace WiTrainingSuite.ViewModel
             }, this.WhenAny(
                 x => x.StandardWorkIndex,
                 x => x.IsAdmin,
-                (i, a) => i.Value > -1 && a.Value == true));
+                (i, a) => i.Value > -1 && a.Value));
 
             EditTrainingCommand = ReactiveCommand.Create(() =>
             {
@@ -82,7 +80,7 @@ namespace WiTrainingSuite.ViewModel
             }, this.WhenAny(
                 x => x.StandardWorkIndex,
                 x => x.IsAdmin,
-                (i, a) => i.Value > -1 && a.Value == true));
+                (i, a) => i.Value > -1 && a.Value));
             
             ListTrainingCommand = ReactiveCommand.Create(() =>
             {
@@ -206,12 +204,21 @@ namespace WiTrainingSuite.ViewModel
             {
                 var tList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(OriginalList);
 
-                // Pass One - SW Code
-                if (!string.IsNullOrWhiteSpace(fCODE)) { tList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(OriginalList.Where(x => x.SW_CODE.ToUpper().Contains(fCODE.ToUpper()))); }
-                else { tList = OriginalList; }
+                // Define Filter Passes
 
-                // Pass Two - Description
-                if (!string.IsNullOrWhiteSpace(fDESC)) { tList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(tList.Where(x => x.SW_DESCRIPTION.ToUpper().Contains(fCODE.ToUpper()))); }
+                if (!string.IsNullOrWhiteSpace(fCODE) && !string.IsNullOrWhiteSpace(fDESC))
+                {
+                    tList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(tList.Where(x => x.SW_CODE.ToUpper().Contains(fCODE.ToUpper())));
+                    tList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(tList.Where(x => x.SW_DESCRIPTION.ToUpper().Contains(fDESC.ToUpper())));
+                }
+                else if (string.IsNullOrWhiteSpace(fCODE) && !string.IsNullOrWhiteSpace(fDESC))
+                {
+                    tList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(tList.Where(x => x.SW_DESCRIPTION.ToUpper().Contains(fDESC.ToUpper())));
+                }
+                else if (!string.IsNullOrWhiteSpace(fCODE) && string.IsNullOrWhiteSpace(fDESC))
+                {
+                    tList = new ReactiveList<FnTSTANDARDWORK_LISTResult>(tList.Where(x => x.SW_CODE.ToUpper().Contains(fCODE.ToUpper())));
+                }
 
                 StandardWorkList = tList;
 

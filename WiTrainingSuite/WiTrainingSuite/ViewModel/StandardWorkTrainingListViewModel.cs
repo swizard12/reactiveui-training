@@ -1,11 +1,17 @@
 ﻿using MaterialDesignThemes.Wpf;
 using ReactiveUI;
+using Saxon.Api;
+using SelectPdf;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using WiTrainingSuite.Model;
 using WiTrainingSuite.View;
 
@@ -124,7 +130,45 @@ namespace WiTrainingSuite.ViewModel
                 ApplyFilters();
             });
 
-            //////
+            PrintCommand = ReactiveCommand.Create(() =>
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(ReactiveList<FnTEMPTRAINING_SELECTSResult>));
+
+                var inE = App.CreateTmpFile();
+                var outE = Path.ChangeExtension(App.CreateTmpFile(),".html");
+
+                using (FileStream fs = new FileStream(inE, FileMode.Create))
+                {
+                    xml.Serialize(fs, TrainingList);
+                }
+
+                // Embedded xslt
+                using (var xsltE = Assembly.GetExecutingAssembly().GetManifestResourceStream("WiTrainingSuite.Model.StandardWorkTrainingReport.xslt"))
+                using (var rdr = new StreamReader(xsltE))
+                {
+                    // Compile stylesheet
+                    var processor = new Processor();
+                    var compiler = processor.NewXsltCompiler();
+                    var executable = compiler.Compile(rdr);
+
+
+                    // Do transformation to a destination
+                    var destination = new DomDestination();
+                    using (var inputStream = new FileInfo(inE).OpenRead())
+                    {
+                        var transformer = executable.Load();
+                        transformer.SetInputStream(inputStream, new Uri(new FileInfo(inE).DirectoryName));
+                        transformer.Run(destination);
+                    }
+
+                    // Save result to a file (or whatever else you wanna do)
+                    destination.XmlDocument.Save(outE);
+                }
+
+                Process.Start("excel.exe", outE);
+            }, this.WhenAny(
+                x => x.bWorking,
+                (b) => !(b.Value)));
         }
 
         public async void PrepLists()
@@ -196,6 +240,7 @@ namespace WiTrainingSuite.ViewModel
         public ReactiveCommand FClearCommand { get; set; }
 
         public ReactiveCommand BackCommand { get; set; }
+        public ReactiveCommand PrintCommand { get; set; }
 
         public ReactiveList<FnTEMPTRAINING_SELECTSResult> ApplyVariantFilter()
         {
@@ -230,61 +275,61 @@ namespace WiTrainingSuite.ViewModel
         {
             await Task.Run(() =>
             {
-                ReactiveList<FnTEMPTRAINING_SELECTSResult> tList = new ReactiveList<FnTEMPTRAINING_SELECTSResult>();
-                ReactiveList<FnTEMPTRAINING_SELECTSResult> lS = null;
-                ReactiveList<FnTEMPTRAINING_SELECTSResult> lV = null;
-                bool bS = false;
-                bool bV = false;
+            ReactiveList<FnTEMPTRAINING_SELECTSResult> tList = new ReactiveList<FnTEMPTRAINING_SELECTSResult>();
+            ReactiveList<FnTEMPTRAINING_SELECTSResult> lS = null;
+            ReactiveList<FnTEMPTRAINING_SELECTSResult> lV = null;
+            bool bS = false;
+            bool bV = false;
 
-                // Variant Filtering
-                if (VarList.Count(x => x.ISTICKED == true) > 0)
-                {
-                    lV = ApplyVariantFilter();
-                }
-                else
-                    bV = true;
+            // Variant Filtering
+            if (VarList.Count(x => x.ISTICKED == true) > 0)
+            {
+                lV = ApplyVariantFilter();
+            }
+            else
+                bV = true;
 
-                // Shift Filtering
-                if (ShiftList.Count(x => x.ISTICKED == true) > 0)
-                {
-                    lS = ApplyShiftFilter();
-                }
-                else
-                    bS = true;
+            // Shift Filtering
+            if (ShiftList.Count(x => x.ISTICKED == true) > 0)
+            {
+                lS = ApplyShiftFilter();
+            }
+            else
+                bS = true;
 
-                if (bS && bV) // Nothing in either, use original Matrix
-                    tList = OriginalTrainingList;
-                if (bS && !bV) // Nothing in Shift, some in Var : Use Var
-                    tList = lV;
-                if (!bS && bV) // Nothing in Var, some in Shift : Use Shift
-                    tList = lS;
-                if (!bS && !bV) // Something in Both : Union for Distinct Rows
+            if (bS && bV) // Nothing in either, use original Matrix
+                tList = OriginalTrainingList;
+            if (bS && !bV) // Nothing in Shift, some in Var : Use Var
+                tList = lV;
+            if (!bS && bV) // Nothing in Var, some in Shift : Use Shift
+                tList = lS;
+            if (!bS && !bV) // Something in Both : Union for Distinct Rows
+            {
+                using (Wi_training_suite db = new Wi_training_suite(App.ConString))
                 {
-                    using (Wi_training_suite db = new Wi_training_suite(App.ConString))
-                    {
-                        tList = new ReactiveList<FnTEMPTRAINING_SELECTSResult>(from e in lS.Union(lV)
-                                                                               where (from v in lV
-                                                                                      select v.EMP_ID).Contains(e.EMP_ID) &&
-                                                                                      (from s in lS
-                                                                                       select s.EMP_ID).Contains(e.EMP_ID)
-                                                                               select e);
-                    }
+                    tList = new ReactiveList<FnTEMPTRAINING_SELECTSResult>(from e in lS.Union(lV)
+                                                                           where (from v in lV
+                                                                                  select v.EMP_ID).Contains(e.EMP_ID) &&
+                                                                                  (from s in lS
+                                                                                   select s.EMP_ID).Contains(e.EMP_ID)
+                                                                           select e);
                 }
-                // Pass tList to Level Filter and Present to UI
-                if (LevelList.Count(x => x.ISTICKED == true) > 0)
-                {
-                    TrainingList = new ReactiveList<FnTEMPTRAINING_SELECTSResult>(from s in tList
-                                                                                  where (from l in LevelList
-                                                                                         where l.ISTICKED == true
-                                                                                         select l.ID).Contains(s.SW_LEVEL.Value)
-                                                                                  select s);
-                }
-                else
-                {
-                    TrainingList = tList;
-                }
+            }
+            // Pass tList to Level Filter and Present to UI
+            if (LevelList.Count(x => x.ISTICKED == true) > 0)
+            {
+                TrainingList = new ReactiveList<FnTEMPTRAINING_SELECTSResult>(from s in tList
+                                                                              where (from l in LevelList
+                                                                                     where l.ISTICKED == true
+                                                                                     select l.ID).Contains(s.SW_LEVEL.Value)
+                                                                              select s);
+            }
+            else
+            {
+                TrainingList = tList;
+            }
                 // Close Drawer
-                bWorking = false;
+                App.OnUI(() => bWorking = false);
             });
         }
 

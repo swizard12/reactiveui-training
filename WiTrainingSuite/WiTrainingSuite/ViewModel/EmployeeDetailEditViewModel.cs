@@ -30,6 +30,10 @@ namespace WiTrainingSuite.ViewModel
 
             SnackBarQueue = new SnackbarMessageQueue();
 
+            PrepWIP();
+
+            PrepLists();
+
             using (Wi_training_suite db = new Wi_training_suite(App.ConString))
             {
                 SelectedRole = db.TROLE.First(x => x.ROLE_ID == Employee.ROLE_ID);
@@ -53,26 +57,92 @@ namespace WiTrainingSuite.ViewModel
 
             SaveCommand = ReactiveCommand.Create(() =>
             {
+                // Show Confirmation Dialog in Top Right Corner
+                SnackBarQueue.Enqueue(
+                    String.Format("Commit Changes to Database?"),
+                    "CONFIRM",
+                    // Confirmation Method Here
+                    async () =>
+                    {
+                        using (Wi_training_suite db = new Wi_training_suite(App.ConString))
+                        {
+                            await Task.Run(() =>
+                            {
+                                db.FnTEMPLOYEE_UPDATE(Employee.EMP_ID,
+                                              Employee.EMP_FNAME,
+                                              Employee.EMP_LNAME,
+                                              Employee.EMP_INITIAL,
+                                              Employee.DEPT_ID,
+                                              Employee.VAR_ID,
+                                              Employee.SHIFT_ID,
+                                              Employee.EMP_NOTE);
+                                db.FnTEMPSKILL_COMMIT(Employee.EMP_ID);
+                            });
+                            HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>().EmployeeList =
+                                new ReactiveList<FnTEMPLOYEE_LISTResult>(db.FnTEMPLOYEE_LIST().OrderBy("EMP_LNAME", this).AsEnumerable());
+                            HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>().SelectedEmployee =
+                                new FnTEMPLOYEE_LISTResult();
+
+                            HostScreen.Router.NavigateAndReset.Execute(HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>());
+                        }
+                    });
+            });
+
+            ListAddCommand = ReactiveCommand.Create(() =>
+            {
                 using (Wi_training_suite db = new Wi_training_suite(App.ConString))
                 {
-                    db.FnTEMPLOYEE_UPDATE(Employee.EMP_ID, 
-                                          Employee.EMP_FNAME, 
-                                          Employee.EMP_LNAME, 
-                                          Employee.EMP_INITIAL, 
-                                          Employee.DEPT_ID, 
-                                          Employee.VAR_ID, 
-                                          Employee.SHIFT_ID, 
-                                          Employee.EMP_NOTE);
-                    HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>().EmployeeList =
-                        new ReactiveList<FnTEMPLOYEE_LISTResult>(db.FnTEMPLOYEE_LIST().OrderBy("EMP_LNAME", this).AsEnumerable());
-                    HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>().SelectedEmployee =
-                        new FnTEMPLOYEE_LISTResult();
+                    db.FnTEMPSKILL_ADD(Employee.EMP_ID, SelectedPool.SKILL_ID);
+                    PrepLists();
+                }
+            }, this.WhenAny(
+                x => x.PoolIndex,
+                (i) => i.Value != -1));
 
-                    HostScreen.Router.NavigateAndReset.Execute(HostScreen.Router.FindViewModelInStack<EmployeeMasterViewModel>());
+            ListDelCommand = ReactiveCommand.Create(() =>
+            {
+                using (Wi_training_suite db = new Wi_training_suite(App.ConString))
+                {
+                    db.FnTEMPSKILL_DEL(Employee.EMP_ID, SelectedList.SKILL_ID);
+                    PrepLists();
+                }
+            }, this.WhenAny(
+                x => x.ListIndex,
+                (i) => i.Value != -1));
+        }
+
+        public async void PrepWIP()
+        {
+            await Task.Run(() =>
+            {
+                using (Wi_training_suite db = new Wi_training_suite(App.ConString))
+                {
+                    db.FnTEMPSKILL_PREP(Employee.EMP_ID);
                 }
             });
         }
 
+        public async void PrepLists()
+        {
+            await Task.Run(() =>
+            {
+                using (Wi_training_suite db = new Wi_training_suite(App.ConString))
+                {
+                    SkillList = new ReactiveList<TSKILL>(from s in db.TSKILL
+                                                         where (from x in db.TEMPSKILL_WIP
+                                                                where x.EMP_ID == Employee.EMP_ID
+                                                                select x.SKILL_ID).Contains(s.SKILL_ID)
+                                                         select s);
+                    SkillPool = new ReactiveList<TSKILL>(from s in db.TSKILL
+                                                         where !(from x in SkillList
+                                                                 select x.SKILL_ID).Contains(s.SKILL_ID)
+                                                         select s);
+                }
+            });
+        }
+
+        public ReactiveCommand ListAddCommand { get; set; }
+        public ReactiveCommand ListDelCommand { get; set; }
         public ReactiveCommand BackCommand { get; set; }
         public ReactiveCommand SaveCommand { get; set; }
 
@@ -139,5 +209,48 @@ namespace WiTrainingSuite.ViewModel
             get { return _Employee; }
             set { this.RaiseAndSetIfChanged(ref _Employee, value); }
         }
+
+        private ReactiveList<TSKILL> _SkillList;
+        public ReactiveList<TSKILL> SkillList
+        {
+            get { return _SkillList; }
+            set { this.RaiseAndSetIfChanged(ref _SkillList, value); }
+        }
+
+        private TSKILL _SelectedList;
+        public TSKILL SelectedList
+        {
+            get { return _SelectedList; }
+            set { this.RaiseAndSetIfChanged(ref _SelectedList, value); }
+        }
+
+        private int _ListIndex = -1;
+        public int ListIndex
+        {
+            get { return _ListIndex; }
+            set { this.RaiseAndSetIfChanged(ref _ListIndex, value); }
+        }
+
+        private ReactiveList<TSKILL> _SkillPool;
+        public ReactiveList<TSKILL> SkillPool
+        {
+            get { return _SkillPool; }
+            set { this.RaiseAndSetIfChanged(ref _SkillPool, value); }
+        }
+
+        private TSKILL _SelectedPool;
+        public TSKILL SelectedPool
+        {
+            get { return _SelectedPool; }
+            set { this.RaiseAndSetIfChanged(ref _SelectedPool, value); }
+        }
+
+        private int _PoolIndex = -1;
+        public int PoolIndex
+        {
+            get { return _PoolIndex; }
+            set { this.RaiseAndSetIfChanged(ref _PoolIndex, value); }
+        }
+
     }
 }

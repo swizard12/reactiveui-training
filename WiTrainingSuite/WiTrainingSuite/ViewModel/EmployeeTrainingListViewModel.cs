@@ -13,12 +13,15 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using WiTrainingSuite.Model;
 
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.html;
 using System.IO;
 using System.Net;
-
+using System.Xml.Serialization;
+using System.Xml;
+using System.Reflection;
+using SelectPdf;
+using Saxon;
+using Saxon.Api;
+using System.Diagnostics;
 
 namespace WiTrainingSuite.ViewModel
 {
@@ -34,7 +37,7 @@ namespace WiTrainingSuite.ViewModel
 
         public SnackbarMessageQueue SnackBarQueue { get; set; }
 
-        public EmployeeTrainingListViewModel(IScreen screen, FnTEMPLOYEE_LISTResult employee)
+        public EmployeeTrainingListViewModel(IScreen screen, FnTEMPLOYEE_LISTResult employee, bool fromInput = false)
         {
             HostScreen = screen;
 
@@ -42,7 +45,7 @@ namespace WiTrainingSuite.ViewModel
 
             SnackBarQueue = new SnackbarMessageQueue();
 
-            PrepLists();
+            PrepLists(fromInput);
 
             ////// Reactive Command Definitions
 
@@ -180,48 +183,46 @@ namespace WiTrainingSuite.ViewModel
 
             PrintCommand = ReactiveCommand.Create(() =>
             {
-                using (FileStream fs = new FileStream(@"C:\Junk\Test.pdf", FileMode.Create, FileAccess.Write, FileShare.None))
-                using (Document doc = new Document(PageSize.A4, 10, 10, 10, 10))
-                using (PdfWriter wrt = PdfWriter.GetInstance(doc, fs))
+                XmlSerializer xml = new XmlSerializer(typeof(ReactiveList<FnTEMPTRAINING_SELECTEResult>));
+
+                var inE = App.CreateTmpFile();
+                var outE = Path.ChangeExtension(App.CreateTmpFile(), ".html");
+
+                using (FileStream fs = new FileStream(inE, FileMode.Create))
                 {
-                    // Heading
-                    Paragraph h = new Paragraph() { Alignment = 1, SpacingAfter = 10 };
-
-                    Phrase pH = new Phrase("Training Report");
-                    h.Add(pH);
-
-                    // Sub Heading
-                    Paragraph sh = new Paragraph() { Alignment = 0, SpacingAfter = 10 };
-
-                    Phrase pSH = new Phrase(String.Format("{0} {1} - {2}", Employee.EMP_FNAME, Employee.EMP_LNAME, Employee.VAR_NAME));
-                    sh.Add(pSH);
-
-                    // Full Training Requirement
-                    Paragraph f = new Paragraph() { Alignment = 0, SpacingAfter = 10, IndentationLeft = 25 };
-                    f.Add(new Phrase("A"));
-                    f.Add(Chunk.NEWLINE);
-                    f.Add(new Phrase("B"));
-                    f.Add(Chunk.NEWLINE);
-                    f.Add(new Phrase("C"));
-                    f.Add(Chunk.NEWLINE);
-                    f.Add(new Phrase("D"));
-                    f.Add(Chunk.NEWLINE);
-                    f.Add(new Phrase("E"));
-                    f.Add(Chunk.NEWLINE);
-
-                    doc.Open();
-
-                    doc.Add(h);
-                    doc.Add(sh);
-                    doc.Add(f);
-
-                    doc.Close();
-                    //////
+                    xml.Serialize(fs, TrainingList);
                 }
-            });
+
+                // Embedded xslt
+                using (var xsltE = Assembly.GetExecutingAssembly().GetManifestResourceStream("WiTrainingSuite.Model.EmployeeVariantTrainingReport.xslt"))
+                using (var rdr = new StreamReader(xsltE))
+                {
+                    // Compile stylesheet
+                    var processor = new Processor();
+                    var compiler = processor.NewXsltCompiler();
+                    var executable = compiler.Compile(rdr);
+
+
+                    // Do transformation to a destination
+                    var destination = new DomDestination();
+                    using (var inputStream = new FileInfo(inE).OpenRead())
+                    {
+                        var transformer = executable.Load();
+                        transformer.SetInputStream(inputStream, new Uri(new FileInfo(inE).DirectoryName));
+                        transformer.Run(destination);
+                    }
+
+                    // Save result to a file (or whatever else you wanna do)
+                    destination.XmlDocument.Save(outE);
+                }
+
+                Process.Start("excel.exe", outE);
+            }, this.WhenAny(
+                x => x.bWorking,
+                (b) => !b.Value));
         }
 
-        public async void PrepLists()
+        public async void PrepLists(bool fI)
         {
             await Task.Run(() =>
             {
@@ -257,7 +258,7 @@ namespace WiTrainingSuite.ViewModel
                     {
                         if (v.VAR_ID == Employee.VAR_ID)
                         {
-                            App.OnUI(() => { VarList.Add(new CBListModel() { ID = v.VAR_ID, LABEL = v.VAR_NAME, ISTICKED = true }); });
+                            App.OnUI(() => { VarList.Add(new CBListModel() { ID = v.VAR_ID, LABEL = v.VAR_NAME, ISTICKED = fI ? false : true }); });
                         }
                         else
                         {
@@ -273,7 +274,7 @@ namespace WiTrainingSuite.ViewModel
                     {
                         if (TrainingSkills.Select(x => x.SKILL_ID).Contains(s.SKILL_ID))
                         {
-                            App.OnUI(() => { SkillList.Add(new CBListModel() { ID = s.SKILL_ID, LABEL = s.SKILL_NAME, ISTICKED = true }); });
+                            App.OnUI(() => { SkillList.Add(new CBListModel() { ID = s.SKILL_ID, LABEL = s.SKILL_NAME, ISTICKED = fI ? false : true }); });
                         }
                         else
                         {
@@ -369,7 +370,7 @@ namespace WiTrainingSuite.ViewModel
                     TrainingList = tList;
                 }
                 // Close Drawer
-                bWorking = false;
+                App.OnUI(() => bWorking = false);
             });
         }
 

@@ -40,6 +40,7 @@
                     <Label Margin="2 4 2 4"></Label>
                     <Button Margin="2 4 4 4" Command="{Binding SaveCommand}">Save</Button>
                 </UniformGrid>
+                <md:Snackbar MessageQueue="{Binding SnackBarQueue}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.RowSpan="2"/>
             </Grid>
         </md:Card.Content>
     </md:Card>

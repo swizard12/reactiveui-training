@@ -108,7 +108,7 @@ namespace WiTrainingSuite.ViewModel
 
                             await DialogManager.ShowMessageAsync(App.TopWindow, "Action Confirmed", "Records saved, please review the training list");
 
-                            HostScreen.Router.NavigateAndReset.Execute(new EmployeeTrainingListViewModel(HostScreen, Employee));
+                            HostScreen.Router.NavigateAndReset.Execute(new EmployeeTrainingListViewModel(HostScreen, Employee, true));
                         }
                     });
             },
