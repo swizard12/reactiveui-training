@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="WiTrainingSuite.View.DocumentDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WiTrainingSuite.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:m="http://metro.mahapps.com/winfx/xaml/controls"
+             >
+    <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <md:Card.Content>
+            <!-- Main Grid -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="76" />
+                </Grid.RowDefinitions>
+                <!-- Document Container -->
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <!-- Document Detail -->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Code</Label>
+                        <Label Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Title</Label>
+                        <Label Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Tag</Label>
+                        <TextBox Grid.Row="0" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=SelectedDocument.DOC_CODE}"/>
+                        <TextBox Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=SelectedDocument.DOC_TITLE}"/>
+                        <Grid Grid.Row="2" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="22.5"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" md:HintAssist.Hint="Please select a Document Tag" SelectedValuePath="DOCTAG_ID" DisplayMemberPath="DOCTAG_NAME" SelectedValue="{Binding Path=SelectedDocument.DOCTAG_ID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding DocTagList}"/>
+                            <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding DocTagClear}" Margin="2.5 0 0 0">
+                                <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                        </Grid>
+                        <Label Grid.Row="0" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Issue #</Label>
+                        <Label Grid.Row="1" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Issue Date</Label>
+                        <Label Grid.Row="2" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Risk Assessment</Label>
+                        <TextBox Grid.Row="0" Grid.Column="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=SelectedDocument.DOC_ISSUE}"/>
+                        <DatePicker Grid.Row="1" Grid.Column="5" VerticalContentAlignment="Center" TextBlock.TextAlignment="Center" SelectedDate="{Binding Path=SelectedDocument.DOC_ISSUEDATE}" SelectedDateFormat="Long"/>
+                        <TextBox Grid.Row="2" Grid.Column="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=SelectedDocument.DOC_RA}"/>
+                    </Grid>
+                    <!-- Document Tags -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <!-- Task and Risk Descriptions -->
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- Task -->
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Task Description</Label>
+                                <TextBox Grid.Row="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Text="{Binding Path=SelectedDocument.DOC_TASK_DESCRIPTION}"/>
+                            </Grid>
+                            <!-- Risk -->
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Risk Description</Label>
+                                <TextBox Grid.Row="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Text="{Binding Path=SelectedDocument.DOC_RISK_DESCRIPTION}"/>
+                            </Grid>
+                        </Grid>
+                        <!-- Skill Tags -->
+                        <Grid Grid.Column="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Skill Tags</Label>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0">
+                                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Padding="10 0 0 0" FontWeight="Bold" VerticalAlignment="Top" DockPanel.Dock="Top">Skill Pool</Label>
+                                    <ListView HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding SkillPool}" SelectedIndex="{Binding PoolIndex}" SelectedItem="{Binding PoolSelected}" DisplayMemberPath="SKILL_NAME" SelectedValuePath="SKILL_ID"/>
+                                </DockPanel>
+                                <StackPanel Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Button Height="50" Margin="10 0 10 5" Command="{Binding TagListAdd}">&gt;</Button>
+                                    <Button Height="50" Margin="10 5 10 0" Command="{Binding TagListDelete}">&lt;</Button>
+                                </StackPanel>
+                                <DockPanel Grid.Column="2">
+                                    <Label Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Padding="10 0 0 0" FontWeight="Bold" VerticalAlignment="Top" DockPanel.Dock="Top">Assigned Skills</Label>
+                                    <ListView HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ItemsSource="{Binding SkillTags}" SelectedIndex="{Binding TagIndex}" SelectedItem="{Binding TagSelected}" DisplayMemberPath="SKILL_NAME" SelectedValuePath="SKILL_ID"/>
+                                </DockPanel>
+                            </Grid>
+                        </Grid>
+                        <!-- Document History -->
+                        <Grid Grid.Column="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Document History</Label>
+                            <!-- Document History View to go in here -->
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="{Binding IsWorking, Converter={StaticResource BoolVis}, UpdateSourceTrigger=PropertyChanged}"/>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="450" />
+                    </Grid.ColumnDefinitions>
+                    <UniformGrid Rows="1" Columns="3" Grid.Column="1">
+                        <Button Margin="4 4 2 4" Height="Auto" Command="{Binding DocumentSaveNoTraining}">
+                            <Button.Content>
+                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Save</TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Margin="2 4 2 4" Height="Auto" Command="{Binding DocumentSave}">
+                            <Button.Content>
+                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Save and Reset Training</TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Margin="2 4 4 4" Height="Auto" Command="{Binding DocumentCancel}">Cancel</Button>
+                    </UniformGrid>
+                </Grid>
+                <md:Snackbar MessageQueue="{Binding SnackBarQueue}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.RowSpan="2"/>
+            </Grid>
+        </md:Card.Content>
+    </md:Card>
+</UserControl>
+
+    

@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\wi-svr-01\wi\departments\UnsafePlace\swizard\Apps\WiTrainingSuite\</InstallUrl>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -65,6 +65,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.1.1.35049, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
       <Private>True</Private>
@@ -162,74 +166,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Model.cs" />
-    <Compile Include="Model\wi_training_suite.cs" />
+    <Compile Include="Model\DbInterface.cs" />
+    <Compile Include="Model\wi_training_db.cs" />
     <Compile Include="ViewModel\AppBootstrapper.cs" />
-    <Compile Include="ViewModel\ConfigMenuMasterViewModel.cs" />
-    <Compile Include="ViewModel\ConfigMenuRoleMgmtViewModel.cs" />
-    <Compile Include="ViewModel\ConfigMenuShiftMgmtViewModel.cs" />
-    <Compile Include="ViewModel\ConfigMenuSkillMgmtViewModel.cs" />
-    <Compile Include="ViewModel\ConfigMenuTrainingPaperWorkViewModel.cs" />
-    <Compile Include="ViewModel\ConfigMenuVarMgmtViewModel.cs" />
-    <Compile Include="ViewModel\EmployeeDetailEditViewModel.cs" />
-    <Compile Include="ViewModel\EmployeeDetailNewViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuItems\ConfigBaseViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuItems\ConfigDeptViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuItems\ConfigDocumentTagViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuItems\ConfigRoleViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuItems\ConfigShiftViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuItems\ConfigSkillViewModel.cs" />
+    <Compile Include="ViewModel\ConfigMenuItems\ConfigVariantViewModel.cs" />
+    <Compile Include="ViewModel\DocumentDetailViewModel.cs" />
+    <Compile Include="ViewModel\DocumentMasterViewModel.cs" />
+    <Compile Include="ViewModel\DocumentTrainingViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeDetailViewModel.cs" />
     <Compile Include="ViewModel\EmployeeMasterViewModel.cs" />
-    <Compile Include="ViewModel\EmployeeTrainingEditViewModel.cs" />
-    <Compile Include="ViewModel\EmployeeTrainingListViewModel.cs" />
-    <Compile Include="ViewModel\ExtendedViewModelBase.cs" />
-    <Compile Include="ViewModel\StandardWorkDetailEditViewModel.cs" />
-    <Compile Include="ViewModel\StandardWorkDetailNewViewModel.cs" />
-    <Compile Include="ViewModel\StandardWorkMasterViewModel.cs" />
-    <Compile Include="ViewModel\StandardWorkTrainingEditViewModel.cs" />
-    <Compile Include="ViewModel\StandardWorkTrainingListViewModel.cs" />
-    <Compile Include="View\ConfigMenuMasterView.xaml.cs">
-      <DependentUpon>ConfigMenuMasterView.xaml</DependentUpon>
+    <Compile Include="ViewModel\EmployeeTrainingViewModel.cs" />
+    <Compile Include="View\ConfigMasterView.xaml.cs">
+      <DependentUpon>ConfigMasterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ConfigMenuRoleMgmtView.xaml.cs">
-      <DependentUpon>ConfigMenuRoleMgmtView.xaml</DependentUpon>
+    <Compile Include="ViewModel\ConfigMasterViewModel.cs" />
+    <Compile Include="View\DocumentDetailView.xaml.cs">
+      <DependentUpon>DocumentDetailView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ConfigMenuShiftMgmtView.xaml.cs">
-      <DependentUpon>ConfigMenuShiftMgmtView.xaml</DependentUpon>
+    <Compile Include="View\DocumentMasterView.xaml.cs">
+      <DependentUpon>DocumentMasterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ConfigMenuSkillMgmtView.xaml.cs">
-      <DependentUpon>ConfigMenuSkillMgmtView.xaml</DependentUpon>
+    <Compile Include="View\DocumentTrainingView.xaml.cs">
+      <DependentUpon>DocumentTrainingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ConfigMenuTrainingPaperWorkView.xaml.cs">
-      <DependentUpon>ConfigMenuTrainingPaperWorkView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ConfigMenuVarMgmtView.xaml.cs">
-      <DependentUpon>ConfigMenuVarMgmtView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Converters.cs" />
-    <Compile Include="View\EmployeeDetailEditView.xaml.cs">
-      <DependentUpon>EmployeeDetailEditView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\EmployeeDetailNewView.xaml.cs">
-      <DependentUpon>EmployeeDetailNewView.xaml</DependentUpon>
+    <Compile Include="View\EmployeeDetailView.xaml.cs">
+      <DependentUpon>EmployeeDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeMasterView.xaml.cs">
       <DependentUpon>EmployeeMasterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EmployeeTrainingEditView.xaml.cs">
-      <DependentUpon>EmployeeTrainingEditView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\EmployeeTrainingListView.xaml.cs">
-      <DependentUpon>EmployeeTrainingListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\StandardWorkDetailEditView.xaml.cs">
-      <DependentUpon>StandardWorkDetailEditView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\StandardWorkDetailNewView.xaml.cs">
-      <DependentUpon>StandardWorkDetailNewView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\StandardWorkMasterView.xaml.cs">
-      <DependentUpon>StandardWorkMasterView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\StandardWorkTrainingEditView.xaml.cs">
-      <DependentUpon>StandardWorkTrainingEditView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\StandardWorkTrainingListView.xaml.cs">
-      <DependentUpon>StandardWorkTrainingListView.xaml</DependentUpon>
+    <Compile Include="View\Converters.cs" />
+    <Compile Include="View\EmployeeTrainingView.xaml.cs">
+      <DependentUpon>EmployeeTrainingView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -251,35 +225,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\ConfigMenuMasterView.xaml">
+    <Page Include="View\ConfigMasterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ConfigMenuRoleMgmtView.xaml">
+    <Page Include="View\DocumentDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ConfigMenuShiftMgmtView.xaml">
+    <Page Include="View\DocumentMasterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ConfigMenuSkillMgmtView.xaml">
+    <Page Include="View\DocumentTrainingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ConfigMenuTrainingPaperWorkView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ConfigMenuVarMgmtView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\EmployeeDetailEditView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\EmployeeDetailNewView.xaml">
+    <Page Include="View\EmployeeDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,31 +249,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EmployeeTrainingEditView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\EmployeeTrainingListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\StandardWorkDetailEditView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\StandardWorkDetailNewView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\StandardWorkMasterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\StandardWorkTrainingEditView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\StandardWorkTrainingListView.xaml">
+    <Page Include="View\EmployeeTrainingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,11 +293,6 @@
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Model\EmployeeVariantTrainingReport.xslt">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -371,9 +304,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Model\StandardWorkTrainingReport.xslt" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

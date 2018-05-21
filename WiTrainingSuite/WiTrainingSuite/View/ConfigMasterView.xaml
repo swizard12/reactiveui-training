@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="WiTrainingSuite.View.ConfigMasterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WiTrainingSuite.View"
+             xmlns:rx="http://reactiveui.net"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:m="http://metro.mahapps.com/winfx/xaml/controls"             
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:ConfigMenuTemplateSelector x:Key="configMenuTemplateSelector"/>
+    </UserControl.Resources>
+    <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <md:Card.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="76"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="20" />
+                    </Grid.ColumnDefinitions>
+                    <ItemsControl ItemsSource="{Binding ConfigMenu}" Grid.Column="1">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Path=ITEM_NAME}" Command="{Binding Path=ITEM_ACTION}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5 2.5 5 2.5"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ContentControl Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding SelectedConfigMenuItem, UpdateSourceTrigger=PropertyChanged}" ContentTemplateSelector="{StaticResource configMenuTemplateSelector}">
+
+                    </ContentControl>
+                </Grid>
+            </Grid>
+        </md:Card.Content>
+    </md:Card>
+</UserControl>

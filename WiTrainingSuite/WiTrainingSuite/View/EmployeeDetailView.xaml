@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="WiTrainingSuite.View.EmployeeDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WiTrainingSuite.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:m="http://metro.mahapps.com/winfx/xaml/controls">
+    <md:Card Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <md:Card.Content>
+            <!-- Main Grid -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="76" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="245"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Margin="5 0 5 0">
+                        <Grid DockPanel.Dock="Top" VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="20"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">First Name</Label>
+                                <Label Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Last Name</Label>
+                                <Label Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Initial</Label>
+                                <Label Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Shift</Label>
+                                <Label Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Department</Label>
+                                <Label Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Role</Label>
+                                <Label Grid.Row="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Training Role</Label>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                </Grid.RowDefinitions>
+                                <TextBox Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=SelectedEmployee.EMP_FNAME}"/>
+                                <TextBox Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=SelectedEmployee.EMP_LNAME}"/>
+                                <TextBox Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="{Binding Path=SelectedEmployee.EMP_INITIAL}"/>
+                                <Grid Grid.Row="3" Margin="2.5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="22.5"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding ShiftList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="SHIFT_ID" SelectedValue="{Binding Path=SelectedEmployee.SHIFT_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="SHIFT_NAME"/>
+                                    <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding ShiftClear}" Margin="2.5 0 0 0">
+                                        <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Button>
+                                </Grid>
+                                <Grid Grid.Row="4" Margin="2.5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="22.5"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding DepartmentList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="DEPT_ID" SelectedValue="{Binding Path=SelectedEmployee.DEPT_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="DEPT_NAME"/>
+                                    <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding DepartmentClear}" Margin="2.5 0 0 0">
+                                        <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Button>
+                                </Grid>
+                                <Grid Grid.Row="5" Margin="2.5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="22.5"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding VariantList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="VAR_ID" SelectedValue="{Binding Path=SelectedEmployee.VAR_ID, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="VAR_NAME"/>
+                                    <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding VariantClear}" Margin="2.5 0 0 0">
+                                        <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Button>
+                                </Grid>
+                                <Grid Grid.Row="6" Margin="2.5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="22.5"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ItemsSource="{Binding VariantList, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="VAR_ID" SelectedValue="{Binding Path=SelectedEmployee.VAR_ID_TRAINING, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="VAR_NAME"/>
+                                    <Button Grid.Column="1" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="20" Width="20" Command="{Binding VariantTrainingClear}" Margin="2.5 0 0 0">
+                                        <Rectangle Width="10" Height="10" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Visual="{StaticResource appbar_close}"/>
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DockPanel>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" VerticalAlignment="Top">Notes</Label>
+                            <TextBox Grid.Row="1" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=SelectedEmployee.EMP_NOTES}" VerticalContentAlignment="Top" TextAlignment="Left"/>
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">Employee History</Label>
+                            <!-- Employee History View to go in here -->
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="{Binding IsWorking, Converter={StaticResource BoolVis}, UpdateSourceTrigger=PropertyChanged}"/>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+                    <UniformGrid Rows="1" Columns="2" Grid.Column="1">
+                        <Button Margin="4 4 2 4" Height="Auto" Command="{Binding EmployeeSave}">Save</Button>
+                        <Button Margin="2 4 4 4" Height="Auto" Command="{Binding EmployeeCancel}">Cancel</Button>
+                    </UniformGrid>
+                </Grid>
+                <md:Snackbar MessageQueue="{Binding SnackBarQueue}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.RowSpan="2"/>
+            </Grid>
+        </md:Card.Content>
+    </md:Card>
+</UserControl>

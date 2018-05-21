@@ -12,7 +12,7 @@
         Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
     <m:MetroWindow.RightWindowCommands>
         <m:WindowCommands>
-            <Button Command="{Binding LoadStandardWorkList}">
+            <Button Command="{Binding DocumentMaster}">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20" Height="20"
                                Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
@@ -22,10 +22,23 @@
                     </Rectangle>
                     <TextBlock Margin="4 0 0 0"
                                VerticalAlignment="Center"
-                               Text="Standard Work"/>
+                               Text="Documents"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding LoadEmployeeList}">
+            <Button Command="{Binding CourseMaster}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20"
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{StaticResource appbar_book_open_hardcover}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                               VerticalAlignment="Center"
+                               Text="Courses"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding EmployeeMaster}">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20" Height="20"
                                Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
@@ -35,10 +48,10 @@
                     </Rectangle>
                     <TextBlock Margin="4 0 0 0"
                                VerticalAlignment="Center"
-                               Text="Employee"/>
+                               Text="Employees"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding LoadConfigMenu}">
+            <Button Command="{Binding ConfigMaster}">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20" Height="20"
                                Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">

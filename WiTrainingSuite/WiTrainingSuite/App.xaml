@@ -1,7 +1,192 @@
-<Application x:Class="WiTrainingSuite.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:WiTrainingSuite" Startup="Application_Startup" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+<Application x:Class="WiTrainingSuite.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:WiTrainingSuite" Startup="Application_Startup" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"         xmlns:rx="http://reactiveui.net"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes">
   <Application.Resources>
     <ResourceDictionary>
-      <BooleanToVisibilityConverter x:Key="BoolVis" />
+            <BooleanToVisibilityConverter x:Key="BoolVis" />
+            <DataTemplate x:Key="configDeptTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" ItemsSource="{Binding ConfigList}"
+                              SelectedIndex="{Binding SelectedConfigIndex, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedConfig, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Department Name" SortMemberPath="DEPT_NAME">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding Path=DEPT_NAME}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Column="1">
+                        <Label Height="20"/>
+                        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" md:HintAssist.Hint="Department Name" Text="{Binding Path=SelectedConfig.DEPT_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2.5"/>
+                        <Label Height="20"/>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding SaveConfig}" Margin="2.5">Save</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding DeleteConfig}" Margin="2.5">Delete</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding ClearConfig}" Margin="2.5">Clear</Button>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="configDocumentTagTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" ItemsSource="{Binding ConfigList}"
+                              SelectedIndex="{Binding SelectedConfigIndex, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedConfig, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Tag Name" SortMemberPath="DOCTAG_NAME">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding Path=DOCTAG_NAME}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Column="1">
+                        <Label Height="20"/>
+                        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" md:HintAssist.Hint="Tag Name" Text="{Binding Path=SelectedConfig.DOCTAG_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2.5"/>
+                        <Label Height="20"/>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding SaveConfig}" Margin="2.5">Save</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding DeleteConfig}" Margin="2.5">Delete</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding ClearConfig}" Margin="2.5">Clear</Button>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="configRoleTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" ItemsSource="{Binding ConfigList}"
+                              SelectedIndex="{Binding SelectedConfigIndex, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedConfig, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Role Name" SortMemberPath="ROLE_NAME">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding Path=ROLE_NAME}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Column="1">
+                        <Label Height="20"/>
+                        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" md:HintAssist.Hint="Role Name" Text="{Binding Path=SelectedConfig.ROLE_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2.5"/>
+                        <Label Height="20"/>
+                        <CheckBox IsChecked="{Binding Path=SelectedConfig.ROLE_HAS_EMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2.5" Content="Email is required for this role"/>
+                        <Label Height="20"/>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding SaveConfig}" Margin="2.5">Save</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding DeleteConfig}" Margin="2.5">Delete</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding ClearConfig}" Margin="2.5">Clear</Button>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="configShiftTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" ItemsSource="{Binding ConfigList}"
+                              SelectedIndex="{Binding SelectedConfigIndex, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedConfig, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Shift Name" SortMemberPath="SHIFT_NAME">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding Path=SHIFT_NAME}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Column="1">
+                        <Label Height="20"/>
+                        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" md:HintAssist.Hint="Shift Name" Text="{Binding Path=SelectedConfig.SHIFT_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2.5"/>
+                        <Label Height="20"/>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding SaveConfig}" Margin="2.5">Save</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding DeleteConfig}" Margin="2.5">Delete</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding ClearConfig}" Margin="2.5">Clear</Button>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="configSkillTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" ItemsSource="{Binding ConfigList}"
+                              SelectedIndex="{Binding SelectedConfigIndex, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedConfig, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Skill Name" SortMemberPath="SKILL_NAME">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding Path=SKILL_NAME}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Column="1">
+                        <Label Height="20"/>
+                        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" md:HintAssist.Hint="Skill Name" Text="{Binding Path=SelectedConfig.SKILL_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2.5"/>
+                        <Label Height="20"/>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding SaveConfig}" Margin="2.5">Save</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding DeleteConfig}" Margin="2.5">Delete</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding ClearConfig}" Margin="2.5">Clear</Button>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="configVariantTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" ItemsSource="{Binding ConfigList}"
+                              SelectedIndex="{Binding SelectedConfigIndex, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedConfig, UpdateSourceTrigger=PropertyChanged}"
+                              SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Variant Name" SortMemberPath="VAR_NAME">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding Path=VAR_NAME}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Column="1">
+                        <Label Height="20"/>
+                        <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" md:HintAssist.Hint="Variant Name" Text="{Binding Path=SelectedConfig.VAR_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2.5"/>
+                        <Label Height="20"/>
+                        <ComboBox md:HintAssist.Hint="Please select a parent Role for this Variant" ItemsSource="{Binding Path=RoleList}" DisplayMemberPath="ROLE_NAME" SelectedValuePath="ROLE_ID" SelectedValue="{Binding Path=SelectedConfig.ROLE_ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label Height="20"/>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding SaveConfig}" Margin="2.5">Save</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding DeleteConfig}" Margin="2.5">Delete</Button>
+                        <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="{Binding ClearConfig}" Margin="2.5">Clear</Button>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <!-- MahApps -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />

@@ -3,16 +3,15 @@ using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using WiTrainingSuite.Model;
 
 namespace WiTrainingSuite.ViewModel
 {
-    public class EmployeeMasterViewModel : ExtendedViewModelBase, IRoutableViewModel
+    public class EmployeeMasterViewModel : ReactiveObject, IRoutableViewModel
     {
         #region IRoutableViewModel
         public string UrlPathSegment
@@ -24,230 +23,130 @@ namespace WiTrainingSuite.ViewModel
 
         public SnackbarMessageQueue SnackBarQueue { get; set; }
 
-
-        private bool _IsAdmin = false;
-        public bool IsAdmin
+        public EmployeeMasterViewModel(IScreen screen)
         {
-            get { return _IsAdmin; }
-            set { this.RaiseAndSetIfChanged(ref _IsAdmin, value); }
-        }
-
-        public EmployeeMasterViewModel(IScreen screen, bool isAdmin)
-        {
-            IsAdmin = isAdmin;
-
             HostScreen = screen;
 
             SnackBarQueue = new SnackbarMessageQueue();
 
-            using (Wi_training_suite db = new Wi_training_suite(App.ConString))
+            EmployeeAdd = ReactiveCommand.Create(() =>
             {
-                EmployeeList = new ReactiveList<FnTEMPLOYEE_LISTResult>(db.FnTEMPLOYEE_LIST().OrderBy("EMP_LNAME"));
+                HostScreen.Router.Navigate.Execute(new EmployeeDetailViewModel(HostScreen));
+            });
+            EmployeeEdit = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new EmployeeDetailViewModel(HostScreen, SelectedEmployee));
+            },
+                this.WhenAny(x => x.SelectedEmployeeIndex,
+                             x => x.IsWorking,
+                (i,w) => i.Value != -1 && w.Value == false));
+            EmployeeDelete = ReactiveCommand.Create(() =>
+            {
+                SnackBarQueue.Enqueue(String.Format("Are you sure you want to delete {0} {1}", SelectedEmployee.EMP_FNAME, SelectedEmployee.EMP_LNAME), "YES", async () =>
+                {
+                    IsWorking = true;
+                    await DbInterface.fnEmployeeDelete(SelectedEmployee);
+                    EmployeeList = new ReactiveList<EmployeeResult>(await DbInterface.fnEmployeeList());
+                    OriginalList = EmployeeList;
+                    IsWorking = false;
+                });
+            }, this.WhenAny(x => x.SelectedEmployeeIndex, x => x.IsWorking, (i, w) => i.Value != -1 && w.Value == false));
+            EmployeeTraining = ReactiveCommand.Create(() =>
+            {
+                HostScreen.Router.Navigate.Execute(new EmployeeTrainingViewModel(screen, SelectedEmployee));
+            },
+                this.WhenAny(x => x.SelectedEmployeeIndex,
+                             x => x.IsWorking,
+                (i, w) => i.Value != -1 && w.Value == false));
+            FilterCommand = ReactiveCommand.Create(() =>
+            {
+                IsWorking = true;
+                if (!String.IsNullOrWhiteSpace(FilterText))
+                {
+                    var fList = new ReactiveList<EmployeeResult>(
+                        OriginalList.Where(
+                            x => x.EMP_FNAME.ToUpper().Contains(FilterText.ToUpper()) ||
+                                 x.EMP_LNAME.ToUpper().Contains(FilterText.ToUpper()) ||
+                                 x.EMP_INITIAL.ToUpper().Contains(FilterText.ToUpper()) ||
+                                 x.DEPT_NAME.ToUpper().Contains(FilterText.ToUpper()) ||
+                                 x.SHIFT_NAME.ToUpper().Contains(FilterText.ToUpper()) ||
+                                 x.VAR_NAME.ToUpper().Contains(FilterText.ToUpper())));
+                    EmployeeList = fList;
+                }
+                else
+                {
+                    EmployeeList = OriginalList;
+                }
+                IsWorking = false;
+            });
+            ClearFilterCommand = ReactiveCommand.Create(() =>
+            {
+                FilterText = string.Empty;
+            }, this.WhenAny(x => x.FilterText,
+                (f) => !string.IsNullOrWhiteSpace(f.Value)));
+
+            Task.Run(async () =>
+            {
+                EmployeeList = new ReactiveList<EmployeeResult>(new ReactiveList<EmployeeResult>(await DbInterface.fnEmployeeList()).OrderBy(x => x.EMP_LNAME));
                 OriginalList = EmployeeList;
-            }
-            SnackBarQueue.Enqueue("Load Successful");
-
-            CloseDrawerCommand = ReactiveCommand.Create(() =>
+            }).ContinueWith((Unit) =>
             {
-                IsBtmOpen = false;
-
-                ApplySort();
+                IsWorking = false;
             });
 
-            NewEmployeeCommand = ReactiveCommand.Create(() =>
-            {
-                HostScreen.Router.Navigate.Execute(new EmployeeDetailNewViewModel(HostScreen));
-            }, this.WhenAny(
-                x => x.IsAdmin,
-                (a) => a.Value));
-
-            EditEmployeeCommand = ReactiveCommand.Create(() =>
-            {
-                HostScreen.Router.Navigate.Execute(new EmployeeDetailEditViewModel(HostScreen, SelectedEmployee));
-            }, this.WhenAny(
-                x => x.EmployeeIndex,
-                x => x.IsAdmin,
-                (i, a) => i.Value > -1 && a.Value));
-
-            EditTrainingCommand = ReactiveCommand.Create(() =>
-            {
-                HostScreen.Router.Navigate.Execute(new EmployeeTrainingEditViewModel(HostScreen, SelectedEmployee));
-            }, this.WhenAny(
-                x => x.EmployeeIndex,
-                x => x.IsAdmin,
-                (i, a) => i.Value > -1 && a.Value));
-
-            ListTrainingCommand = ReactiveCommand.Create(() =>
-            {
-                HostScreen.Router.Navigate.Execute(new EmployeeTrainingListViewModel(HostScreen, SelectedEmployee));
-            }, this.WhenAny(
-                x => x.EmployeeIndex,
-                (i) => i.Value != -1));
-            
-
-            // Key = SQL Column Header; Value = Friendly Name
-            ColumnHeaders.Add("EMP_FNAME", "First Name");
-            ColumnHeaders.Add("EMP_LNAME", "Last Name");
-            ColumnHeaders.Add("DEPT_NAME", "Department");
-            ColumnHeaders.Add("ROLE_NAME", "Role");
-            ColumnHeaders.Add("VAR_NAME", "Variant");
-            ColumnHeaders.Add("SHIFT_NAME", "Shift");
-
-            ClearNameFilter = ReactiveCommand.Create(() =>
-            {
-                fNAME = string.Empty;
-            }, this.WhenAny(
-                x => x.fNAME,
-                (y) => !string.IsNullOrWhiteSpace(y.Value)));
-
-            ClearDeptFilter = ReactiveCommand.Create(() =>
-            {
-                fDEPT = string.Empty;
-            }, this.WhenAny(
-                x => x.fDEPT,
-                (y) => !string.IsNullOrWhiteSpace(y.Value)));
-
-            ClearRoleFilter = ReactiveCommand.Create(() =>
-            {
-                fROLE = string.Empty;
-            }, this.WhenAny(
-                x => x.fROLE,
-                (y) => !string.IsNullOrWhiteSpace(y.Value)));
-
-            ClearAll = ReactiveCommand.Create(() =>
-            {
-                fNAME = string.Empty;
-                fDEPT = string.Empty;
-                fROLE = string.Empty;
-            }, this.WhenAny(
-                x => x.fNAME,
-                x => x.fDEPT,
-                x => x.fROLE,
-                (n, d, r) => !string.IsNullOrWhiteSpace(n.Value) || 
-                             !string.IsNullOrWhiteSpace(d.Value) || 
-                             !string.IsNullOrWhiteSpace(r.Value)));
+            this.WhenAnyValue(x => x.FilterText)
+                .Throttle(TimeSpan.FromSeconds(.25))
+                .Select(_ => Unit.Default)
+                .InvokeCommand(FilterCommand);
         }
 
-        public void ApplySort()
+        private string _FilterText;
+        public string FilterText
         {
-            string f = BuildFilterString(SortList);
-
-            if (!string.IsNullOrWhiteSpace(f) && EmployeeList != null)
-                EmployeeList = new ReactiveList<FnTEMPLOYEE_LISTResult>(EmployeeList.OrderBy(f, this).AsEnumerable());
+            get { return _FilterText; }
+            set { this.RaiseAndSetIfChanged(ref _FilterText, value); }
         }
 
-        private int _EmployeeIndex = -1;
-        public int EmployeeIndex
-        {
-            get { return _EmployeeIndex; }
-            set { this.RaiseAndSetIfChanged(ref _EmployeeIndex, value); }
-        }
+        public ReactiveCommand EmployeeAdd { get; set; }
+        public ReactiveCommand EmployeeEdit { get; set; }
+        public ReactiveCommand EmployeeDelete { get; set; }
+        public ReactiveCommand EmployeeTraining { get; set; }
+        public ReactiveCommand FilterCommand { get; set; }
+        public ReactiveCommand ClearFilterCommand { get; set; }
 
-        public ReactiveCommand NewEmployeeCommand { get; set; }
-        public ReactiveCommand EditEmployeeCommand { get; set; }
-        public ReactiveCommand EditTrainingCommand { get; set; }
-        public ReactiveCommand ListTrainingCommand { get; set; }
-
-        public ReactiveCommand ClearNameFilter { get; set; }
-        public ReactiveCommand ClearDeptFilter { get; set; }
-        public ReactiveCommand ClearRoleFilter { get; set; }
-        public ReactiveCommand ClearAll { get; set; }
-
-        private ReactiveList<FnTEMPLOYEE_LISTResult> _OriginalList = new ReactiveList<FnTEMPLOYEE_LISTResult>();
-        public ReactiveList<FnTEMPLOYEE_LISTResult> OriginalList
+        private ReactiveList<EmployeeResult> _OriginalList = new ReactiveList<EmployeeResult>();
+        public ReactiveList<EmployeeResult> OriginalList
         {
             get { return _OriginalList; }
             set { this.RaiseAndSetIfChanged(ref _OriginalList, value); }
         }
 
-        private ReactiveList<FnTEMPLOYEE_LISTResult> _employeeList;
-        public ReactiveList<FnTEMPLOYEE_LISTResult> EmployeeList
+        private ReactiveList<EmployeeResult> _EmployeeList;
+        public ReactiveList<EmployeeResult> EmployeeList
         {
-            get { return _employeeList; }
-            set { this.RaiseAndSetIfChanged(ref _employeeList, value); }
-        }
-        
-        private FnTEMPLOYEE_LISTResult _selectedEmployee = new FnTEMPLOYEE_LISTResult();
-        public FnTEMPLOYEE_LISTResult SelectedEmployee
-        {
-            get { return _selectedEmployee; }
-            set { this.RaiseAndSetIfChanged(ref _selectedEmployee, value); }
+            get { return _EmployeeList; }
+            set { this.RaiseAndSetIfChanged(ref _EmployeeList, value); }
         }
 
-        private string _fNAME;
-        public string fNAME
+        private EmployeeResult _SelectedEmployee;
+        public EmployeeResult SelectedEmployee
         {
-            get { return _fNAME; }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _fNAME, value);
-
-                var task = Task.Run(() => ApplyFilter());
-                bWorking = true;
-                task.ContinueWith((x) => { bWorking = false; });
-            }
+            get { return _SelectedEmployee; }
+            set { this.RaiseAndSetIfChanged(ref _SelectedEmployee, value); }
         }
 
-        private string _fDEPT;
-        public string fDEPT
+        private int _SelectedEmployeeIndex = -1;
+        public int SelectedEmployeeIndex
         {
-            get { return _fDEPT; }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _fDEPT, value);
-
-                var task = Task.Run(() => ApplyFilter());
-                bWorking = true;
-                task.ContinueWith((x) => { bWorking = false; });
-            }
+            get { return _SelectedEmployeeIndex; }
+            set { this.RaiseAndSetIfChanged(ref _SelectedEmployeeIndex, value); }
         }
 
-        private string _fROLE;
-        public string fROLE
+        private bool _IsWorking = true;
+        public bool IsWorking
         {
-            get { return _fROLE; }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _fROLE, value);
-
-                var task = Task.Run(() => ApplyFilter());
-                bWorking = true;
-                task.ContinueWith((x) => { bWorking = false; });
-            }
-        }
-
-        private async void ApplyFilter()
-        {
-            await Task.Run(() => 
-            {
-                var tList = new ReactiveList<FnTEMPLOYEE_LISTResult>(OriginalList);
-
-                // Pass One - First Name / Last Name
-                if (!string.IsNullOrWhiteSpace(fNAME)) { tList = new ReactiveList<FnTEMPLOYEE_LISTResult>(OriginalList.Where(x => x.EMP_FNAME.ToUpper().Contains(fNAME.ToUpper()) || x.EMP_LNAME.ToUpper().Contains(fNAME.ToUpper()))); }
-                else { tList = OriginalList; }
-
-                // Pass Two - Department
-                if (!string.IsNullOrWhiteSpace(fDEPT)) { tList = new ReactiveList<FnTEMPLOYEE_LISTResult>(tList.Where(x => x.DEPT_NAME.ToUpper().Contains(fDEPT.ToUpper()))); }
-
-                // Pass Three - Role / Var
-                if (!string.IsNullOrEmpty(fROLE)) { tList = new ReactiveList<FnTEMPLOYEE_LISTResult>(tList.Where(x => x.ROLE_NAME.ToUpper().Contains(fROLE.ToUpper()) || x.VAR_NAME.ToUpper().Contains(fROLE.ToUpper()))); }
-
-                EmployeeList = tList;
-
-                ApplySort();
-
-                EmployeeIndex = -1;
-
-                return 0;
-            });
-        }
-
-
-        private bool _bWorking = false;
-        public bool bWorking
-        {
-            get { return _bWorking; }
-            set { this.RaiseAndSetIfChanged(ref _bWorking, value); }
+            get { return _IsWorking; }
+            set { this.RaiseAndSetIfChanged(ref _IsWorking, value); }
         }
     }
 }
